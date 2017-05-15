@@ -1,3 +1,7 @@
+<?php
+session_start();
+require_once "check.php";
+?>
 <!DOCTYPE HTML>
 <html lang="pt-br">
 <head>

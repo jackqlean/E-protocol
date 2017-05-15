@@ -1,26 +1,9 @@
 <?php
-include_once"navegacao.php";
-
-/*if(isset($link)) $link = $_GET["link"];
-          $pag[1] = "exemplo.php";
-          $pag[2] = "frm/cadastro_req.php";
-          $pag[3] = "frm/cadastro_ob.php";
-          
-          if (!empty($link)){
-            if(file_exists($pag[$link]))
-            {
-              include $pag[$link];
-            }
-            else
-            {
-              include "exemplo.php";
-            }
-          
-          }else{
-              include "exemplo.php";
-          }*/
+session_start();
+require_once"config/init.php";
+// inclui o arquivo de funçõees
+require "config/functions.php";
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -39,9 +22,16 @@ include_once"navegacao.php";
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+  
   </head>
   <body>
-    
+    <?php if (isLoggedIn()):
+    header('Location: navegacao.php'); ?>
+    <!--<?php echo $_SESSION['user_name']; ?>-->
+    <?php else: 
+    header('Location: frm/form-login.php');
+    ?>
+    <?php endif; ?>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

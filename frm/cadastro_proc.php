@@ -1,4 +1,8 @@
 <?php
+session_start();
+require_once "check.php";
+?>
+<?php
 // O trecho de código faz com que force o apache a exibir os erros, que por padrão são ocultos
 header('Content-Type: text/html; charset=utf-8');
 ini_set('display_errors',0);
@@ -25,15 +29,15 @@ mysqli_close($link);
 	<title>E-Protocol 1.0</title>
 	<!--<link rel="shortcut icon" type="image/png" href="/media/images/favicon.png">-->
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../lib/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../lib/font-awesome/css/font-awesome.css">
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../lib/datatables/css/dataTables.bootstrap.min.css">
 	<script src="../lib/jquery/jquery-1.12.4.js"></script>
   <script src="../lib/jquery/jquery-ui.js"></script>		
 	<script src="../lib/jusuario.js"></script>
   <!--<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.4.js">-->
 	</script>
-	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js">
+	<script type="text/javascript" language="javascript" src="../lib/datatables/js/jquery.dataTables.min.js">
 	</script>
 	<script type="text/javascript" class="init">
 
@@ -116,7 +120,7 @@ $( function() {
         </li>
         
         <li><a href="#">Sobre</a>  </li>
-        <li><a href="#">Sair</a>  </li>
+        <li><a href="../op/logout.php">Sair</a>  </li>
 
         </ul>
         </div>

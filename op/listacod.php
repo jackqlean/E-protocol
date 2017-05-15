@@ -1,4 +1,8 @@
 <?php
+session_start();
+require_once "check.php";
+?>
+<?php
 
 require_once("../config/init.php");
 

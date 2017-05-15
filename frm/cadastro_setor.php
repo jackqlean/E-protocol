@@ -1,3 +1,7 @@
+<?php
+session_start();
+require_once "check.php";
+?>
 <!DOCTYPE HTML>
  <html lang="pt-br">
 <head>
@@ -69,7 +73,7 @@
         </li>
         
         <li><a href="#">Sobre</a>  </li>
-        <li><a href="#">Sair</a>  </li>
+        <li><a href="../op/logout.php">Sair</a>  </li>
 
         </ul>
         </div>

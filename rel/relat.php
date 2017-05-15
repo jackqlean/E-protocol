@@ -1,4 +1,8 @@
 <?php
+session_start();
+require_once "check.php";
+?>
+<?php
 // O trecho de código faz com que force o apache a exibir os erros, que por padrão são ocultos
 header('Content-Type: text/html; charset=utf-8');
 ini_set('display_errors',1);

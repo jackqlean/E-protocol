@@ -16,6 +16,23 @@
 CREATE DATABASE IF NOT EXISTS `prot` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `prot`;
 
+-- Copiando estrutura para tabela prot.encaminhamento
+CREATE TABLE IF NOT EXISTS `encaminhamento` (
+  `cod` int(11) NOT NULL AUTO_INCREMENT,
+  `cod_proc` int(11) DEFAULT NULL,
+  `cod_setor` int(11) DEFAULT NULL,
+  `data` date DEFAULT NULL,
+  `horas` time DEFAULT NULL,
+  `obs` text,
+  PRIMARY KEY (`cod`),
+  KEY `cod_proc` (`cod_proc`),
+  KEY `cod_setor` (`cod_setor`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Copiando dados para a tabela prot.encaminhamento: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `encaminhamento` DISABLE KEYS */;
+/*!40000 ALTER TABLE `encaminhamento` ENABLE KEYS */;
+
 -- Copiando estrutura para tabela prot.itens_arq
 CREATE TABLE IF NOT EXISTS `itens_arq` (
   `cod` int(11) NOT NULL AUTO_INCREMENT,
@@ -25,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `itens_arq` (
   KEY `cod_proc` (`cod_proc`)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela prot.itens_arq: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela prot.itens_arq: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `itens_arq` DISABLE KEYS */;
 INSERT INTO `itens_arq` (`cod`, `cod_proc`, `arquivo`) VALUES
 	(19, 48, 'Jack.jpg');
@@ -81,9 +98,9 @@ CREATE TABLE IF NOT EXISTS `ob` (
   `tipo` char(1) DEFAULT NULL,
   `titulo` varchar(50) NOT NULL,
   PRIMARY KEY (`cod`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela prot.ob: ~5 rows (aproximadamente)
+-- Copiando dados para a tabela prot.ob: ~6 rows (aproximadamente)
 /*!40000 ALTER TABLE `ob` DISABLE KEYS */;
 INSERT INTO `ob` (`cod`, `tipo`, `titulo`) VALUES
 	(7, 'G', 'Processo');
@@ -95,6 +112,8 @@ INSERT INTO `ob` (`cod`, `tipo`, `titulo`) VALUES
 	(10, 'D', 'Acompanhamento 1');
 INSERT INTO `ob` (`cod`, `tipo`, `titulo`) VALUES
 	(11, 'G', 'Entrega de documento');
+INSERT INTO `ob` (`cod`, `tipo`, `titulo`) VALUES
+	(12, '', '');
 /*!40000 ALTER TABLE `ob` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela prot.proc
@@ -109,9 +128,9 @@ CREATE TABLE IF NOT EXISTS `proc` (
   `horas` time DEFAULT NULL,
   PRIMARY KEY (`cod`),
   KEY `cod_req` (`cod_req`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela prot.proc: ~10 rows (aproximadamente)
+-- Copiando dados para a tabela prot.proc: ~12 rows (aproximadamente)
 /*!40000 ALTER TABLE `proc` DISABLE KEYS */;
 INSERT INTO `proc` (`cod`, `cod_req`, `tipo`, `assunto`, `descricao`, `setor`, `data`, `horas`) VALUES
 	(9, 29, 'PE', 'processo 001', 'teste de processo 001.', 3, '2017-04-07', '16:38:31');
@@ -135,7 +154,26 @@ INSERT INTO `proc` (`cod`, `cod_req`, `tipo`, `assunto`, `descricao`, `setor`, `
 	(29, 30, 'PI', 'Aposentadoria de Tom', 'Por anos de serviço duros prestados.', 2, '2017-04-23', '13:16:42');
 INSERT INTO `proc` (`cod`, `cod_req`, `tipo`, `assunto`, `descricao`, `setor`, `data`, `horas`) VALUES
 	(48, 23, 'PI', 'Aposentadoria', 'Só daqui vinte anos .. sniff snifff...', 1, '2017-05-12', '10:41:18');
+INSERT INTO `proc` (`cod`, `cod_req`, `tipo`, `assunto`, `descricao`, `setor`, `data`, `horas`) VALUES
+	(49, 0, '', '', '', 0, '2017-05-15', '15:45:36');
 /*!40000 ALTER TABLE `proc` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela prot.recebimento
+CREATE TABLE IF NOT EXISTS `recebimento` (
+  `cod` int(11) NOT NULL AUTO_INCREMENT,
+  `cod_proc` int(11) DEFAULT NULL,
+  `cod_req` int(11) DEFAULT NULL,
+  `data` date DEFAULT NULL,
+  `horas` time DEFAULT NULL,
+  `responsavel` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`cod`),
+  KEY `cod_proc` (`cod_proc`),
+  KEY `cod_req` (`cod_req`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Copiando dados para a tabela prot.recebimento: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `recebimento` DISABLE KEYS */;
+/*!40000 ALTER TABLE `recebimento` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela prot.req
 CREATE TABLE IF NOT EXISTS `req` (
@@ -149,14 +187,14 @@ CREATE TABLE IF NOT EXISTS `req` (
   `rec` varchar(14) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`cod`)
-) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Copiando dados para a tabela prot.req: 11 rows
+-- Copiando dados para a tabela prot.req: ~12 rows (aproximadamente)
 /*!40000 ALTER TABLE `req` DISABLE KEYS */;
 INSERT INTO `req` (`cod`, `nome`, `tipo`, `cpf`, `sexo`, `tel`, `cel`, `rec`, `email`) VALUES
-	(23, 'Jaquison Quintão Leandro', 'S', '189.903.888-48', 'M', '1338218542', '(13)98224-9408', '(13)98180-5044', 'jackqlean@gmail.com');
-INSERT INTO `req` (`cod`, `nome`, `tipo`, `cpf`, `sexo`, `tel`, `cel`, `rec`, `email`) VALUES
 	(19, 'Letícia de Oliveira Ferreira Leandro', 'F', '189.903.888-48', 'M', '(13)3821-6117', '(13)99612-9793', '(13)98180-5044', 'leleolive@hotmail.com');
+INSERT INTO `req` (`cod`, `nome`, `tipo`, `cpf`, `sexo`, `tel`, `cel`, `rec`, `email`) VALUES
+	(23, 'Jaquison Quintão Leandro', 'S', '189.903.888-48', 'M', '1338218542', '(13)98224-9408', '(13)98180-5044', 'jackqlean@gmail.com');
 INSERT INTO `req` (`cod`, `nome`, `tipo`, `cpf`, `sexo`, `tel`, `cel`, `rec`, `email`) VALUES
 	(24, 'Melissa', 'F', '189.903.888-48', 'F', '(13)3821-8542', '', '', 'melissa@gmail.com');
 INSERT INTO `req` (`cod`, `nome`, `tipo`, `cpf`, `sexo`, `tel`, `cel`, `rec`, `email`) VALUES
@@ -175,6 +213,8 @@ INSERT INTO `req` (`cod`, `nome`, `tipo`, `cpf`, `sexo`, `tel`, `cel`, `rec`, `e
 	(34, 'Olavo de Almeida', 'F', '189.903.888-48', 'M', '(13)3821-8542', '(13)97913-3996', '(13)98112-5045', 'olavo@gmail.com');
 INSERT INTO `req` (`cod`, `nome`, `tipo`, `cpf`, `sexo`, `tel`, `cel`, `rec`, `email`) VALUES
 	(35, 'Cristiane de Oliveira', 'F', '189.903.888-48', 'F', '(13)3821-8542', '(13)97913-3996', '(13)98112-5045', 'cristianeoliveira@hotmail.com');
+INSERT INTO `req` (`cod`, `nome`, `tipo`, `cpf`, `sexo`, `tel`, `cel`, `rec`, `email`) VALUES
+	(36, '', '', '', '', '', '', '', '');
 /*!40000 ALTER TABLE `req` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela prot.setor
@@ -182,9 +222,9 @@ CREATE TABLE IF NOT EXISTS `setor` (
   `cod_setor` int(11) NOT NULL AUTO_INCREMENT,
   `setor` varchar(50) NOT NULL DEFAULT '0',
   PRIMARY KEY (`cod_setor`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela prot.setor: ~4 rows (aproximadamente)
+-- Copiando dados para a tabela prot.setor: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `setor` DISABLE KEYS */;
 INSERT INTO `setor` (`cod_setor`, `setor`) VALUES
 	(1, 'Administração');
@@ -196,7 +236,24 @@ INSERT INTO `setor` (`cod_setor`, `setor`) VALUES
 	(4, 'Previdenciário');
 INSERT INTO `setor` (`cod_setor`, `setor`) VALUES
 	(6, 'Contabilidade');
+INSERT INTO `setor` (`cod_setor`, `setor`) VALUES
+	(7, '');
 /*!40000 ALTER TABLE `setor` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela prot.users
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Copiando dados para a tabela prot.users: ~1 rows (aproximadamente)
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
+	(1, 'Jaquison Quintão Leandro', 'jackqlean@gmail.com', '2d29b962490320f821db80cddf6ed4b6e4ac7498');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
