@@ -1,5 +1,5 @@
 <?php
-function consultaProcesso($link){
+function consultaProcRelat($link){
 	
 	global $cod;
 	global $ptipo;
@@ -24,7 +24,7 @@ function consultaProcesso($link){
 	return $ARRAY_PROCESSO;
 }
 
-function consultaSetor($link){
+function consultaSetorRelat($link){
 
 	global $cod;
 
@@ -40,8 +40,7 @@ function consultaSetor($link){
 	return $array["setor"];
 	
 }
-
-function consultaNome($link){
+function consultaNomeRelat($link){
 
 	global $cod;
 
@@ -50,9 +49,4 @@ function consultaNome($link){
 	return $array["nome"];	
 
 }
-
-function desconecta($link){
-	mysqli_close($link);
-}
-
 ?>

@@ -139,7 +139,7 @@ $sql_query = mysqli_query($link, $sql_select);
 				</a>
 			</td>
 	        <td width=20 align='center' valign='middle' bgcolor='#DDDDDD'>
-	        	<a href='/prot/op/deletar_req.php?cod=$cod'>
+	        	<a href='/prot/op/deletar_req.php?cod=<?php echo $cod ?>'>
 	        		<img width='12' height='13' src='/prot/img/button_drop.png' alt='Excluir' title='Excluir' border='0' />
 	        	</a>
 	        </td>

@@ -5,7 +5,6 @@ ini_set('display_errors',0);
 ini_set('display_startup_erros',0);
 error_reporting(E_ALL);
 // =====================================
-
 // Realiza a conexão com o servidor
 // Coloca as informações da conexão na variável $link
 require_once "../config/init.php";
@@ -16,10 +15,16 @@ $sqry = mysqli_query($link,"SELECT cod FROM proc ORDER BY cod DESC");
 $lcod = mysqli_fetch_array($sqry);
 $cod = $lcod["cod"];
 
-//Consultas União tabelas (processos e setor)
+//Consulta União tabelas setor e proc (processos)
 $sql_query = mysqli_query($link,"SELECT s.cod_setor, s.setor AS desc_setor, p.setor FROM setor s, proc p WHERE s.cod_setor = p.setor AND p.cod = '".$cod."'");
+
+//Consulta tabela proc (processos)
 $sql2_query = mysqli_query($link,"SELECT * FROM proc WHERE cod = '".$cod."'");
+
+//Consulta tabela req (requerentes)
 $sql3_query = mysqli_query($link,"SELECT r.nome FROM req r , proc p WHERE r.cod = p.cod_req AND p.cod = '".$cod."'");
+
+$sql4_query = mysqli_query($link, "SELECT * FROM setor");
 
 // Fecha a conexão com o servidor para poupar recursos de processamento
 mysqli_close($link);
@@ -31,22 +36,15 @@ mysqli_close($link);
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
-    <title>Cadastro de Processos</title>
+    <title>Encaminhamento de Processo</title>
 
     <meta name="description" content="">
     <meta name="author" content="Jaquison Quintao Leandro">
     <link rel="icon" type="image/x-icon" href="favicon.ico"> 
     <!-- Bootstrap -->
     <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  
-<script type="text/javascript">
-/* Função responsável por carregar a janela de impressão da capa do processo */ 
-function load_Imprimir(){
-window.open('../rel/relat.php?cod=<?php echo $cod ?>','_blank')
-}
-
-</script>       
-
+    <script src="../lib/jquery/jquery-1.12.4.js" type="text/javascript"></script>
+    
 </head>
 <body>
 
@@ -115,7 +113,7 @@ window.open('../rel/relat.php?cod=<?php echo $cod ?>','_blank')
 <!-- Fim da barra de navegação -->
 
 <div class="page-header">
-  <h1>Cadastro de Processos</h1>
+  <h1>Encaminhamento de Processo</h1>
 </div>
 
 <form name="cadastro" id="cadastro" method="POST" action="../op/insere_arq.php?cod=<?php echo $cod?>" enctype="multipart/form-data">
@@ -170,31 +168,45 @@ window.open('../rel/relat.php?cod=<?php echo $cod ?>','_blank')
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="txtDescricao">Descrição</label>  
+  <label class="col-md-4 control-label" for="txtDescricao">Observação</label>  
   <div class="col-md-5">
-  <textarea name="txtDescricao" id="txtDescricao" placeholder="Preencha com a descrição aqui" class="form-control input-md" required="" disabled=""><?php echo $linha["descricao"]?></textarea>
+  <textarea name="txtObservacao" id="txtObservacao" placeholder="Preencha a observação aqui" class="form-control input-md" required=""></textarea>
   </div>
 </div>
 
-<div class="form-group">
-  <label class="col-md-4 control-label" for="txtFile">Selecione arquivo(s)...</label>
-  <div class="col-md-8">
-    <input type="file" name="arquivo" id="txtFile" value="" class="form-control">
-   </div>
+<div class="form-group" >
+  <label class="col-md-4 control-label" for="txtDescricao"></label>  
+  <div class="col-md-5">
+  <table id="mt" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                    <th align='left' bgColor='#666666'><font color='#FFF'>Setor</th>
+                    <th align='left' bgColor='#666666'><font color='#FFF'>Ação</th>
+                </tr>
+        <?php while ($array = mysqli_fetch_array($sql4_query)) { 
+        $cod = $array["cod_setor"];
+        $setor = $array["setor"];
+        ?>
+                <tr>
+                <td width="460" align='left' valign='middle' bgColor='#DDDDDD'><?php echo $setor ?></td>
+                <td width="40" align='center' valign='middle' bgcolor='#DDDDDD'><a href='/prot/op/alteracao_req.php?cod=<?php echo $cod ?>'><img width='24' height='24' src='../img/seleciona.png' alt='Selecionar' title='Selecionar' border='0' /></a></td>
+                </tr>
+            <?php } ?>
+            </table>
+      </div>
 </div>
 
 <!-- Button (Double) -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="btnEnviar"></label>
   <div class="col-md-8">
-    <button type="submit" id="btnEnviar" name="btnEnviar" class="btn btn-success">Gravar</button>
-    
-    <button type="submit" id="btnImprimir" name="btnImprimir" class="btn btn-info" onclick="load_Imprimir();">Imprimir capa do processo</button>
-      
-    <button id="btnEncaminhar" name="btnEncaminhar" class="btn btn-warning" onclick="window.open('','_blank')">Encaminhar processo</button>
-  
+    <button type="submit" id="btnEnviar" name="btnEnviar" class="btn btn-success">Encaminhar</button>
+       
     <input type="button" id="btnFechar" name="btnFechar" value="Fechar" class="btn btn-danger" onclick="javascript:location.href='../index.php'">
-  </div>
+  
+    <input type="hidden" name="cod_eproc" value="<?php echo $linha["cod"] ?>">
+    <input type="hidden" name="cod_ereq" value="<?php echo $rlinha["cod"] ?>">
+    <input type="hidden" name="cod_estdst" value="<?php ?>">
+    </div>
 </div>
 
 </fieldset>

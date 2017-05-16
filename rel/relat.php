@@ -24,7 +24,7 @@ $cod = $_GET["cod"];
 //$link = conecta();
 
 $ARRAY_PROCESSO = [];	
-$ARRAY_PROCESSO = consultaProcesso($link);
+$ARRAY_PROCESSO = consultaProcRelat($link);
 $proc_cod 		= $ARRAY_PROCESSO[0];
 $proc_tipo 		= $ARRAY_PROCESSO[1];
 $proc_assunto 	= $ARRAY_PROCESSO[2];
@@ -32,13 +32,13 @@ $proc_data 		= $ARRAY_PROCESSO[3];
 $proc_horas 	= $ARRAY_PROCESSO[4];
 
 // Consulta 02 - Faz consulta no banco nas tabelas proc e req. Traz como resultado os dados do requerente através da chave primária do código do processo 'proc.cod'.
-$req_nome = consultaNome($link);
+$req_nome = consultaNomeRelat($link);
 
 // Consulta 03 - Faz consulta no banco nas tabelas proc e req. Traz como resultado os dados do requerente através da chave primária do código do processo 'proc.cod'.
-$st_setor = consultaSetor($link);
+$st_setor = consultaSetorRelat($link);
 
 // Fecha a conexão com o servidor para poupar recursos de processamento
-desconecta($link);
+mysqli_close($link);
 
 //Bloco de impressão do relatório
 //Instância um novo objeto da classe fpdf e começa a compor a estrutura do relatório
