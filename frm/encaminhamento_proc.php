@@ -175,23 +175,17 @@ mysqli_close($link);
 </div>
 
 <div class="form-group" >
-  <label class="col-md-4 control-label" for="txtDescricao"></label>  
+  <label class="col-md-4 control-label" for="txtDescricao">Selecione o setor de destino</label>  
   <div class="col-md-5">
-  <table id="mt" cellpadding="0" cellspacing="0" border="0">
-                    <tr>
-                    <th align='left' bgColor='#666666'><font color='#FFF'>Setor</th>
-                    <th align='left' bgColor='#666666'><font color='#FFF'>Ação</th>
-                </tr>
+    <select name="txtStdst" id="txtStdst" class="form-control">
+      <option value="">Selecione...</option>
         <?php while ($array = mysqli_fetch_array($sql4_query)) { 
-        $cod = $array["cod_setor"];
+        $scod = $array["cod_setor"];
         $setor = $array["setor"];
         ?>
-                <tr>
-                <td width="460" align='left' valign='middle' bgColor='#DDDDDD'><?php echo $setor ?></td>
-                <td width="40" align='center' valign='middle' bgcolor='#DDDDDD'><a href='/prot/op/alteracao_req.php?cod=<?php echo $cod ?>'><img width='24' height='24' src='../img/seleciona.png' alt='Selecionar' title='Selecionar' border='0' /></a></td>
-                </tr>
-            <?php } ?>
-            </table>
+      <option value="<?php echo $scod ?>"><?php echo $setor ?></option>      
+      <?php } ?>
+      </select>
       </div>
 </div>
 
