@@ -196,7 +196,7 @@ mysqli_close($link);
   <div class="col-md-8">
     <button type="submit" id="btnEnviar" name="btnEnviar" class="btn btn-success">Encaminhar</button>
        
-    <input type="button" id="btnFechar" name="btnFechar" value="Fechar" class="btn btn-danger" onclick="javascript:location.href='../index.php'">
+    <!--<input type="button" id="btnFechar" name="btnFechar" value="Fechar" class="btn btn-danger" onclick="javascript:location.href='../index.php'">-->
   
     <input type="hidden" name="cod_eProc" value="<?php echo $linha["cod"] ?>">
     <input type="hidden" name="cod_eReq" value="<?php echo $rlinha["cod"] ?>">

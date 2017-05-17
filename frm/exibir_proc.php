@@ -178,22 +178,24 @@ window.open('../rel/relat.php?cod=<?php echo $cod ?>','_blank')
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="txtFile">Selecione arquivo(s)...</label>
-  <div class="col-md-8">
+  <div class="col-md-5">
     <input type="file" name="arquivo" id="txtFile" value="" class="form-control">
-   </div>
+  <button type="submit" id="btnEnviar" name="btnEnviar" class="btn btn-success">Gravar</button>
+  </div>
 </div>
 
 <!-- Button (Double) -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="btnEnviar"></label>
   <div class="col-md-8">
-    <button type="submit" id="btnEnviar" name="btnEnviar" class="btn btn-success">Gravar</button>
     
+    <button id="btnInsobrigacao" name="btnInsobrigacao" class="btn btn-primary" onclick="window.open('','_blank')">Inserir obrigação</button>
+  
     <button type="submit" id="btnImprimir" name="btnImprimir" class="btn btn-info" onclick="load_Imprimir();">Imprimir capa do processo</button>
       
-    <button id="btnEncaminhar" name="btnEncaminhar" class="btn btn-warning" onclick="window.open('','_blank')">Encaminhar processo</button>
+    <button id="btnEncaminhar" name="btnEncaminhar" class="btn btn-warning" onclick="window.open('encaminhamento_proc.php','_blank')">Encaminhar processo</button>
   
-    <input type="button" id="btnFechar" name="btnFechar" value="Fechar" class="btn btn-danger" onclick="javascript:location.href='../index.php'">
+    <!--<input type="button" id="btnFechar" name="btnFechar" value="Fechar" class="btn btn-danger" onclick="javascript:location.href='../index.php'">-->
   </div>
 </div>
 
