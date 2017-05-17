@@ -194,9 +194,7 @@ function insert_proc($link){
 
 global $cod;
 
-// DEFINE O FUSO HORARIO COMO O HORARIO DE BRASILIA
-    date_default_timezone_set('America/Sao_Paulo');
-// CRIA UMA VARIAVEL E ARMAZENA A HORA ATUAL DO FUSO-HORÀRIO DEFINIDO (BRASÍLIA)
+// VARIAVEIS PARA ARMAZENAR A HORA E DATA ATUAIS DO SISTEMA
     $data = date('Y-m-d', time());
     $horas = date('H:i:s', time());
 
@@ -295,6 +293,27 @@ $sql = "DELETE FROM req WHERE cod = '$cod'";
 		echo "<script language='javascript'>window.location.href='/prot/op/pesquisar_req.php?p=1'</script>";
 
     	} else {
+    	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
+	}
+}
+
+function encaminhar_proc($link){
+
+//global $cod;
+
+// VARIAVEIS PARA ARMAZENAR A HORA E DATA ATUAIS DO SISTEMA
+    $data = date('Y-m-d', time());
+    $horas = date('H:i:s', time());
+
+$sql = "INSERT INTO encaminhamento (cod_prenc, cod_rqenc,cod_stdst,data, horas, obs) VALUES('".$_POST["cod_eProc"]."','".$_POST["cod_eReq"]."','".$_POST["txtStdst"]."','".$data."','".$horas."','".$_POST["txtObservacao"]."')";
+		
+		if (mysqli_query($link, $sql)) {
+    
+		echo "<script language='javascript'>alert('Registro cadastrado com sucesso...!')</script>";	
+
+		echo "<script>location.href='../navegacao.php'</script>";
+
+		} else {
     	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
 	}
 }

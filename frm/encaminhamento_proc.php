@@ -22,8 +22,9 @@ $sql_query = mysqli_query($link,"SELECT s.cod_setor, s.setor AS desc_setor, p.se
 $sql2_query = mysqli_query($link,"SELECT * FROM proc WHERE cod = '".$cod."'");
 
 //Consulta tabela req (requerentes)
-$sql3_query = mysqli_query($link,"SELECT r.nome FROM req r , proc p WHERE r.cod = p.cod_req AND p.cod = '".$cod."'");
+$sql3_query = mysqli_query($link,"SELECT r.cod, r.nome FROM req r , proc p WHERE r.cod = p.cod_req AND p.cod = '".$cod."'");
 
+//Consulta de todos registros na tabela setor
 $sql4_query = mysqli_query($link, "SELECT * FROM setor");
 
 // Fecha a conexão com o servidor para poupar recursos de processamento
@@ -102,7 +103,7 @@ mysqli_close($link);
         </li>
         
         <li><a href="#">Sobre</a>  </li>
-        <li><a href="#">Sair</a>  </li>
+        <li><a href="../op/logout.php">Sair</a>  </li>
 
         </ul>
         </div>
@@ -116,17 +117,17 @@ mysqli_close($link);
   <h1>Encaminhamento de Processo</h1>
 </div>
 
-<form name="cadastro" id="cadastro" method="POST" action="../op/insere_arq.php?cod=<?php echo $cod?>" enctype="multipart/form-data">
+<form name="cadastro" id="cadastro" method="POST" action="../op/encaminhar_proc.php">
 <?php $linha = mysqli_fetch_array($sql2_query)?>
 <fieldset>
-
-<?php $rlinha = mysqli_fetch_array($sql3_query)?>
 
 <div class="form-group">
 <label class="col-md-4 control-label" for="txtCod">Protocolo nº</label>
   <label class="col-md-5 control-label" /><span style="font-family: Arial; font-size: 28px; font-style:italic; color:#000000;"><?php echo $linha["cod"] ?></span></label>
   </div>
 </div>
+
+<?php $rlinha = mysqli_fetch_array($sql3_query) ?>
 
 <div class="form-group">
 <label class="col-md-4 control-label" for="txtRequerente">Nome do requerente</label>
@@ -197,9 +198,8 @@ mysqli_close($link);
        
     <input type="button" id="btnFechar" name="btnFechar" value="Fechar" class="btn btn-danger" onclick="javascript:location.href='../index.php'">
   
-    <input type="hidden" name="cod_eproc" value="<?php echo $linha["cod"] ?>">
-    <input type="hidden" name="cod_ereq" value="<?php echo $rlinha["cod"] ?>">
-    <input type="hidden" name="cod_estdst" value="<?php ?>">
+    <input type="hidden" name="cod_eProc" value="<?php echo $linha["cod"] ?>">
+    <input type="hidden" name="cod_eReq" value="<?php echo $rlinha["cod"] ?>">
     </div>
 </div>
 

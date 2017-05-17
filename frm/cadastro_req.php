@@ -168,7 +168,8 @@ require_once "check.php";
   <label class="col-md-4 control-label" for="btnEnviar"></label>
   <div class="col-md-8">
     <button type="submit" id="btnEnviar" name="btnEnviar" class="btn btn-primary">Confirmar</button>
-    <button type="reset" id="btnCancelar" name="btnCancelar" class="btn btn-danger">Cancelar</button>
+    <button type="reset" id="btnCancelar" name="btnCancelar" class="btn btn-warning">Cancelar</button>
+    <input type="button" id="btnFechar" name="btnFechar" value="Fechar" class="btn btn-danger" onclick="javascript:location.href='../index.php'">
   </div>
 </div>
 

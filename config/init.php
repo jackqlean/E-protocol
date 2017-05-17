@@ -1,8 +1,9 @@
 <?php
+// DEFINE O FUSO HORARIO COMO O HORARIO DE BRASILIA
+date_default_timezone_set('America/Sao_Paulo');
 // habilita todas as exibições de erros
 ini_set('display_errors', true);
 error_reporting(E_ALL);
-
 header('Content-Type: text/html; charset=utf-8');
 // Realiza a conexão com o servidor
 // Coloca as informações da conexão na variável $link

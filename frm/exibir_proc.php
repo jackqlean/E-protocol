@@ -104,7 +104,7 @@ window.open('../rel/relat.php?cod=<?php echo $cod ?>','_blank')
         </li>
         
         <li><a href="#">Sobre</a>  </li>
-        <li><a href="#">Sair</a>  </li>
+        <li><a href="../op/logout.php">Sair</a>  </li>
 
         </ul>
         </div>
