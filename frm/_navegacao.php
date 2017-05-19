@@ -38,7 +38,7 @@ require_once "check.php";
         <ul class="nav navbar-nav navbar-right">
        
        
-        <li><a href="_navegacao.php">Home</a>  </li>
+        <li><a href="../navegacao.php">Home</a>  </li>
        
         <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastros<span class="caret"></span>
