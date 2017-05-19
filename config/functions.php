@@ -305,7 +305,7 @@ function encaminhar_proc($link){
     $data = date('Y-m-d', time());
     $horas = date('H:i:s', time());
 
-$sql = "INSERT INTO encaminhamento (cod_prenc, cod_rqenc,cod_stdst,data_env, horas_env, obs) VALUES('".$_POST["cod_eProc"]."','".$_POST["cod_eReq"]."','".$_POST["txtStdst"]."','".$data."','".$horas."','".$_POST["txtObservacao"]."')";
+$sql = "INSERT INTO encaminhamento (cod_prenc, cod_rqenc,cod_stdst,data_env, horas_env, obs,status) VALUES('".$_POST["cod_eProc"]."','".$_POST["cod_eReq"]."','".$_POST["txtStdst"]."','".$data."','".$horas."','".$_POST["txtObservacao"]."','0')";
 		
 		if (mysqli_query($link, $sql)) {
     
@@ -326,7 +326,7 @@ global $cod,$status;
     $data = date('Y-m-d', time());
     $horas = date('H:i:s', time());
 
-    $sql = "UPDATE `encaminhamento` SET `data_rec` = '".$data."', `horas_rec` = '".$horas."', `status` = '".$status."' WHERE `cod` = ".$cod."";
+    $sql = "UPDATE `encaminhamento` SET `data_rec` = '".$data."', `horas_rec` = '".$horas."', `status` = '1', WHERE `cod` = ".$cod."";
 
 	if (mysqli_query($link, $sql)) {
     

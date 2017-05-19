@@ -17,7 +17,7 @@ require_once "../config/init.php";
 
 // Executa a instrução SQL para selectionar todos os registros
 $sql_query = mysqli_query($link,"SELECT p.cod AS cod, p.tipo, r.nome AS nome, s.setor, DATE_FORMAT(e.data_env,'%d/%m/%Y') AS data, e.horas_env AS horas FROM  proc p, req r, setor s, encaminhamento e 
-WHERE p.cod = e.cod_prenc AND r.cod = e.cod_rqenc AND s.cod_setor = e.cod_stdst");
+WHERE p.cod = e.cod_prenc AND r.cod = e.cod_rqenc AND s.cod_setor = e.cod_stdst AND e.`status`!='1'");
 
 // Fecha a conexão com o servidor para poupar recursos de processamento
 mysqli_close($link);
@@ -38,7 +38,7 @@ mysqli_close($link);
     <script type="text/javascript">
         $(document).ready(function () {
             
-            $('#pag-1').smartpaginator({ totalrecords: 10, recordsperpage: 3, datacontainer: 'mt', dataelement: 'tr', initval: 0, length: 5, next: 'Next', prev: 'Prev', first: 'First', last: 'Last', go:'Go',theme: 'black' });
+            $('#pag-1').smartpaginator({ totalrecords: 50, recordsperpage: 5, datacontainer: 'mt', dataelement: 'tr', initval: 0, length: 5, next: 'Next', prev: 'Prev', first: 'First', last: 'Last', go:'Go',theme: 'black' });
 
             $('#green').smartpaginator({ totalrecords: 10, recordsperpage: 3, datacontainer: 'mt', dataelement: 'tr', initval: 0, next: 'Next', prev: 'Prev', first: 'First', last: 'Last', theme: 'green' });
 
