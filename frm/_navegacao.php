@@ -1,6 +1,4 @@
 <?php
-session_start();
-require 'config/init.php';
 require_once "check.php";
 ?>
 <!DOCTYPE html>
@@ -13,7 +11,7 @@ require_once "check.php";
     <title>::. E-Protocol v1.0 .::</title>
 
     <!-- Bootstrap -->
-    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -40,19 +38,19 @@ require_once "check.php";
         <ul class="nav navbar-nav navbar-right">
        
        
-        <li><a href="navegacao.php">Home</a>  </li>
+        <li><a href="_navegacao.php">Home</a>  </li>
        
         <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastros<span class="caret"></span>
         </a>  
           <ul class="dropdown-menu">
-            <li><a href="frm/cadastro_req.php">Requerentes</a></li>
+            <li><a href="cadastro_req.php">Requerentes</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="frm/cadastro_proc.php">Processos</a></li>
+            <li><a href="cadastro_proc.php">Processos</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="frm/cadastro_ob.php">Obrigações</a></li>
+            <li><a href="cadastro_ob.php">Obrigações</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="frm/cadastro_setor.php">Setores</a></li>
+            <li><a href="cadastro_setor.php">Setores</a></li>
           </ul>
         </li> 
        
@@ -60,7 +58,7 @@ require_once "check.php";
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Atendimento<span class="caret"></span>
         </a>  
           <ul class="dropdown-menu">
-            <li><a href="frm/recebimento_proc.php">Receber processo</a>  </li>
+            <li><a href="recebimento_proc.php">Receber processo</a>  </li>
             <li role="separator" class="divider"></li>
             <li><a href="#">Logout</a>  </li>
           </ul>
@@ -76,7 +74,7 @@ require_once "check.php";
         </li>
         
         <li><a href="#">Sobre</a>  </li>
-        <li><a href="op/logout.php">Sair</a>  </li>
+        <li><a href="../op/logout.php">Sair</a>  </li>
 
         </ul>
         </div>
@@ -84,10 +82,9 @@ require_once "check.php";
         </div>
       </nav>
     </div>
-    <p>Olá, <?php echo $_SESSION['user_name']; ?>. Seja bem vindo ao sistema.</p>
-   	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>

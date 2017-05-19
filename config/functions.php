@@ -305,11 +305,32 @@ function encaminhar_proc($link){
     $data = date('Y-m-d', time());
     $horas = date('H:i:s', time());
 
-$sql = "INSERT INTO encaminhamento (cod_prenc, cod_rqenc,cod_stdst,data, horas, obs) VALUES('".$_POST["cod_eProc"]."','".$_POST["cod_eReq"]."','".$_POST["txtStdst"]."','".$data."','".$horas."','".$_POST["txtObservacao"]."')";
+$sql = "INSERT INTO encaminhamento (cod_prenc, cod_rqenc,cod_stdst,data_env, horas_env, obs) VALUES('".$_POST["cod_eProc"]."','".$_POST["cod_eReq"]."','".$_POST["txtStdst"]."','".$data."','".$horas."','".$_POST["txtObservacao"]."')";
 		
 		if (mysqli_query($link, $sql)) {
     
-		echo "<script language='javascript'>alert('Registro cadastrado com sucesso...!')</script>";	
+		echo "<script language='javascript'>alert('Registro encaminhado com sucesso...!')</script>";	
+
+		echo "<script>location.href='../navegacao.php'</script>";
+
+		} else {
+    	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
+	}
+}
+
+function receber_proc($link){
+
+global $cod,$status;
+
+// VARIAVEIS PARA ARMAZENAR A HORA E DATA ATUAIS DO SISTEMA
+    $data = date('Y-m-d', time());
+    $horas = date('H:i:s', time());
+
+    $sql = "UPDATE `encaminhamento` SET `data_rec` = '".$data."', `horas_rec` = '".$horas."', `status` = '".$status."' WHERE `cod` = ".$cod."";
+
+	if (mysqli_query($link, $sql)) {
+    
+		echo "<script language='javascript'>alert('Registro recebido com sucesso...!')</script>";	
 
 		echo "<script>location.href='../navegacao.php'</script>";
 

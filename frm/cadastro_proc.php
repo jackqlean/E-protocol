@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once "check.php";
+include "_navegacao.php";
 ?>
 <?php
 // O trecho de código faz com que force o apache a exibir os erros, que por padrão são ocultos
@@ -33,10 +34,9 @@ mysqli_close($link);
 	<link rel="stylesheet" href="../lib/font-awesome/css/font-awesome.css">
   <link rel="stylesheet" type="text/css" href="../lib/datatables/css/dataTables.bootstrap.min.css">
 	<script src="../lib/jquery/jquery-1.12.4.js"></script>
-  <script src="../lib/jquery/jquery-ui.js"></script>		
+  <script src="../lib/jquery/jquery-ui.js"></script>
 	<script src="../lib/jusuario.js"></script>
   <!--<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.4.js">-->
-	</script>
 	<script type="text/javascript" language="javascript" src="../lib/datatables/js/jquery.dataTables.min.js">
 	</script>
 	<script type="text/javascript" class="init">
@@ -65,70 +65,6 @@ $( function() {
 	</script>
 </head>
 <body>
-
-<!-- Barra de navegação -->
-    <div>
-      <nav class="navbar navbar-default">
-        <div class="container">
-          <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#barra-navegacao">
-            <span class="sr-only">Alternar menu</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-
-          <a href="#" class="navbar-brand">E-Protocol v1.0</a>
-          </div>
-        <div class="collapse navbar-collapse" id="barra-navegacao">
-        <ul class="nav navbar-nav navbar-right">
-       
-       
-        <li><a href="../index.php">Home</a>  </li>
-       
-        <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastros<span class="caret"></span>
-        </a>  
-          <ul class="dropdown-menu">
-            <li><a href="cadastro_req.php">Requerentes</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="cadastro_proc.php">Processos</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="cadastro_ob.php">Obrigações</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="cadastro_setor.php">Setores</a></li>
-          </ul>
-        </li> 
-       
-       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Atendimento<span class="caret"></span>
-        </a>  
-          <ul class="dropdown-menu">
-            <li><a href="#">Editar</a>  </li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Logout</a>  </li>
-          </ul>
-        </li> 
-        
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Relatorios<span class="caret"></span>
-        </a>  
-          <ul class="dropdown-menu">
-            <li><a href="#">Editar</a>  </li>
-            <li><a href="#">Logout</a>  </li>
-          </ul>
-        </li>
-        
-        <li><a href="#">Sobre</a>  </li>
-        <li><a href="../op/logout.php">Sair</a>  </li>
-
-        </ul>
-        </div>
-
-        </div>
-      </nav>
-    </div>
-<!-- Fim da barra de navegação -->
 
 <div class="page-header">
         <h1>Cadastro de Processos</h1>

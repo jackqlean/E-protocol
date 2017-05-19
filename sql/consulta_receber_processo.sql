@@ -1,0 +1,2 @@
+SELECT p.cod AS cod, p.tipo, r.nome AS nome, s.setor AS setor, DATE_FORMAT(e.data_env,'%d/%m/%Y') AS data, e.horas_env AS horas FROM  proc p, req r, setor s, encaminhamento e 
+WHERE p.cod = e.cod_prenc AND r.cod = e.cod_rqenc AND s.cod_setor = e.cod_stdst;
