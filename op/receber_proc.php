@@ -9,7 +9,7 @@ ini_set('display_startup_erros',1);
 error_reporting(E_ALL);
 // =====================================
 
-//$cod = $_GET["cod"];
+$cod = $_GET["cod"];
 
 require_once "../config/init.php";
 require_once "../config/functions.php";

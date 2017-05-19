@@ -18,5 +18,4 @@ encaminhar_proc($link);
 
 // Fecha a conexão com o servidor para poupar recursos de processamento
 desconecta($link);
-
 ?>

@@ -56,6 +56,8 @@ mysqli_close($link);
   <h1>Recebimento de Processo</h1>
 </div>
 <div class="form-group">
+
+<form name="cadastro" id="cadastro" method="POST">
   <label class="col-md-4 control-label" for="txtDescricao"></label>  
      <table id="mt" cellpadding="0" cellspacing="0" border="0" class="table">
       <tr>
@@ -87,14 +89,13 @@ mysqli_close($link);
         <td><?php echo $data ?></td>
         <td><?php echo $horas ?></td>
         <td><?php echo $setor ?></td>
-        <td><a href='/prot/op/receber_proc.php'><img width='24' height='24' src='../img/seleciona.png' alt='Selecionar' title='Selecionar' border='0' /></a></td>
+        <td><a href='/prot/op/receber_proc.php?cod=<?php echo $cod ?>'><img width='24' height='24' src='../img/seleciona.png' alt='Selecionar' title='Selecionar' border='0' /></a></td>
       </tr>
       <?php } ?>
     </table>
     <div id="pag-1" style="margin: auto;"></div>
     </div>
 </div>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    
+</form>
 </body>
 </html>

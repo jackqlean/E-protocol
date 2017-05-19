@@ -320,13 +320,13 @@ $sql = "INSERT INTO encaminhamento (cod_prenc, cod_rqenc,cod_stdst,data_env, hor
 
 function receber_proc($link){
 
-global $cod,$status;
-
 // VARIAVEIS PARA ARMAZENAR A HORA E DATA ATUAIS DO SISTEMA
+	global $cod;
+
     $data = date('Y-m-d', time());
     $horas = date('H:i:s', time());
 
-    $sql = "UPDATE `encaminhamento` SET `data_rec` = '".$data."', `horas_rec` = '".$horas."', `status` = '1', WHERE `cod` = ".$cod."";
+    $sql = "UPDATE `encaminhamento` SET `data_rec` = '".$data."', `horas_rec` = '".$horas."', `status` = '1' WHERE `cod_prenc` = '".$cod."'";
 
 	if (mysqli_query($link, $sql)) {
     
