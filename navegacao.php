@@ -62,8 +62,8 @@ require_once "check.php";
           <ul class="dropdown-menu">
             <li><a href="frm/recebimento_proc.php">Receber processo</a>  </li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Logout</a>  </li>
-          </ul>
+            <li><a href="frm/consulta_proc.php">Consultar processo</a>  </li>
+            </ul>
         </li> 
         
       <li class="dropdown">
