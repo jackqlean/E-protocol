@@ -93,6 +93,7 @@ mysqli_close($link);
 <div class="form-group">
 <?php 
   $array = mysqli_fetch_array($sql_query);
+  $cod_setor = $array["cod_setor"];
   $desc_setor = $array["desc_setor"];
 ?>
  <label class="col-md-4 control-label" for="txtSetor">Setor de origem</label>
@@ -142,6 +143,8 @@ mysqli_close($link);
   
     <input type="hidden" name="cod_eProc" value="<?php echo $linha["cod"] ?>">
     <input type="hidden" name="cod_eReq" value="<?php echo $rlinha["cod"] ?>">
+    <input type="hidden" name="cod_eSetor" value="<?php echo $cod_setor ?>">
+    
     </div>
 </div>
 

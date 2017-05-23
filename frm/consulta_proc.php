@@ -90,7 +90,7 @@ include "_navegacao.php";
 	<center>
 		<form name="form_pesquisa" id="form_pesquisa" method="post" action="">
 				<span style="color: #3C21C1;" class="glyphicon glyphicon-search"></span>
-							<input type="text" name="pesquisaCliente" id="pesquisaCliente" value="" tabindex="1" placeholder="Preencha o código"/>
+							<input type="text" name="pesquisaCliente" id="pesquisaCliente" value="" tabindex="1" placeholder="Preencha com o número do protocolo"/>
 						</div>
 			</form>
 			<div id="contentLoading">

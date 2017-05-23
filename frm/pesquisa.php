@@ -76,8 +76,8 @@ mysqli_close($link);
         <td><?php echo $data ?></td>
         <td><?php echo $horas ?></td>
         <td><?php echo $setor ?></td>
-        <td><a href='/prot/op/alterar_proc.php?cod=<?php echo $cod ?>'><span style="color: #F49522;font-size: 18px;" class="glyphicon glyphicon-pencil" alt='Editar' title='Editar'></span></a></td>
-        <td><a href='/prot/op/detalhar_proc.php?cod=<?php echo $cod ?>'><span style="color: #20D53B;font-size: 18px;" class="glyphicon glyphicon-sunglasses" alt='Detalhar' title='Detalhar'></span></a></td>
+        <td><a href='/prot/frm/alteracao_proc.php?cod=<?php echo $cod ?>'><span style="color: #F49522;font-size: 18px;" class="glyphicon glyphicon-pencil" alt='Editar' title='Editar'></span></a></td>
+        <td><a href='/prot/frm/detalhe_proc.php?cod=<?php echo $cod ?>'><span style="color: #20D53B;font-size: 18px;" class="glyphicon glyphicon-sunglasses" alt='Detalhar processo' title='Detalhar processo'></span></a></td>
       </tr>
       <?php } ?>
     </table>

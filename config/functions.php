@@ -129,7 +129,7 @@ $sql = "UPDATE `ob` SET  `tipo` = '".$tipo."', `titulo` = '".$titulo."' WHERE `c
     
    			echo "<script language='javascript'>alert('Registro alterado com sucesso...!')</script>";				
 			
-			echo "<script language='javascript'>window.location.href='/prot/op/listar_ob.php?p=1&cod=$cod'</script>";
+			echo "<script language='javascript'>window.location.href='../navegacao.php'</script>";
 			    
 		} else {
     echo "Erro: " . $sql . "<br>" . mysqli_error($link);
@@ -139,15 +139,15 @@ $sql = "UPDATE `ob` SET  `tipo` = '".$tipo."', `titulo` = '".$titulo."' WHERE `c
 
 function update_proc($link){
 
-global $cod, $tipo, $assunto, $descricao, $setor;
+global $cod;
 
-$sql = "UPDATE `proc` SET `tipo` = '".$tipo."', `assunto` = '".$assunto."', `descricao` = '".$descricao."',`setor` = '".$setor."' WHERE `cod` = ".$cod."";
+$sql = "UPDATE `proc` SET `tipo` = '".$_POST["txtTipo"]."', `assunto` = '".$_POST["txtAssunto"]."', `descricao` = '".$_POST["txtDescricao"]."',`setor` = '".$_POST["txtSetor"]."' WHERE `cod` = ".$cod."";
 
 	if (mysqli_query($link, $sql)) {
     
     	echo "<script language='javascript'>alert('Registro alterado com sucesso...!')</script>";				
 
-		echo "<script language='javascript'>window.location.href='/prot/op/listar_proc.php?p=1'</script>";
+		echo "<script language='javascript'>window.location.href='../navegacao.php'</script>";
 
     
 			} else {
@@ -305,7 +305,7 @@ function encaminhar_proc($link){
     $data = date('Y-m-d', time());
     $horas = date('H:i:s', time());
 
-$sql = "INSERT INTO encaminhamento (cod_prenc, cod_rqenc,cod_stdst,data_env, horas_env, obs,status) VALUES('".$_POST["cod_eProc"]."','".$_POST["cod_eReq"]."','".$_POST["txtStdst"]."','".$data."','".$horas."','".$_POST["txtObservacao"]."','0')";
+$sql = "INSERT INTO encaminhamento (cod_prenc, cod_rqenc, cod_stenv, cod_stdst, user_env, data_env, horas_env, obs,status) VALUES('".$_POST["cod_eProc"]."','".$_POST["cod_eReq"]."','".$_POST["cod_eSetor"]."','".$_POST["txtStdst"]."','".$_SESSION['user_id']."','".$data."','".$horas."','".$_POST["txtObservacao"]."','0')";
 		
 		if (mysqli_query($link, $sql)) {
     
