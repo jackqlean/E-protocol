@@ -198,7 +198,7 @@ global $cod;
     $data = date('Y-m-d', time());
     $horas = date('H:i:s', time());
 
-$sql = "INSERT INTO proc (tipo, assunto, descricao ,setor, cod_req,data,horas) VALUES('".$_POST["txtTipo"]."','".$_POST["txtAssunto"]."','".$_POST["txtDescricao"]."','".$_POST["txtSetor"]."','".$cod."','".$data."','".$horas."')";
+$sql = "INSERT INTO proc (tipo, assunto, descricao ,setor, cod_req, user_id,data,horas) VALUES('".$_POST["txtTipo"]."','".$_POST["txtAssunto"]."','".$_POST["txtDescricao"]."','".$_POST["txtSetor"]."','".$cod."','".$_SESSION['user_id']."','".$data."','".$horas."')";
 		
 		if (mysqli_query($link, $sql)) {
     

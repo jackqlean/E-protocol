@@ -19,13 +19,16 @@ $cod = $_GET["cod"];
 $sql_query = mysqli_query($link,"SELECT s.cod_setor, s.setor AS desc_setor, p.setor FROM setor s, proc p WHERE s.cod_setor = p.setor AND p.cod = '".$cod."'");
 
 //Consulta todos os registros da tabela proc (processos).
-$sql2_query = mysqli_query($link,"SELECT p.cod,  p.tipo, p.assunto, p.descricao, DATE_FORMAT(p.data,'%d/%m/%Y') AS data FROM proc p WHERE p.cod = '".$cod."'");
+$sql2_query = mysqli_query($link,"SELECT p.cod,  p.tipo, p.assunto, p.descricao, DATE_FORMAT(p.data,'%d/%m/%Y') AS data , p.horas AS horas FROM proc p WHERE p.cod = '".$cod."'");
 
 //Consulta a tabela requentes pelo código do processo
 $sql3_query = mysqli_query($link,"SELECT r.nome FROM req r , proc p WHERE r.cod = p.cod_req AND p.cod = '".$cod."'");
 
 //Consulta arquivos pelo código do processo
 $sql4_query = mysqli_query($link,"SELECT a.arquivo, p.cod FROM itens_arq a, proc p WHERE a.cod_proc = p.cod AND p.cod = '".$cod."'");
+
+//Consulta horas, data e usuario da tabela proc (processos).
+$sql5_query = mysqli_query($link,"SELECT  DATE_FORMAT(p.data,'%d/%m/%Y') AS data , p.horas AS horas, u.name AS usuario FROM proc p, users u WHERE p.user_id = u.id AND p.cod = '".$cod."'");
 
 // Fecha a conexão com o servidor para poupar recursos de processamento
 mysqli_close($link);
@@ -141,6 +144,72 @@ window.open('../rel/relat.php?cod=<?php echo $cod ?>','_blank')
       <tr>
         <td><?php echo $arquivo ?></td>
         <td><a href='/prot/uploads/<?php echo $arquivo ?>' target="_blank"><span style="color: #FF8000;font-size: 28px;" class="glyphicon glyphicon-floppy-save" alt='Download' title='Download'></span></a></td>
+      </tr>
+      <?php } ?>
+    </table>    
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" >Histórico do processo</label>
+  <div class="col-md-5">
+<table cellpadding="0" cellspacing="0" border="0" class="table">
+      <tr>
+      <th align='center' bgColor='#666666'><font color='#FFF'>Data do cadastro</th>
+      <th align='center' bgColor='#666666'><font color='#FFF'>Horas do cadastro</th>
+      <th align='center' bgColor='#666666'><font color='#FFF'>Usuário do cadastro</th>
+      </tr>
+        <?php while ($array = mysqli_fetch_array($sql5_query)) { 
+        
+        $data = $array["data"];
+        $horas = $array["horas"];
+        $usuario = $array["usuario"];
+        
+        ?>
+      <tr>
+        <td><?php echo $data ?></td>
+        <td><?php echo $horas ?></td>
+        <td><?php echo $usuario ?></td>
+      </tr>
+      <?php } ?>
+    </table>    
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" >Movimentação do processo</label>
+  <div class="col-md-5">
+<table cellpadding="0" cellspacing="0" border="0" class="table">
+      <tr>
+      <th align='center' bgColor='#666666'><font color='#FFF'>Setor de Envio</th>
+      <th align='center' bgColor='#666666'><font color='#FFF'>Data do envio</th>
+      <th align='center' bgColor='#666666'><font color='#FFF'>Usuário do envio</th>
+      <th align='center' bgColor='#666666'><font color='#FFF'>Setor de Destino</th>
+      <th align='center' bgColor='#666666'><font color='#FFF'>Data do recebimento</th>
+      <th align='center' bgColor='#666666'><font color='#FFF'>Usuário do recebimento</th>
+      
+      </tr>
+        <?php while ($array = mysqli_fetch_array($sql6_query)) { 
+        
+        $setor_env = $array["setor_env"];
+        $data_env = $array["data_env"];
+        $horas_env = $array["horas_env"];
+        $usuario_env = $array["usuario_env"];
+        $setor_dst = $array["setor_dst"];
+        $data_rec = $array["data_rec"];
+        $horas_rec = $array["horas_rec"];
+        $usuario_rec = $array["usuario_rec"];
+        
+        ?>
+      <tr>
+        <td><?php echo $setor_env ?></td>
+        <td><?php echo $data_env ?></td>
+        <td><?php echo $horas_env ?></td>
+        <td><?php echo $usuario_env ?></td>
+        <td><?php echo $setor_dst ?></td>
+        <td><?php echo $data_rec ?></td>
+        <td><?php echo $horas_rec ?></td>
+        <td><?php echo $usuario_rec ?></td>
       </tr>
       <?php } ?>
     </table>    
