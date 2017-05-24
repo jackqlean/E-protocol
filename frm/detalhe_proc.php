@@ -30,6 +30,16 @@ $sql4_query = mysqli_query($link,"SELECT a.arquivo, p.cod FROM itens_arq a, proc
 //Consulta horas, data e usuario da tabela proc (processos).
 $sql5_query = mysqli_query($link,"SELECT  DATE_FORMAT(p.data,'%d/%m/%Y') AS data , p.horas AS horas, u.name AS usuario FROM proc p, users u WHERE p.user_id = u.id AND p.cod = '".$cod."'");
 
+//Consulta horas de envio, data de envio e usuario de envio do processo na tabela proc,
+//.
+$sql6_query = mysqli_query($link,"SELECT p.cod , u.name AS usuario_env , s.setor AS setor_env, DATE_FORMAT(e.data_env,'%d/%m/%Y') AS data_env FROM proc p, setor s, users u, encaminhamento e, itens_enc i , itens_setor st WHERE u.id = i.cod_user_id AND e.cod = i.cod_enc
+AND e.cod = st.cod_enc AND s.cod_setor = st.cod_setor AND e.user_env = u.id AND  e.cod_stenv = s.cod_setor AND p.cod = '".$cod."'");
+
+//Consulta horas, data e usuario da tabela proc (processos).
+$sql7_query = mysqli_query($link,"SELECT p.cod , u.name AS usuario_rec , s.setor AS setor_dst, DATE_FORMAT(e.data_rec,'%d/%m/%Y') AS data_rec
+FROM proc p, setor s, users u, encaminhamento e, itens_enc i , itens_setor st WHERE u.id = i.cod_user_id AND e.cod = i.cod_enc
+AND e.cod = st.cod_enc AND s.cod_setor = st.cod_setor AND e.user_rec = u.id AND e.cod_stdst = s.cod_setor AND p.cod = '".$cod."'");
+
 // Fecha a conexão com o servidor para poupar recursos de processamento
 mysqli_close($link);
 ?>
@@ -159,7 +169,7 @@ window.open('../rel/relat.php?cod=<?php echo $cod ?>','_blank')
       <th align='center' bgColor='#666666'><font color='#FFF'>Horas do cadastro</th>
       <th align='center' bgColor='#666666'><font color='#FFF'>Usuário do cadastro</th>
       </tr>
-        <?php while ($array = mysqli_fetch_array($sql5_query)) { 
+        <?php $array = mysqli_fetch_array($sql5_query); 
         
         $data = $array["data"];
         $horas = $array["horas"];
@@ -171,7 +181,6 @@ window.open('../rel/relat.php?cod=<?php echo $cod ?>','_blank')
         <td><?php echo $horas ?></td>
         <td><?php echo $usuario ?></td>
       </tr>
-      <?php } ?>
     </table>    
   </div>
 </div>
@@ -189,30 +198,26 @@ window.open('../rel/relat.php?cod=<?php echo $cod ?>','_blank')
       <th align='center' bgColor='#666666'><font color='#FFF'>Usuário do recebimento</th>
       
       </tr>
-        <?php while ($array = mysqli_fetch_array($sql6_query)) { 
-        
-        $setor_env = $array["setor_env"];
-        $data_env = $array["data_env"];
-        $horas_env = $array["horas_env"];
-        $usuario_env = $array["usuario_env"];
-        $setor_dst = $array["setor_dst"];
-        $data_rec = $array["data_rec"];
-        $horas_rec = $array["horas_rec"];
-        $usuario_rec = $array["usuario_rec"];
-        
+        <?php 
+        $m_array = mysqli_fetch_array($sql6_query);         
+        $usuario_env = $m_array["usuario_env"];
+        $setor_env = $m_array["setor_env"];
+        $data_env = $m_array["data_env"];
+          
+        $m_array2 = mysqli_fetch_array($sql7_query);
+        $usuario_rec = $m_array2["usuario_rec"];
+        $setor_dst = $m_array2["setor_dst"];
+        $data_rec = $m_array2["data_rec"];
         ?>
       <tr>
         <td><?php echo $setor_env ?></td>
         <td><?php echo $data_env ?></td>
-        <td><?php echo $horas_env ?></td>
         <td><?php echo $usuario_env ?></td>
         <td><?php echo $setor_dst ?></td>
         <td><?php echo $data_rec ?></td>
-        <td><?php echo $horas_rec ?></td>
         <td><?php echo $usuario_rec ?></td>
       </tr>
-      <?php } ?>
-    </table>    
+      </table>    
   </div>
 </div>
 
