@@ -318,9 +318,9 @@ $sql = "INSERT INTO encaminhamento (cod_prenc, cod_rqenc, cod_stenv, cod_stdst, 
 
 function encaminhar_itens_user_env_proc($link){
 
-global $cod_enc, $cod_user_id;
+global $cod_enc, $cod_user_env;
 
-$sql = "INSERT INTO itens_enc (cod_enc, cod_user_id) VALUES('".$cod_enc."','".$cod_user_id."')";
+$sql = "INSERT INTO itens_enc (cod_enc, cod_user_env) VALUES('".$cod_enc."','".$cod_user_env."')";
 
 	if (mysqli_query($link, $sql)) {
     		

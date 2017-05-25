@@ -18,7 +18,7 @@ $sql_query = mysqli_query($link,"SELECT e.cod AS e_cod, e.user_env , e.cod_stenv
 
 $array = mysqli_fetch_array($sql_query);
 $cod_enc = $array["e_cod"];
-$cod_user_id = $array["user_env"];
+$cod_user_env = $array["user_env"];
 $cod_stenv = $array["cod_stenv"];
 
 // Executa a instrução SQL para inserir registros
