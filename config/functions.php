@@ -350,14 +350,41 @@ function receber_proc($link){
     $data = date('Y-m-d', time());
     $horas = date('H:i:s', time());
 
-    $sql = "UPDATE `encaminhamento` SET `data_rec` = '".$data."', `horas_rec` = '".$horas."', `status` = '1' WHERE `cod_prenc` = '".$cod."'";
+    $sql = "UPDATE `encaminhamento` SET `data_rec` = '".$data."', `horas_rec` = '".$horas."',`user_rec` = '".$_SESSION['user_id']."', `status` = '1' WHERE `cod_prenc` = '".$cod."'";
 
 	if (mysqli_query($link, $sql)) {
     
 		echo "<script language='javascript'>alert('Registro recebido com sucesso...!')</script>";	
 
-		echo "<script>location.href='../navegacao.php'</script>";
+		echo "<script>location.href='../op/inserir_ituserst_rec.php?cod=$cod'</script>";
 
+		} else {
+    	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
+	}
+}
+
+
+function receber_itens_user_rec_proc($link){
+
+global $cod_enc, $cod_user_id;
+
+$sql = "INSERT INTO itens_enc (cod_enc, cod_user_id) VALUES('".$cod_enc."','".$cod_user_id."')";
+
+	if (mysqli_query($link, $sql)) {
+    		
+		} else {
+    	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
+	}
+}
+
+function receber_itens_setor_rec_proc($link){
+
+global $cod_enc,$cod_stdst;
+
+$sql = "INSERT INTO itens_setor (cod_enc, cod_setor) VALUES('".$cod_enc."','".$cod_stdst."')";
+		
+		if (mysqli_query($link, $sql)) {
+    
 		} else {
     	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
 	}
