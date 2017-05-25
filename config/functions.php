@@ -299,20 +299,44 @@ $sql = "DELETE FROM req WHERE cod = '$cod'";
 
 function encaminhar_proc($link){
 
-//global $cod;
-
 // VARIAVEIS PARA ARMAZENAR A HORA E DATA ATUAIS DO SISTEMA
     $data = date('Y-m-d', time());
     $horas = date('H:i:s', time());
-
+    $cod = $_POST["cod_eProc"];
+    
 $sql = "INSERT INTO encaminhamento (cod_prenc, cod_rqenc, cod_stenv, cod_stdst, user_env, data_env, horas_env, obs,status) VALUES('".$_POST["cod_eProc"]."','".$_POST["cod_eReq"]."','".$_POST["cod_eSetor"]."','".$_POST["txtStdst"]."','".$_SESSION['user_id']."','".$data."','".$horas."','".$_POST["txtObservacao"]."','0')";
 		
 		if (mysqli_query($link, $sql)) {
     
 		echo "<script language='javascript'>alert('Registro encaminhado com sucesso...!')</script>";	
 
-		echo "<script>location.href='../navegacao.php'</script>";
+		echo "<script>location.href='../op/inserir_ituserst_env.php?cod=$cod'</script>";
+	} else {
+    	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
+	}
+}
 
+function encaminhar_itens_user_env_proc($link){
+
+global $cod_enc, $cod_user_id;
+
+$sql = "INSERT INTO itens_enc (cod_enc, cod_user_id) VALUES('".$cod_enc."','".$cod_user_id."')";
+
+	if (mysqli_query($link, $sql)) {
+    		
+		} else {
+    	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
+	}
+}
+
+function encaminhar_itens_setor_env_proc($link){
+
+global $cod_enc,$cod_stenv;
+
+$sql = "INSERT INTO itens_setor (cod_enc, cod_setor) VALUES('".$cod_enc."','".$cod_stenv."')";
+		
+		if (mysqli_query($link, $sql)) {
+    
 		} else {
     	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
 	}
