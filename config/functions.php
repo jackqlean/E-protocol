@@ -363,12 +363,11 @@ function receber_proc($link){
 	}
 }
 
-
 function receber_itens_user_rec_proc($link){
 
-global $cod_enc, $cod_user_id;
+global $cod_user_rec;
 
-$sql = "INSERT INTO itens_enc (cod_enc, cod_user_id) VALUES('".$cod_enc."','".$cod_user_id."')";
+$sql = "UPDATE `itens_enc` SET `cod_user_rec` = '".$cod_user_rec."'";
 
 	if (mysqli_query($link, $sql)) {
     		
@@ -379,9 +378,9 @@ $sql = "INSERT INTO itens_enc (cod_enc, cod_user_id) VALUES('".$cod_enc."','".$c
 
 function receber_itens_setor_rec_proc($link){
 
-global $cod_enc,$cod_stdst;
+global $cod_stdst;
 
-$sql = "INSERT INTO itens_setor (cod_enc, cod_setor) VALUES('".$cod_enc."','".$cod_stdst."')";
+$sql = "UPDATE `itens_setor` SET `cod_setor_dst` = '".$cod_stdst."'";
 		
 		if (mysqli_query($link, $sql)) {
     
