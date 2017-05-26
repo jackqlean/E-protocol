@@ -41,14 +41,14 @@ mysqli_close($link);
     <link rel="icon" type="image/x-icon" href="favicon.ico"> 
     <!-- Bootstrap -->
     <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  
-<script type="text/javascript">
-/* Função responsável por carregar a janela de impressão da capa do processo */ 
-function load_Imprimir(){
-window.open('../rel/relat.php?cod=<?php echo $cod ?>','_blank')
-}
+    <script src="../lib/jquery/jquery-1.12.4.js"></script>
 
-</script>       
+    <script type="text/javascript">
+      $(function () {
+        $('[data-toggle="tooltip_imprimir"]').tooltip()
+        $('[data-toggle="tooltip_gravar"]').tooltip()
+      })
+    </script>
 
 </head>
 <body>
@@ -116,31 +116,32 @@ window.open('../rel/relat.php?cod=<?php echo $cod ?>','_blank')
 </div>
 
 <div class="form-group">
+<form name="cadastro" id="cadastro" method="POST" action="../op/insere_arq.php?cod=<?php echo $cod?>" enctype="multipart/form-data">
   <label class="col-md-4 control-label" for="txtFile">Selecione arquivo(s)...</label>
   <div class="col-md-5">
     <input type="file" name="arquivo" id="txtFile" value="" class="form-control">
-  <button type="submit" id="btnEnviar" name="btnEnviar" class="btn btn-success">Gravar</button>
+  <button type="submit" id="btnEnviar" name="btnEnviar" class="btn btn-success"><span style="color: #FFF; font-size: 22px;" class="glyphicon glyphicon-floppy-disk
+glyphicon glyphicon-flo" alt='Imprimir' data-toggle="tooltip_gravar" title ='Gravar arquivo'></span></button>
   </div>
 </div>
+</form>
 
+<div id="btn_imprimir">
+  <a href='../rel/relat.php?cod=<?php echo $cod ?>' target='_blank'><span style="color: #2E2EFE;font-size: 32px;" class="glyphicon glyphicon-print" alt='Imprimir' data-toggle="tooltip_imprimir" title ='Imprimir capa do processo'></span></a>
+</div>
 <!-- Button (Double) -->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="btnEnviar"></label>
+  <label class="col-md-4 control-label" for=""></label>
   <div class="col-md-8">
-    
-    <button id="btnInsobrigacao" name="btnInsobrigacao" class="btn btn-primary" onclick="window.open('','_blank')">Inserir obrigação</button>
-  
-    <button type="submit" id="btnImprimir" name="btnImprimir" class="btn btn-info" onclick="load_Imprimir();">Imprimir capa do processo</button>
-      
-    <button id="btnEncaminhar" name="btnEncaminhar" class="btn btn-warning" onclick="window.open('encaminhamento_proc.php','_blank')">Encaminhar processo</button>
-  
+         
+    <a href="encaminhamento_proc.php" class="btn btn-warning" role="button" style="position: relative; left:165px;">Encaminhar processo</a>    
+     
     <!--<input type="button" id="btnFechar" name="btnFechar" value="Fechar" class="btn btn-danger" onclick="javascript:location.href='../index.php'">-->
   </div>
 </div>
 
 </fieldset>
-</form>
-
+<script src="../lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="../lib/main.js"></script>
 
 </body>
