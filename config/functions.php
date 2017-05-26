@@ -333,7 +333,7 @@ function encaminhar_itens_setor_env_proc($link){
 
 global $cod_enc,$cod_stenv;
 
-$sql = "INSERT INTO itens_setor (cod_enc, cod_setor) VALUES('".$cod_enc."','".$cod_stenv."')";
+$sql = "INSERT INTO itens_setor (cod_enc, cod_setor_enc) VALUES('".$cod_enc."','".$cod_stenv."')";
 		
 		if (mysqli_query($link, $sql)) {
     
@@ -380,8 +380,8 @@ function receber_itens_setor_rec_proc($link){
 
 global $cod_stdst;
 
-$sql = "UPDATE `itens_setor` SET `cod_setor_dst` = '".$cod_stdst."'";
-		
+$sql = "UPDATE `itens_setor` SET `cod_setor_dst` = '".$cod_stdst."'";
+
 		if (mysqli_query($link, $sql)) {
     
 		} else {

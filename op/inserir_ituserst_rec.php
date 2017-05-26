@@ -16,9 +16,9 @@ $cod = $_GET["cod"];
 
 $sql_query = mysqli_query($link,"SELECT e.cod AS e_cod, e.user_rec , e.cod_stdst, p.cod FROM encaminhamento e, proc p WHERE p.cod = '$cod' ORDER BY e.cod DESC ;");
 
-$sql2_query = mysqli_query($link,"SELECT * FROM itens_enc ORDER BY cod DESC;");
+mysqli_query($link,"SELECT * FROM itens_enc ORDER BY cod DESC;");
 
-$sql3_query = mysqli_query($link,"SELECT * FROM itens_setor ORDER BY cod DESC;");
+mysqli_query($link,"SELECT * FROM itens_setor ORDER BY cod DESC;");
 
 $array = mysqli_fetch_array($sql_query);
 $cod_user_rec = $array["user_rec"];
