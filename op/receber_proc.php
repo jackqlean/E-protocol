@@ -19,4 +19,6 @@ receber_proc($link);
 // Fecha a conexão com o servidor para poupar recursos de processamento
 desconecta($link);
 
+//Retorna ao home.
+echo "<script>location.href='../navegacao.php'</script>";
 ?>

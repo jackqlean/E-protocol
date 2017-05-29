@@ -32,14 +32,11 @@ $sql5_query = mysqli_query($link,"SELECT  DATE_FORMAT(p.data,'%d/%m/%Y') AS data
 
 //Consulta horas de envio, data de envio e usuario de envio do processo na tabela proc,
 //.
-$sql6_query = mysqli_query($link,"SELECT p.cod , u.name AS usuario_env , s.setor AS setor_env, DATE_FORMAT(e.data_env,'%d/%m/%Y') AS data_env FROM proc p, setor s, users u, encaminhamento e, itens_enc i , itens_setor st 
-WHERE  e.cod = i.cod_enc AND i.cod_user_env = u.id AND e.cod = st.cod_enc AND st.cod_setor_enc = s.cod_setor AND e.user_env = u.id AND e.cod_stenv = s.cod_setor AND e.cod_prenc = p.cod AND
-p.cod ='".$cod."'");
+$sql6_query = mysqli_query($link,"SELECT p.cod , u.name AS usuario_env , s.setor AS setor_env, DATE_FORMAT(e.data_env,'%d/%m/%Y') AS data_env FROM proc p, setor s, users u, encaminhamento e WHERE  e.user_env = u.id AND e.cod_stenv = s.cod_setor AND e.cod_prenc = p.cod AND p.cod ='".$cod."'");
 
 //Consulta horas de recebimento, data do 
 // recebimento e usuario de recebimento da tabela proc (processos).
-$sql7_query = mysqli_query($link,"SELECT p.cod , u.name AS usuario_rec , s.setor AS setor_dst , DATE_FORMAT(e.data_rec,'%d/%m/%Y') AS data_rec FROM proc p, setor s, users u, encaminhamento e, itens_enc i , itens_setor st 
-WHERE e.cod = i.cod_enc AND i.cod_user_rec = u.id AND e.cod = st.cod_enc AND st.`cod_setor_dst` = s.cod_setor AND e.user_rec = u.id AND e.cod_stdst = s.cod_setor AND e.cod_prenc = p.cod AND p.cod ='".$cod."'");
+$sql7_query = mysqli_query($link,"SELECT p.cod , u.name AS usuario_rec , s.setor AS setor_dst , DATE_FORMAT(e.data_rec,'%d/%m/%Y') AS data_rec FROM proc p, setor s, users u, encaminhamento e WHERE e.user_rec = u.id AND e.cod_stdst = s.cod_setor AND e.cod_prenc = p.cod AND p.cod='".$cod."'");
 
 // Fecha a conexão com o servidor para poupar recursos de processamento
 mysqli_close($link);

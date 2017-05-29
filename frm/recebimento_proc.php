@@ -89,7 +89,7 @@ mysqli_close($link);
         <td><?php echo $data ?></td>
         <td><?php echo $horas ?></td>
         <td><?php echo $setor ?></td>
-        <td><a href='/prot/op/receber_proc.php?cod=<?php echo $cod ?>'><img width='24' height='24' src='../img/seleciona.png' alt='Selecionar' title='Selecionar' border='0' /></a></td>
+        <td><a href='/prot/op/receber_proc.php?cod=<?php echo $cod ?>'><span style="color: #088A08;font-size: 28px;" class="glyphicon glyphicon-ok" alt='Receber' title='Receber processo'></span></a></td>
       </tr>
       <?php } ?>
     </table>

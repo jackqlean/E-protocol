@@ -309,35 +309,8 @@ $sql = "INSERT INTO encaminhamento (cod_prenc, cod_rqenc, cod_stenv, cod_stdst, 
 		if (mysqli_query($link, $sql)) {
     
 		echo "<script language='javascript'>alert('Registro encaminhado com sucesso...!')</script>";	
-
-		echo "<script>location.href='../op/inserir_ituserst_env.php?cod=$cod'</script>";
-	} else {
-    	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
-	}
-}
-
-function encaminhar_itens_user_env_proc($link){
-
-global $cod_enc, $cod_user_env;
-
-$sql = "INSERT INTO itens_enc (cod_enc, cod_user_env) VALUES('".$cod_enc."','".$cod_user_env."')";
-
-	if (mysqli_query($link, $sql)) {
-    		
-		} else {
-    	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
-	}
-}
-
-function encaminhar_itens_setor_env_proc($link){
-
-global $cod_enc,$cod_stenv;
-
-$sql = "INSERT INTO itens_setor (cod_enc, cod_setor_enc) VALUES('".$cod_enc."','".$cod_stenv."')";
 		
-		if (mysqli_query($link, $sql)) {
-    
-		} else {
+	} else {
     	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
 	}
 }
@@ -356,34 +329,6 @@ function receber_proc($link){
     
 		echo "<script language='javascript'>alert('Registro recebido com sucesso...!')</script>";	
 
-		echo "<script>location.href='../op/inserir_ituserst_rec.php?cod=$cod'</script>";
-
-		} else {
-    	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
-	}
-}
-
-function receber_itens_user_rec_proc($link){
-
-global $cod_user_rec;
-
-$sql = "UPDATE `itens_enc` SET `cod_user_rec` = '".$cod_user_rec."'";
-
-	if (mysqli_query($link, $sql)) {
-    		
-		} else {
-    	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
-	}
-}
-
-function receber_itens_setor_rec_proc($link){
-
-global $cod_stdst;
-
-$sql = "UPDATE `itens_setor` SET `cod_setor_dst` = '".$cod_stdst."'";
-
-		if (mysqli_query($link, $sql)) {
-    
 		} else {
     	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
 	}
