@@ -219,7 +219,7 @@ function insert_req($link){
     
     	echo "<script language='javascript'>alert('Registro cadastrado com sucesso...!')</script>";	
 
-    	echo "<script>location.href='../op/pesquisar_req.php?p=1'</script>";
+    	echo "<script>location.href='../navegacao.php'</script>";
 
    		} else {
     	echo "Erro: " . $sql . "<br>" . mysqli_error($link);

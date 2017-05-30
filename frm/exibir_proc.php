@@ -40,9 +40,9 @@ mysqli_close($link);
     <meta name="author" content="Jaquison Quintao Leandro">
     <link rel="icon" type="image/x-icon" href="favicon.ico"> 
     <!-- Bootstrap -->
-    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <script src="../lib/jquery/jquery-1.12.4.js"></script>
-
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+            
     <script type="text/javascript">
       $(function () {
         $('[data-toggle="tooltip_imprimir"]').tooltip()
@@ -141,8 +141,6 @@ glyphicon glyphicon-flo" alt='Imprimir' data-toggle="tooltip_gravar" title ='Gra
 </div>
 
 </fieldset>
-<script src="../lib/bootstrap/js/bootstrap.min.js"></script>
-<script src="../lib/main.js"></script>
 
 </body>
 </html>

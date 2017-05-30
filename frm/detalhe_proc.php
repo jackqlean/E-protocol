@@ -54,7 +54,13 @@ mysqli_close($link);
     <meta name="author" content="Jaquison Quintao Leandro">
     <link rel="icon" type="image/x-icon" href="favicon.ico"> 
     <!-- Bootstrap -->
-    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        
+    <script type="text/javascript">
+      $(function () {
+        $('[data-toggle="tooltip_imprimir"]').tooltip()
+        $('[data-toggle="tooltip_download"]').tooltip()
+      })
+    </script>
 
 </head>
 <body>
@@ -143,7 +149,7 @@ mysqli_close($link);
         ?>
       <tr>
         <td><?php echo $arquivo ?></td>
-        <td><a href='/prot/uploads/<?php echo $arquivo ?>' target="_blank"><span style="color: #FF8000;font-size: 28px;" class="glyphicon glyphicon-floppy-save" alt='Download' title='Download'></span></a></td>
+        <td><a href='/prot/uploads/<?php echo $arquivo ?>' target="_blank"><span style="color: #FF8000;font-size: 28px;" class="glyphicon glyphicon-floppy-save" alt='Download' data-toggle="tooltip_download" title='Download do arquivo'></span></a></td>
       </tr>
       <?php } ?>
     </table>    
@@ -212,7 +218,7 @@ mysqli_close($link);
   </div>
 </div>
 
-<div id="btn_imprimir">
+<div id="btn_imprimir_detalhes">
   <a href='../rel/detalhe.php?cod=<?php echo $cod ?>' target='_blank'><span style="color: #2E2EFE;font-size: 32px;" class="glyphicon glyphicon-print" alt='Imprimir' data-toggle="tooltip_imprimir" title ='Imprimir detalhes do processo'></span></a>
 </div>
 
