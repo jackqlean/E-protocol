@@ -1,2 +1,2 @@
-SELECT p.cod , u.name AS usuario_env , s.setor AS setor_env, DATE_FORMAT(e.data_env,'%d/%m/%Y') AS data_env FROM proc p, setor s, users u, encaminhamento e 
-WHERE  e.user_env = u.id AND e.cod_stenv = s.cod_setor AND e.cod_prenc = p.cod AND p.cod = '59';
+SELECT p.cod , p.tipo, p.assunto ,r.nome , u.name AS usuario_env , s.setor AS setor_env, DATE_FORMAT(e.data_env,'%d/%m/%Y') AS data_env FROM proc p, req r, setor s, users u, encaminhamento e 
+WHERE  r.cod = p.cod_req AND e.user_env = u.id AND e.cod_stenv = s.cod_setor AND e.cod_prenc = p.cod AND p.cod = '59';

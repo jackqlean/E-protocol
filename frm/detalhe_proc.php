@@ -55,14 +55,6 @@ mysqli_close($link);
     <link rel="icon" type="image/x-icon" href="favicon.ico"> 
     <!-- Bootstrap -->
     <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  
-<script type="text/javascript">
-/* Função responsável por carregar a janela de impressão da capa do processo */ 
-function load_Imprimir(){
-window.open('../rel/relat.php?cod=<?php echo $cod ?>','_blank')
-}
-
-</script>       
 
 </head>
 <body>
@@ -220,6 +212,10 @@ window.open('../rel/relat.php?cod=<?php echo $cod ?>','_blank')
   </div>
 </div>
 
+<div id="btn_imprimir">
+  <a href='../rel/detalhe.php?cod=<?php echo $cod ?>' target='_blank'><span style="color: #2E2EFE;font-size: 32px;" class="glyphicon glyphicon-print" alt='Imprimir' data-toggle="tooltip_imprimir" title ='Imprimir detalhes do processo'></span></a>
+</div>
+
 <!-- Button (Double) -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="btnEnviar"></label>
@@ -227,7 +223,7 @@ window.open('../rel/relat.php?cod=<?php echo $cod ?>','_blank')
     
     <button id="btnInsobrigacao" name="btnInsobrigacao" class="btn btn-primary" onclick="window.open('','_blank')">Cancelar Encaminhamento</button>
   
-    <button type="submit" id="btnImprimir" name="btnImprimir" class="btn btn-info" onclick="load_Imprimir();">Imprimir capa do processo</button>
+    <!--<button type="submit" id="btnImprimir" name="btnImprimir" class="btn btn-info" onclick="load_Imprimir();">Imprimir capa do processo</button>-->
       
     <input type="button" id="btnFechar" name="btnFechar" value="Fechar" class="btn btn-danger" onclick="javascript:location.href='../index.php'">
   </div>
