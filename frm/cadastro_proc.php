@@ -16,8 +16,11 @@ $cod = $_GET["cod"];
 // Realiza a conexão com o servidor
 // Coloca as informações da conexão na variável $link
 require_once "../config/init.php";
+
+$setor = $_SESSION['user_setor'];
+
 // Executa a instrução SQL para selectionar todos os registros
-$sql_query = mysqli_query($link,"SELECT s.* FROM setor s");
+$sql_query = mysqli_query($link,"SELECT s.cod_setor AS cod_setor FROM setor s WHERE s.setor = '".$setor."'");
 
 mysqli_close($link);
 
@@ -76,7 +79,6 @@ $( function() {
 <div class="form-group">
   <label class="col-md-4 control-label" for="btnReq"></label>
   <div class="col-md-8">
-   <!--<button type="button" id="btn" name="btn" value="" class="btn btn-primary" onclick="javascript:location.href='../op/pesquisar_req.php?p=1'">Selecione o Requerente </button>-->
    <button type="button" id="opener" name="btnReq" class="btn btn-info" data-toggle="modal" data-target="#janela">
         Selecione o Requerente
    </button>
@@ -97,20 +99,10 @@ $( function() {
 </div>
 
 <!-- Select Basic -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="txtSetor">Informe o setor de origem</label>
-  <div class="col-md-5">
-     <select name="txtSetor" id="txtSetor" class="form-control">
-      <option value="">Selecione...</option>
-        <?php while ($array = mysqli_fetch_array($sql_query)) { 
-        $scod = $array["cod_setor"];
-        $setor = $array["setor"];
-        ?>
-        <option value="<?php echo $scod ?>"><?php echo $setor ?></option>
-     <?php } ?>
-        </select>
-  </div>
-</div>
+<?php
+$r = mysqli_fetch_array($sql_query);
+$scod = $r["cod_setor"];
+?>
 
 <!-- Text input-->
 <div class="form-group">
@@ -131,10 +123,12 @@ $( function() {
 <div class="form-group">
   <label class="col-md-4 control-label" for="btnEnviar"></label>
   <div class="col-md-8">
+    
     <button type="submit" id="btnEnviar" name="btnEnviar" class="btn btn-primary">Confirmar</button>
     <button type="reset" id="btnCancelar" name="btnCancelar" class="btn btn-warning">Cancelar</button>
     <input type="button" id="btnFechar" name="btnFechar" value="Fechar" class="btn btn-danger" onclick="javascript:location.href='../index.php'">
-  </div>
+    <input type="hidden" id="" name="txtSetor" value="<?php echo $scod ?>" />
+   </div>
 </div>
 
 </fieldset>
