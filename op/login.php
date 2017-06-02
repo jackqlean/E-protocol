@@ -18,7 +18,7 @@ $passwordHash = make_hash($password);
  
 $PDO = db_connect();
  
-$sql = "SELECT id, name FROM users WHERE email = :email AND password = :password";
+$sql = "SELECT id, name, s.setor AS setor FROM users, setor s WHERE users.cod_setor = s.cod_setor AND email = :email AND password = :password";
 $stmt = $PDO->prepare($sql);
  
 $stmt->bindParam(':email', $email);
@@ -41,7 +41,8 @@ session_start();
 $_SESSION['logged_in'] = true;
 $_SESSION['user_id'] = $user['id'];
 $_SESSION['user_name'] = $user['name'];
- 
+$_SESSION['user_setor'] = $user['setor'];
+
 header('Location: ../index.php');
 
 ?>

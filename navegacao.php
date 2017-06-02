@@ -86,7 +86,10 @@ require_once "check.php";
         </div>
       </nav>
     </div>
-    <p style="position:absolute; left:60px;">Olá, <?php echo $_SESSION['user_name']; ?>. Seja bem vindo ao sistema.</p>
+    <span style="position:absolute; left:60px;">Olá, <?php echo $_SESSION['user_name']; ?>. Seja bem vindo ao sistema.</span>
+    <span style="position:absolute; left:350px;">
+    O seu setor atual é: <?php echo $_SESSION['user_setor']; ?>
+    </span>
    	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
