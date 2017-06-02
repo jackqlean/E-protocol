@@ -52,8 +52,6 @@ require_once "check.php";
             <li role="separator" class="divider"></li>
             <li><a href="cadastro_proc.php">Processos</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="cadastro_ob.php">Obrigações</a></li>
-            <li role="separator" class="divider"></li>
             <li><a href="cadastro_setor.php">Setores</a></li>
           </ul>
         </li> 

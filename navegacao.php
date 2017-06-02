@@ -50,8 +50,6 @@ require_once "check.php";
             <li role="separator" class="divider"></li>
             <li><a href="frm/cadastro_proc.php">Processos</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="frm/cadastro_ob.php">Obrigações</a></li>
-            <li role="separator" class="divider"></li>
             <li><a href="frm/cadastro_setor.php">Setores</a></li>
           </ul>
         </li> 
