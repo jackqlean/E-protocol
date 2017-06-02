@@ -61,17 +61,16 @@ require_once "check.php";
             <li><a href="frm/recebimento_proc.php">Receber processo enviado</a>  </li>
             <li role="separator" class="divider"></li>
             <li><a href="frm/recebimento_proc_dev.php">Receber processo devolvido</a>  </li>
-            <li role="separator" class="divider"></li>
-            <li><a href="frm/consulta_proc.php">Consultar processo</a>  </li>
-            </ul>
+          </ul>
         </li> 
         
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Relatorios<span class="caret"></span>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consultar<span class="caret"></span>
         </a>  
           <ul class="dropdown-menu">
-            <li><a href="#">Editar</a>  </li>
-            <li><a href="#">Logout</a>  </li>
+            <li><a href="frm/consulta_proc.php">Todos os processos</a>  </li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Somente recebidos</a>  </li>
           </ul>
         </li>
         
