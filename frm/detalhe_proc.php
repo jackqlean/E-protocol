@@ -38,6 +38,8 @@ $sql6_query = mysqli_query($link,"SELECT p.cod , u.name AS usuario_env , s.setor
 // recebimento e usuario de recebimento da tabela proc (processos).
 $sql7_query = mysqli_query($link,"SELECT p.cod , u.name AS usuario_rec , s.setor AS setor_dst , DATE_FORMAT(e.data_rec,'%d/%m/%Y') AS data_rec FROM proc p, setor s, users u, encaminhamento e WHERE e.user_rec = u.id AND e.cod_stdst = s.cod_setor AND e.cod_prenc = p.cod AND p.cod='".$cod."'");
 
+ $sql8_query = mysqli_query($link,"SELECT d.status AS status FROM devolucao d, proc p WHERE d.cod_prdev = p.cod AND p.cod ='".$cod."'");
+
 // Fecha a conexão com o servidor para poupar recursos de processamento
 mysqli_close($link);
 ?>
@@ -224,12 +226,18 @@ mysqli_close($link);
 
 <!-- Button (Double) -->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="btnEnviar"></label>
+  <label class="col-md-4 control-label" for="btnDevolver_proc"></label>
   <div class="col-md-8">
-    
-    <button id="btnInsobrigacao" name="btnInsobrigacao" class="btn btn-primary" onclick="window.open('','_blank')">Cancelar Encaminhamento</button>
+
+<?php
+ $row = mysqli_fetch_array($sql8_query);
+   $permission='';
+    if ($row["status"]=='0' || $row["status"]=='1') $permission = ' disabled = "disabled"';
+?>
+
+ <input type="button" id="btnDevolver_proc" name="btnDevolver_proc" value="Devolver este processo" class="btn btn-primary" onclick="javascript:location.href='devolucao_proc.p<?php echo $permission ?>hp?cod=<?php echo $cod ?>'"  <?php echo $permission ?>/>
   
-    <!--<button type="submit" id="btnImprimir" name="btnImprimir" class="btn btn-info" onclick="load_Imprimir();">Imprimir capa do processo</button>-->
+  <!--<button type="submit" id="btnImprimir" name="btnImprimir" class="btn btn-info" onclick="load_Imprimir();">Imprimir capa do processo</button>-->
       
     <input type="button" id="btnFechar" name="btnFechar" value="Fechar" class="btn btn-danger" onclick="javascript:location.href='../index.php'">
   </div>

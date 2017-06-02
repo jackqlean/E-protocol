@@ -62,7 +62,9 @@ require_once "check.php";
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Atendimento<span class="caret"></span>
         </a>  
           <ul class="dropdown-menu">
-            <li><a href="recebimento_proc.php">Receber processo</a>  </li>
+             <li><a href="recebimento_proc.php">Receber processo enviado</a>  </li>
+            <li role="separator" class="divider"></li>
+            <li><a href="recebimento_proc_dev.php">Receber processo devolvido</a>  </li>
             <li role="separator" class="divider"></li>
             <li><a href="consulta_proc.php">Consultar processo</a>  </li>
             </ul>

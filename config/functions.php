@@ -167,7 +167,7 @@ $sql = "UPDATE `req` SET `nome` = '".$nome."', `tipo` = '".$tipo."', `cpf` = '".
     
     echo "<script language='javascript'>alert('Registro alterado com sucesso...!')</script>";				
 
-	echo "<script language='javascript'>window.location.href='/prot/op/listar_req.php?p=1'</script>";
+	echo "<script language='javascript'>window.location.href='../navegacao.php'</script>";
     
 		} else {
     	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
@@ -182,7 +182,7 @@ function insert_ob($link){
 		
 		echo "<script language='javascript'>alert('Registro cadastrado com sucesso...!')</script>";				
 
-		echo "<script>location.href='../op/listar_ob.php?p=1&cod='</script>";
+		echo "<script>location.href='../navegacao.php'</script>";
    
 		} else {
     	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
@@ -234,7 +234,7 @@ $sql = "INSERT INTO setor (setor) VALUES('".$_POST["txtSetor"]."')";
     
 		echo "<script language='javascript'>alert('Registro cadastrado com sucesso...!')</script>";
 
-		echo "<script>location.href='../index.php'</script>";	
+		echo "<script>location.href='../navegacao.php'</script>";	
    
 		} else {
     	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
@@ -252,7 +252,7 @@ $sql = "DELETE FROM ob WHERE cod = '$cod'";
 
     	echo "<script language='javascript'>alert('Requerente excluído com sucesso...!')</script>";				
 
-		echo "<script language='javascript'>window.location.href='/prot/op/listar_ob.php?p=1&cod=$cod'</script>";
+		echo "<script language='javascript'>window.location.href='../navegacao.php'</script>";
 
    		} else {
     	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
@@ -272,7 +272,7 @@ $sql = "DELETE FROM proc WHERE cod = '$cod'";
 
 		echo "<script language='javascript'>alert('Processo excluído com sucesso...!')</script>";				
 
-		echo "<script language='javascript'>window.location.href='/prot/op/listar_proc.php?p=1'</script>";
+		echo "<script language='javascript'>window.location.href='../navegacao.php'</script>";
 
     	} else {
     	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
@@ -290,7 +290,7 @@ $sql = "DELETE FROM req WHERE cod = '$cod'";
 
 		echo "<script language='javascript'>alert('Requerente excluído com sucesso...!')</script>";				
 
-		echo "<script language='javascript'>window.location.href='/prot/op/pesquisar_req.php?p=1'</script>";
+		echo "<script language='javascript'>window.location.href='../navegacao.php'</script>";
 
     	} else {
     	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
@@ -309,6 +309,24 @@ $sql = "INSERT INTO encaminhamento (cod_prenc, cod_rqenc, cod_stenv, cod_stdst, 
 		if (mysqli_query($link, $sql)) {
     
 		echo "<script language='javascript'>alert('Registro encaminhado com sucesso...!')</script>";	
+		
+	} else {
+    	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
+	}
+}
+
+function devolver_proc($link){
+
+// VARIAVEIS PARA ARMAZENAR A HORA E DATA ATUAIS DO SISTEMA
+    $data = date('Y-m-d', time());
+    $horas = date('H:i:s', time());
+    $cod = $_POST["cod_dProc"];
+    
+$sql = "INSERT INTO devolucao (cod_prdev, cod_rqdev, cod_stdev, cod_storg, user_env, data_env, horas_env, obs,status) VALUES('".$_POST["cod_dProc"]."','".$_POST["cod_dReq"]."','".$_POST["cod_dSetor"]."','".$_POST["txtStdst"]."','".$_SESSION['user_id']."','".$data."','".$horas."','".$_POST["txtObservacao"]."','0')";
+		
+		if (mysqli_query($link, $sql)) {
+    
+		echo "<script language='javascript'>alert('Registro devolvido com sucesso...!')</script>";	
 		
 	} else {
     	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
