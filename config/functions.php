@@ -322,7 +322,7 @@ function devolver_proc($link){
     $horas = date('H:i:s', time());
     $cod = $_POST["cod_dProc"];
     
-$sql = "INSERT INTO devolucao (cod_prdev, cod_rqdev, cod_stdev, cod_storg, user_env, data_env, horas_env, obs,status) VALUES('".$_POST["cod_dProc"]."','".$_POST["cod_dReq"]."','".$_POST["cod_dSetor"]."','".$_POST["txtStdst"]."','".$_SESSION['user_id']."','".$data."','".$horas."','".$_POST["txtObservacao"]."','0')";
+$sql = "INSERT INTO devolucao (cod_prdev, cod_rqdev, cod_stdev, cod_storg, user_env, data_env, horas_env, obs,status) VALUES('".$_POST["cod_dProc"]."','".$_POST["cod_dReq"]."','".$_POST["cod_dSetor"]."','".$_POST["cod_oSetor"]."','".$_SESSION['user_id']."','".$data."','".$horas."','".$_POST["txtObservacao"]."','0')";
 		
 		if (mysqli_query($link, $sql)) {
     

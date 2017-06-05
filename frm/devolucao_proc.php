@@ -14,6 +14,13 @@ include "_navegacao.php";
 // Coloca as informações da conexão na variável $link
 require_once "../config/init.php";
 
+$setor = $_SESSION['user_setor'];
+// Executa a instrução SQL para selectionar todos os registros
+$sql_query = mysqli_query($link,"SELECT s.cod_setor AS cod_setor FROM setor s WHERE s.setor = '".$setor."'");
+
+$r = mysqli_fetch_array($sql_query);
+$scod = $r["cod_setor"];
+
 //Seleciona o processo cadastrado pelo  
 //código no banco de dados.
 
@@ -117,21 +124,6 @@ mysqli_close($link);
   </div>
 </div>
 
-<div class="form-group" >
-  <label class="col-md-4 control-label" for="txtDescricao">Selecione o setor de destino</label>  
-  <div class="col-md-5">
-    <select name="txtStdst" id="txtStdst" class="form-control">
-      <option value="">Selecione...</option>
-        <?php while ($array = mysqli_fetch_array($sql4_query)) { 
-        $scod = $array["cod_setor"];
-        $setor = $array["setor"];
-        ?>
-      <option value="<?php echo $scod ?>"><?php echo $setor ?></option>      
-      <?php } ?>
-      </select>
-      </div>
-</div>
-
 <!-- Button (Double) -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="btnEnviar"></label>
@@ -143,7 +135,7 @@ mysqli_close($link);
     <input type="hidden" name="cod_dProc" value="<?php echo $linha["cod"] ?>">
     <input type="hidden" name="cod_dReq" value="<?php echo $rlinha["cod"] ?>">
     <input type="hidden" name="cod_dSetor" value="<?php echo $cod_setor ?>">
-    
+    <input type="hidden" id="" name="cod_oSetor" value="<?php echo $scod ?>" />
     </div>
 </div>
 

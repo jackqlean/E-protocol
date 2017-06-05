@@ -37,10 +37,6 @@ $sql6_query = mysqli_query($link,"SELECT p.cod , u.name AS usuario_env , s.setor
 //Consulta horas de recebimento, data do 
 // recebimento e usuario de recebimento da tabela proc (processos).
 $sql7_query = mysqli_query($link,"SELECT p.cod , u.name AS usuario_rec , s.setor AS setor_dst , DATE_FORMAT(e.data_rec,'%d/%m/%Y') AS data_rec FROM proc p, setor s, users u, encaminhamento e WHERE e.user_rec = u.id AND e.cod_stdst = s.cod_setor AND e.cod_prenc = p.cod AND p.cod='".$cod."'");
-
- $sql8_query = mysqli_query($link,"SELECT e.status AS status FROM encaminhamento e, proc p WHERE e.cod_prenc = p.cod AND p.cod ='".$cod."'");
- 
- $sql9_query = mysqli_query($link,"SELECT d.status AS status FROM devolucao d, proc p WHERE d.cod_prdev = p.cod AND p.cod ='".$cod."'");
  
 // Fecha a conexão com o servidor para poupar recursos de processamento
 mysqli_close($link);
@@ -230,26 +226,6 @@ mysqli_close($link);
 <div class="form-group">
   <label class="col-md-4 control-label" for="btnDevolver_proc"></label>
   <div class="col-md-8">
-
-<?php
- $r1 = mysqli_fetch_array($sql8_query);
- $r2 = mysqli_fetch_array($sql9_query);
-
- $st1 = $r1["status"];
- $st2 = $r2["status"];
-
- $permission='disabled = "disabled"';
- 
-  if ($st1 == "1" && $st2 != "0" || $st2 =="0")
-  { $permission = '';
-    $permission='';
-  }else{
-    $permission='disabled = "disabled"';
-  }
-
-?>
-
- <input type="button" id="btnDevolver_proc" name="btnDevolver_proc" value="Devolver este processo" class="btn btn-primary" onclick="javascript:location.href='devolucao_proc.php?cod=<?php echo $cod ?>'" <?php echo $permission ?>/>
   
   <!--<button type="submit" id="btnImprimir" name="btnImprimir" class="btn btn-info" onclick="load_Imprimir();">Imprimir capa do processo</button>-->
       
