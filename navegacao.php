@@ -70,7 +70,7 @@ require_once "check.php";
           <ul class="dropdown-menu">
             <li><a href="frm/consulta_proc.php">Todos os processos</a>  </li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Somente recebidos</a>  </li>
+            <li><a href="frm/consulta_proc_rec.php">Somente recebidos</a>  </li>
           </ul>
         </li>
         
