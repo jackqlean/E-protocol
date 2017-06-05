@@ -352,4 +352,27 @@ function receber_proc($link){
 	}
 }
 
+function receber_proc_dev($link){
+
+// VARIAVEIS PARA ARMAZENAR A HORA E DATA ATUAIS DO SISTEMA
+	global $cod;
+
+    $data = date('Y-m-d', time());
+    $horas = date('H:i:s', time());
+
+    $sql = "UPDATE `devolucao` SET `data_rec` = '".$data."', `horas_rec` = '".$horas."',`user_rec` = '".$_SESSION['user_id']."', `status` = '1' WHERE `cod_prdev` = '".$cod."'";
+
+	if (mysqli_query($link, $sql)) {
+    
+		echo "<script language='javascript'>alert('Registro recebido com sucesso...!')</script>";	
+
+		} else {
+    	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
+	}
+}
+
+
+
+
+
 ?>
