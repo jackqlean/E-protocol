@@ -16,8 +16,15 @@ include "_navegacao.php";
 require_once "../config/init.php";
 
 // Executa a instrução SQL para selectionar todos os registros
+$setor = $_SESSION['user_setor'];
+
+$sql2_query = mysqli_query($link,"SELECT s.cod_setor AS cod_setor FROM setor s WHERE s.setor = '".$setor."'");
+$r = mysqli_fetch_array($sql2_query);
+$scod = $r["cod_setor"];
+
+
 $sql_query = mysqli_query($link,"SELECT p.cod AS cod, p.tipo, r.nome AS nome, s.setor, DATE_FORMAT(e.data_env,'%d/%m/%Y') AS data, e.horas_env AS horas FROM  proc p, req r, setor s, encaminhamento e 
-WHERE p.cod = e.cod_prenc AND r.cod = e.cod_rqenc AND s.cod_setor = e.cod_stdst AND e.`status`!='1'");
+WHERE p.cod = e.cod_prenc AND r.cod = e.cod_rqenc AND s.cod_setor = e.cod_stdst AND e.`status`!='1'AND s.cod_setor = '".$scod."'");
 
 // Fecha a conexão com o servidor para poupar recursos de processamento
 mysqli_close($link);
