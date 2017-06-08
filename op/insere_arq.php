@@ -10,8 +10,8 @@ ini_set('display_startup_erros',0);
 error_reporting(E_ALL);
 // =====================================
 
-require_once "../config/init.php";
-require_once "../config/functions.php";
+/*require_once "../config/init.php";
+require_once "../config/functions.php";*/
 
 $cod = $_GET["cod"];
 

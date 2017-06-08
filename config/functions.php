@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Conecta com o MySQL usando PDO
  */
@@ -9,8 +8,6 @@ function db_connect()
  
     return $PDO;
 }
- 
- 
 /**
  * Cria o hash da senha, usando MD5 e SHA-1
  */
@@ -119,24 +116,6 @@ function desconecta($link){
 	mysqli_close($link);
 }
 
-function update_ob($link){
-
-global $cod, $tipo, $titulo;
-
-$sql = "UPDATE `ob` SET  `tipo` = '".$tipo."', `titulo` = '".$titulo."' WHERE `cod` = ".$cod."";
-
-		if (mysqli_query($link, $sql)) {
-    
-   			echo "<script language='javascript'>alert('Registro alterado com sucesso...!')</script>";				
-			
-			echo "<script language='javascript'>window.location.href='../navegacao.php'</script>";
-			    
-		} else {
-    echo "Erro: " . $sql . "<br>" . mysqli_error($link);
-	}
-
-}
-
 function update_proc($link){
 
 global $cod;
@@ -175,91 +154,6 @@ $sql = "UPDATE `req` SET `nome` = '".$nome."', `tipo` = '".$tipo."', `cpf` = '".
 
 }
 
-function insert_ob($link){
-
-	$sql = "INSERT INTO ob (tipo, titulo) VALUES('".$_POST["txtTipo"]."','".$_POST["txtTitulo"]."')";
-		if (mysqli_query($link, $sql)) {
-		
-		echo "<script language='javascript'>alert('Registro cadastrado com sucesso...!')</script>";				
-
-		echo "<script>location.href='../navegacao.php'</script>";
-   
-		} else {
-    	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
-	}
-
-}
-
-function insert_proc($link){
-
-global $cod;
-
-// VARIAVEIS PARA ARMAZENAR A HORA E DATA ATUAIS DO SISTEMA
-    $data = date('Y-m-d', time());
-    $horas = date('H:i:s', time());
-
-$sql = "INSERT INTO proc (tipo, assunto, descricao ,setor, cod_req, user_id,data,horas) VALUES('".$_POST["txtTipo"]."','".$_POST["txtAssunto"]."','".$_POST["txtDescricao"]."','".$_POST["txtSetor"]."','".$cod."','".$_SESSION['user_id']."','".$data."','".$horas."')";
-		
-		if (mysqli_query($link, $sql)) {
-    
-		echo "<script language='javascript'>alert('Registro cadastrado com sucesso...!')</script>";	
-
-		echo "<script>location.href='../frm/exibir_proc.php'</script>";
-
-		} else {
-    	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
-	}
-
-}
-
-function insert_req($link){
-
-	$sql = "INSERT INTO req (nome, tipo,cpf,sexo,tel,cel,rec,email) VALUES('".$_POST["txtNome"]."','".$_POST["txtTipo"]."','".$_POST["txtCpf"]."','".$_POST["txtSexo"]."','".$_POST["txtTel"]."','".$_POST["txtCel"]."','".$_POST["txtRec"]."','".$_POST["txtEmail"]."')";
-		if (mysqli_query($link, $sql)) {
-    
-    	echo "<script language='javascript'>alert('Registro cadastrado com sucesso...!')</script>";	
-
-    	echo "<script>location.href='../navegacao.php'</script>";
-
-   		} else {
-    	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
-	}
-}
-
-function insert_setor($link){
-
-$sql = "INSERT INTO setor (setor) VALUES('".$_POST["txtSetor"]."')";
-		
-		if (mysqli_query($link, $sql)) {
-    
-		echo "<script language='javascript'>alert('Registro cadastrado com sucesso...!')</script>";
-
-		echo "<script>location.href='../navegacao.php'</script>";	
-   
-		} else {
-    	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
-	}
-}
-
-function deleta_ob($link){
-
-global $cod;
-
-$sql = "DELETE FROM ob WHERE cod = '$cod'";
-	if (mysqli_query($link, $sql)) {
-    
-    //confirmar exclusão de dados
-
-    	echo "<script language='javascript'>alert('Requerente excluído com sucesso...!')</script>";				
-
-		echo "<script language='javascript'>window.location.href='../navegacao.php'</script>";
-
-   		} else {
-    	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
-	}
-   
-}
-
 function deleta_proc($link){
 
 global $cod;
@@ -296,83 +190,4 @@ $sql = "DELETE FROM req WHERE cod = '$cod'";
     	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
 	}
 }
-
-function encaminhar_proc($link){
-
-// VARIAVEIS PARA ARMAZENAR A HORA E DATA ATUAIS DO SISTEMA
-    $data = date('Y-m-d', time());
-    $horas = date('H:i:s', time());
-    $cod = $_POST["cod_eProc"];
-    
-$sql = "INSERT INTO encaminhamento (cod_prenc, cod_rqenc, cod_stenv, cod_stdst, user_env, data_env, horas_env, obs,status) VALUES('".$_POST["cod_eProc"]."','".$_POST["cod_eReq"]."','".$_POST["cod_eSetor"]."','".$_POST["txtStdst"]."','".$_SESSION['user_id']."','".$data."','".$horas."','".$_POST["txtObservacao"]."','0')";
-		
-		if (mysqli_query($link, $sql)) {
-    
-		echo "<script language='javascript'>alert('Registro encaminhado com sucesso...!')</script>";	
-		
-	} else {
-    	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
-	}
-}
-
-function devolver_proc($link){
-
-// VARIAVEIS PARA ARMAZENAR A HORA E DATA ATUAIS DO SISTEMA
-    $data = date('Y-m-d', time());
-    $horas = date('H:i:s', time());
-    $cod = $_POST["cod_dProc"];
-    
-$sql = "INSERT INTO devolucao (cod_prdev, cod_rqdev, cod_stdev, cod_storg, user_env, data_env, horas_env, obs,status) VALUES('".$_POST["cod_dProc"]."','".$_POST["cod_dReq"]."','".$_POST["cod_dSetor"]."','".$_POST["cod_oSetor"]."','".$_SESSION['user_id']."','".$data."','".$horas."','".$_POST["txtObservacao"]."','0')";
-		
-		if (mysqli_query($link, $sql)) {
-    
-		echo "<script language='javascript'>alert('Registro devolvido com sucesso...!')</script>";	
-		
-	} else {
-    	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
-	}
-}
-
-function receber_proc($link){
-
-// VARIAVEIS PARA ARMAZENAR A HORA E DATA ATUAIS DO SISTEMA
-	global $cod;
-
-    $data = date('Y-m-d', time());
-    $horas = date('H:i:s', time());
-
-    $sql = "UPDATE `encaminhamento` SET `data_rec` = '".$data."', `horas_rec` = '".$horas."',`user_rec` = '".$_SESSION['user_id']."', `status` = '1' WHERE `cod_prenc` = '".$cod."'";
-
-	if (mysqli_query($link, $sql)) {
-    
-		echo "<script language='javascript'>alert('Registro recebido com sucesso...!')</script>";	
-
-		} else {
-    	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
-	}
-}
-
-function receber_proc_dev($link){
-
-// VARIAVEIS PARA ARMAZENAR A HORA E DATA ATUAIS DO SISTEMA
-	global $cod;
-
-    $data = date('Y-m-d', time());
-    $horas = date('H:i:s', time());
-
-    $sql = "UPDATE `devolucao` SET `data_rec` = '".$data."', `horas_rec` = '".$horas."',`user_rec` = '".$_SESSION['user_id']."', `status` = '1' WHERE `cod_prdev` = '".$cod."'";
-
-	if (mysqli_query($link, $sql)) {
-    
-		echo "<script language='javascript'>alert('Registro recebido com sucesso...!')</script>";	
-
-		} else {
-    	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
-	}
-}
-
-
-
-
-
 ?>

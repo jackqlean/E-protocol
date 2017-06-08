@@ -10,8 +10,8 @@ error_reporting(E_ALL);
 // =====================================
 
 // Consulta 01 - Faz consulta no banco na tabela proc. Traz como resultado os dados do processo através da chave primária do código do processo 'proc.cod'.
-require_once"../config/init.php";
-require_once"../config/functions.php";
+/*require_once"../config/init.php";
+require_once"../config/functions.php";*/
 
 $cod = $_GET["cod"];
 

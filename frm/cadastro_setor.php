@@ -1,6 +1,5 @@
 <?php
 session_start();
-require_once "check.php";
 include "_navegacao.php";
 ?>
 <!DOCTYPE HTML>

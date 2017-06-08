@@ -6,7 +6,6 @@ ini_set('display_startup_erros',0);
 error_reporting(E_ALL);
 // =====================================
 session_start();
-require_once "check.php";
 include "_navegacao.php";
 
 // Realiza a conexão com o servidor

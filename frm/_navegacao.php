@@ -26,7 +26,7 @@ require_once "check.php";
   <body>
     <!-- Barra de navegação -->
     <div >
-      <nav class="navbar navbar-default">
+      <nav class="navbar navbar-inverse">
         <div class="container">
           <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#barra-navegacao">

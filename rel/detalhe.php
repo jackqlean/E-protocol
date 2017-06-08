@@ -32,7 +32,7 @@ $usuario_env 	= $ARRAY_PROCESSO_ENV[3];
 $setor_env 	= $ARRAY_PROCESSO_ENV[6];
 $data_env 	= $ARRAY_PROCESSO_ENV[4];
 $horas_env 	= $ARRAY_PROCESSO_ENV[5];
-$observacao = $ARRAY_PROCESSO_ENV[9];
+
 
 //Consulta e retorno de valores da tabela encaminhamento(usuarios e setores de recebimento do processo)
 
@@ -105,10 +105,5 @@ $pdf->SetXY(320,445);
 $pdf->Cell(0,0,'Horas do recebimento:',0,0,'L');
 $pdf->SetXY(455,445);
 $pdf->Cell(0,0,$horas_rec,0,1,'L');
-$pdf->Rect(10,490,575,80);
-$pdf->SetXY(28,510);
-$pdf->Cell(0,0,'Observação:',0,0,'L');
-$pdf->SetXY(110,510);
-$pdf->Cell(0,0,$observacao,0,1,'L');
 $pdf->Output("detalhes.pdf","I");
 ?>
