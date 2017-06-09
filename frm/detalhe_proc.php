@@ -59,6 +59,7 @@ mysqli_close($link);
         $('[data-toggle="tooltip_imprimir"]').tooltip()
         $('[data-toggle="tooltip_download"]').tooltip()
         $('[data-toggle="tooltip_detalhe_env"]').tooltip()
+        $('[data-toggle="tooltip_detalhe_rec"]').tooltip()
       })
     </script>
 
@@ -184,7 +185,7 @@ mysqli_close($link);
 <div class="form-group">
   <label class="col-md-4 control-label" >Movimentação do processo</label>
   <div class="col-md-5">
-<span style="position: absolute; top:60px; left:-30px; color: #088A08;font-size: 26px;" class="glyphicon glyphicon-arrow-right" alt='Enviado' data-toggle="tooltip_detalhe_env" title ='Enviado'></span>
+<span style="position: absolute; top:80px; left:-30px; color: #088A08;font-size: 26px;" class="glyphicon glyphicon-arrow-right" alt='Enviado' data-toggle="tooltip_detalhe_env" title ='Enviado'></span>
 <table cellpadding="0" cellspacing="0" border="0" class="table">
       <tr>
       <th align='center' bgColor='#666666'><font color='#FFF'>Setor de Envio</th>
@@ -193,7 +194,8 @@ mysqli_close($link);
       <th align='center' bgColor='#666666'><font color='#FFF'>Setor de Destino</th>
       <th align='center' bgColor='#666666'><font color='#FFF'>Data do recebimento</th>
       <th align='center' bgColor='#666666'><font color='#FFF'>Usuário do recebimento</th>
-      
+      <th align='center' bgColor='#666666'><font color='#FFF
+      '>Ação</th>
       </tr>
         <?php 
         $m_array = mysqli_fetch_array($sql6_query);         
@@ -214,15 +216,50 @@ mysqli_close($link);
         <td><?php echo $setor_dst ?></td>
         <td><?php echo $data_rec ?></td>
         <td><?php echo $usuario_rec ?></td>
+        <td><a href='../rel/detalhe.php?cod=<?php echo $cod ?>' target='_blank'><span style="color: #2E2EFE;font-size: 18px;" class="glyphicon glyphicon-print" alt='Imprimir' data-toggle="tooltip_imprimir" title ='Imprimir detalhes do processo'></span></a><td>
       </tr>
       </table>    
   </div>
 </div>
+<div class="form-group">
+  <label class="col-md-4 control-label" ></label>
+  <div class="col-md-5">
+<span style="position: absolute; top:80px; left:-30px; color: #088A08;font-size: 26px;" class="glyphicon glyphicon-arrow-left" alt='Recebido' data-toggle="tooltip_detalhe_rec" title ='Recebido'></span>
+<table cellpadding="0" cellspacing="0" border="0" class="table">
+      <tr>
+      <th align='center' bgColor='#666666'><font color='#FFF'>Setor de Envio</th>
+      <th align='center' bgColor='#666666'><font color='#FFF'>Data do envio</th>
+      <th align='center' bgColor='#666666'><font color='#FFF'>Usuário do envio</th>
+      <th align='center' bgColor='#666666'><font color='#FFF'>Setor de Destino</th>
+      <th align='center' bgColor='#666666'><font color='#FFF'>Data do recebimento</th>
+      <th align='center' bgColor='#666666'><font color='#FFF'>Usuário do recebimento</th>
+      <th align='center' bgColor='#666666'><font color='#FFF
+      '>Ação</th>
+      </tr>
+        <?php 
+        $m_array = mysqli_fetch_array($sql6_query);         
+        $usuario_env = $m_array["usuario_env"];
+        $setor_env = $m_array["setor_env"];
+        $data_env = $m_array["data_env"];
 
-<div id="btn_imprimir_detalhes">
-  <a href='../rel/detalhe.php?cod=<?php echo $cod ?>' target='_blank'><span style="color: #2E2EFE;font-size: 32px;" class="glyphicon glyphicon-print" alt='Imprimir' data-toggle="tooltip_imprimir" title ='Imprimir detalhes do processo'></span></a>
+        $m_array2 = mysqli_fetch_array($sql7_query);         
+        $usuario_rec = $m_array2["usuario_rec"];
+        $setor_dst = $m_array2["setor_dst"];
+        $data_rec = $m_array2["data_rec"];
+                
+        ?>
+      <tr>
+        <td><?php echo $setor_env ?></td>
+        <td><?php echo $data_env ?></td>
+        <td><?php echo $usuario_env ?></td>
+        <td><?php echo $setor_dst ?></td>
+        <td><?php echo $data_rec ?></td>
+        <td><?php echo $usuario_rec ?></td>
+        <td><a href='../rel/detalhe_dev.php?cod=<?php echo $cod ?>' target='_blank'><span style="color: #2E2EFE;font-size: 18px;" class="glyphicon glyphicon-print" alt='Imprimir' data-toggle="tooltip_imprimir" title ='Imprimir detalhes do processo'></span></a><td>
+      </tr>
+      </table>    
+  </div>
 </div>
-
 <!-- Button (Double) -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="btnDevolver_proc"></label>
