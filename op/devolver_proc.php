@@ -34,9 +34,14 @@ require_once "../config/functions.php";*/
     $data = date('Y-m-d', time());
     $horas = date('H:i:s', time());
     $cod = $_POST["cod_dProc"];
-    
-$sql = "INSERT INTO devolucao (cod_prdev, cod_rqdev, cod_stdev, cod_storg, user_env, data_env, horas_env, obs,status) VALUES('".$_POST["cod_dProc"]."','".$_POST["cod_dReq"]."','".$_POST["cod_dSetor"]."','".$_POST["cod_oSetor"]."','".$_SESSION['user_id']."','".$data."','".$horas."','".$_POST["txtObservacao"]."','0')";
-		
+    $user_id = $_SESSION['user_id'];
+    $cod_dReq = $_POST["cod_dReq"];
+    $cod_dSetor = $_POST["cod_dSetor"];
+    $cod_oSetor = $_POST["cod_oSetor"];
+    $observacao = $_POST["txtObservacao"];
+
+$sql = "INSERT INTO devolucao (cod_prdev, cod_rqdev, cod_stdev, cod_storg, user_env, data_env, horas_env, obs,status) VALUES('".$cod."','".$cod_dReq."','".$cod_dSetor."','".$cod_oSetor."','".$user_id."','".$data."','".$horas."','".$observacao."','0')";
+
 		if (mysqli_query($link, $sql)) {
     
 		echo"<script>
@@ -63,6 +68,11 @@ $sql = "INSERT INTO devolucao (cod_prdev, cod_rqdev, cod_stdev, cod_storg, user_
 	} else {
     	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
 	}
+
+$sql2 = $sql = "UPDATE `encaminhamento` SET  `statusd` = '1' WHERE `cod_prenc` = '".$cod."'";
+
+mysqli_query($link, $sql2);
+
 
 // Fecha a conexão com o servidor para poupar recursos de processamento
 mysqli_close($link);

@@ -30,24 +30,6 @@ function isLoggedIn()
     return true;
 }
 
-function inserir_arquivos($link){
-
-global $cod, $nome_final;
-// Executa a instrução SQL para inserir registros
-// O campo código como é chave primária e está marcado na tabela como AUTO_INCREMENT não necessita passar um valor
-$sql = "INSERT INTO itens_arq (cod_proc , arquivo) VALUES ('$cod', '$nome_final')";
-
-		if (mysqli_query($link, $sql)) {
-
-		echo "<script language='javascript'>alert('Arquivo inserido com sucesso...!')</script>";
-
-		echo "<script>location.href='../frm/exibir_proc.php'</script>";
-
-		} else {
-		    echo "Erro: " . $sql . "<br>" . mysqli_error($link);
-	}
-}
-
 function utf8_strtr($str, $from, $to) {
     $keys = array();
     $values = array();

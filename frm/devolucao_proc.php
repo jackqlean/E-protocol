@@ -64,7 +64,7 @@ mysqli_close($link);
   <h1>Devolução de Processo</h1>
 </div>
 
-<form name="cadastro" id="cadastro" method="POST" action="../op/devolver_proc.php">
+<form name="cadastro" id="cadastro" method="POST" action="../op/devolver_proc.php?cod=<?php echo $cod ?>">
 <?php $linha = mysqli_fetch_array($sql2_query)?>
 <fieldset>
 

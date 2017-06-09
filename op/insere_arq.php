@@ -2,6 +2,22 @@
 session_start();
 require_once "check.php";
 ?>
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title></title>
+
+<script src="../lib/jquery/jquery-1.12.4.js"></script>
+<link href="../lib/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="../lib/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link href="../lib/bootstrap-dialog/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css" />
+<script src="../lib/bootstrap-dialog/js/bootstrap-dialog.min.js"></script>
+</head>
+<body>
 <?php 
 header('Content-Type: text/html; charset=utf-8');
 // O trecho de código faz com que force o apache a exibir os erros, que por padrão são ocultos
@@ -51,8 +67,29 @@ $config['erros'][4] = 'Não foi feito o upload do arquivo';
  
 // Verifica se houve algum erro com o upload. Se sim, exibe a mensagem do erro
 if ($_FILES['arquivo']['error'] != 0) {
-echo ("Não foi possível fazer o upload, erro:<br />" . $config['erros'][$_FILES['arquivo']['error']]);
-echo "<script>location.href='seleciona_arq.php?cod=$cod'</script>";
+echo"<script>
+        $(document).ready(function () {
+        BootstrapDialog.show({
+            title: 'Informação do sistema',
+            message: 'Não foi possível fazer o upload do arquivo. O tipo de arquivo é inválido ou ultrapassou o tamanho limite permitido. Pressione Enter para continuar...',
+            onshow: function(dialog) {
+                dialog.getButton('button-ok').enable();
+            },
+            buttons: [{
+                id: 'button-ok',
+                label: 'Ok',
+                hotkey: 13,
+                cssClass: 'btn-primary',
+                action: function(){
+                     window.location.href='../frm/exibir_proc.php'
+                }
+            }]
+        });
+       });
+</script>";	
+
+//echo ("Não foi possível fazer o upload, erro:<br />" . $config['erros'][$_FILES['arquivo']['error']]);
+//echo "<script>location.href='seleciona_arq.php?cod=$cod'</script>";
 exit; // Para a execução do script
 }
  
@@ -63,15 +100,56 @@ exit; // Para a execução do script
 $extensao = strtolower(end(explode('.', $_FILES['arquivo']['name'])));
 
 if (array_search($extensao, $config['extensoes']) === false) {
-echo "Por favor, envie arquivos com as seguintes extensões: jpg, png , gif, pdf, doc ou docx";
-echo "<script>location.href='seleciona_arq.php?cod=$cod'</script>";
+echo"<script>
+        $(document).ready(function () {
+        BootstrapDialog.show({
+            title: 'Informação do sistema',
+            message: 'Por favor, envie arquivos com as seguintes extensões: jpg, png , gif, pdf, doc ou docx. Pressione Enter para continuar...',
+            onshow: function(dialog) {
+                dialog.getButton('button-ok').enable();
+            },
+            buttons: [{
+                id: 'button-ok',
+                label: 'Ok',
+                hotkey: 13,
+                cssClass: 'btn-primary',
+                action: function(){
+                     window.location.href='../frm/exibir_proc.php'
+                }
+            }]
+        });
+       });
+</script>";	
+//echo "Por favor, envie arquivos com as seguintes extensões: jpg, png , gif, pdf, doc ou docx";
+//echo "<script>location.href='seleciona_arq.php?cod=$cod'</script>";
 exit; // Para a execução do script
 }
  
 // Faz a verificação do tamanho do arquivo
 else if ($config['tamanho'] < $_FILES['arquivo']['size']) {
-echo "O arquivo enviado é muito grande, envie arquivos de até 2Mb.";
-echo "<script>location.href='seleciona_arq.php?cod=$cod'</script>";
+echo"<script>
+        $(document).ready(function () {
+        BootstrapDialog.show({
+            title: 'Informação do sistema',
+            message: 'O arquivo enviado é muito grande, envie arquivos de até 2Mb. Pressione Enter para continuar...',
+            onshow: function(dialog) {
+                dialog.getButton('button-ok').enable();
+            },
+            buttons: [{
+                id: 'button-ok',
+                label: 'Ok',
+                hotkey: 13,
+                cssClass: 'btn-primary',
+                action: function(){
+                     window.location.href='../frm/exibir_proc.php'
+                }
+            }]
+        });
+       });
+</script>";	
+
+//echo "O arquivo enviado é muito grande, envie arquivos de até 2Mb.";
+//echo "<script>location.href='seleciona_arq.php?cod=$cod'</script>";
 exit; // Para a execução do script
 }
  
@@ -94,11 +172,31 @@ $file_dir = $config["diretorio"] . $nome_final;
 // Depois verifica se é possível mover o arquivo para a pasta escolhida
 if (move_uploaded_file($_FILES['arquivo']['tmp_name'], $file_dir)) {
 // Upload efetuado com sucesso, exibe uma mensagem e um link para o arquivo
-echo "Upload efetuado com sucesso!";
+echo "";
 } else {
 // Não foi possível fazer o upload, provavelmente a pasta está incorreta
-echo "Não foi possível enviar o arquivo, tente novamente";
-echo "<script>location.href='seleciona_arq.php?cod=$cod'</script>";
+echo"<script>
+        $(document).ready(function () {
+        BootstrapDialog.show({
+            title: 'Informação do sistema',
+            message: 'Não foi possível enviar o arquivo, tente novamente. Pressione Enter para continuar...',
+            onshow: function(dialog) {
+                dialog.getButton('button-ok').enable();
+            },
+            buttons: [{
+                id: 'button-ok',
+                label: 'Ok',
+                hotkey: 13,
+                cssClass: 'btn-primary',
+                action: function(){
+                     window.location.href='../frm/exibir_proc.php'
+                }
+            }]
+        });
+       });
+</script>";	
+//echo "Não foi possível enviar o arquivo, tente novamente";
+//echo "<script>location.href='seleciona_arq.php?cod=$cod'</script>";
 exit; // Para a execução do script
 }
  
@@ -109,10 +207,50 @@ exit; // Para a execução do script
 	exit; // Para a execução do script	
 }
 
-inserir_arquivos($link);
+// global $cod, $nome_final;
+// Executa a instrução SQL para inserir registros
+// O campo código como é chave primária e está marcado na tabela como AUTO_INCREMENT não necessita passar um valor
+$sql = "INSERT INTO itens_arq (cod_proc , arquivo) VALUES ('$cod', '$nome_final')";
+
+		if (mysqli_query($link, $sql)) {
+
+		echo"<script>
+        $(document).ready(function () {
+        BootstrapDialog.show({
+            title: 'Informação do sistema',
+            message: 'Arquivo inserido com sucesso. Pressione Enter para continuar...',
+            onshow: function(dialog) {
+                dialog.getButton('button-ok').enable();
+            },
+            buttons: [{
+                id: 'button-ok',
+                label: 'Ok',
+                hotkey: 13,
+                cssClass: 'btn-primary',
+                action: function(){
+                     window.location.href='../frm/exibir_proc.php'
+                }
+            }]
+        });
+       });
+</script>";	
+
+		//echo "<script>location.href='../frm/exibir_proc.php'</script>";
+
+		} else {
+		    echo "Erro: " . $sql . "<br>" . mysqli_error($link);
+	}
 
 // Fecha a conexão com o servidor para poupar recursos de processamento
 mysqli_close($link);
 
 ?>
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</body>
+</html>
 

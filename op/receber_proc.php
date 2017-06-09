@@ -35,7 +35,7 @@ require_once "../config/functions.php";*/
 	$data = date('Y-m-d', time());
     $horas = date('H:i:s', time());
 
-    $sql = "UPDATE `encaminhamento` SET `data_rec` = '".$data."', `horas_rec` = '".$horas."',`user_rec` = '".$_SESSION['user_id']."', `status` = '1' WHERE `cod_prenc` = '".$cod."'";
+    $sql = "UPDATE `encaminhamento` SET `data_rec` = '".$data."', `horas_rec` = '".$horas."',`user_rec` = '".$_SESSION['user_id']."', `status` = '1' ,`statusd` = '0' WHERE `cod_prenc` = '".$cod."'";
 
 	if (mysqli_query($link, $sql)) {
     

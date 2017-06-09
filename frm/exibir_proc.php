@@ -118,6 +118,8 @@ mysqli_close($link);
 <form name="cadastro" id="cadastro" method="POST" action="../op/insere_arq.php?cod=<?php echo $cod?>" enctype="multipart/form-data">
   <label class="col-md-4 control-label" for="txtFile">Selecione arquivo(s)...</label>
   <div class="col-md-5">
+  <span>O tamanho do arquivo não pode ultrapassar 2Mb.</span>
+    <p>Anexe somente arquivos com as seguintes extensões: jpg, png , gif, pdf, doc ou docx. </p>
     <input type="file" name="arquivo" id="txtFile" value="" class="form-control">
   <button type="submit" id="btnEnviar" name="btnEnviar" class="btn btn-success"><span style="color: #FFF; font-size: 22px;" class="glyphicon glyphicon-floppy-disk
 glyphicon glyphicon-flo" alt='Imprimir' data-toggle="tooltip_gravar" title ='Gravar arquivo'></span></button>
