@@ -58,6 +58,7 @@ mysqli_close($link);
       $(function () {
         $('[data-toggle="tooltip_imprimir"]').tooltip()
         $('[data-toggle="tooltip_download"]').tooltip()
+        $('[data-toggle="tooltip_detalhe_env"]').tooltip()
       })
     </script>
 
@@ -183,6 +184,7 @@ mysqli_close($link);
 <div class="form-group">
   <label class="col-md-4 control-label" >Movimentação do processo</label>
   <div class="col-md-5">
+<span style="position: absolute; top:60px; left:-30px; color: #088A08;font-size: 26px;" class="glyphicon glyphicon-arrow-right" alt='Enviado' data-toggle="tooltip_detalhe_env" title ='Enviado'></span>
 <table cellpadding="0" cellspacing="0" border="0" class="table">
       <tr>
       <th align='center' bgColor='#666666'><font color='#FFF'>Setor de Envio</th>
@@ -218,7 +220,7 @@ mysqli_close($link);
 </div>
 
 <div id="btn_imprimir_detalhes">
-  <a href='../rel/detalhe_dev.php?cod=<?php echo $cod ?>' target='_blank'><span style="color: #2E2EFE;font-size: 32px;" class="glyphicon glyphicon-print" alt='Imprimir' data-toggle="tooltip_imprimir" title ='Imprimir detalhes do processo'></span></a>
+  <a href='../rel/detalhe.php?cod=<?php echo $cod ?>' target='_blank'><span style="color: #2E2EFE;font-size: 32px;" class="glyphicon glyphicon-print" alt='Imprimir' data-toggle="tooltip_imprimir" title ='Imprimir detalhes do processo'></span></a>
 </div>
 
 <!-- Button (Double) -->
