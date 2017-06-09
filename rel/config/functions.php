@@ -96,4 +96,50 @@ function consultaDetalhes_Proc_Rec($link){
 	return $ARRAY_PROCESSO_REC;
 }
 
+function consultaDetalhes_Proc_Dev_Env($link){
+	global $cod;
+	global $ptipo;
+
+	$sql_query = mysqli_query($link,"SELECT p.cod , r.nome, p.tipo, p.assunto ,p.descricao AS descricao, u.name AS usuario_env , s.setor AS setor_env, DATE_FORMAT(d.data_env,'%d/%m/%Y') AS data_env, d.horas_env AS horas_env , d.obs AS observacao FROM proc p, req r, setor s, users u, devolucao d 
+	WHERE  r.cod = p.cod_req AND d.user_env = u.id AND d.cod_storg = s.cod_setor AND d.cod_prdev = p.cod AND p.cod ='".$cod."'");
+
+	$ARRAY_PROCESSO_DEV_ENV = [];
+	$array = mysqli_fetch_array($sql_query);
+
+	$ARRAY_PROCESSO_DEV_ENV[0] = $array["cod"];
+	$proc_tipo = $array["tipo"];
+	$ARRAY_PROCESSO_DEV_ENV[1] = $array["nome"];
+	$ARRAY_PROCESSO_DEV_ENV[2] = $array["assunto"];
+    $ARRAY_PROCESSO_DEV_ENV[3] = $array["usuario_env"];
+	$ARRAY_PROCESSO_DEV_ENV[4] = $array["data_env"];
+	$ARRAY_PROCESSO_DEV_ENV[5] = $array["horas_env"];
+	$ARRAY_PROCESSO_DEV_ENV[6] = $array["setor_env"];
+	$ARRAY_PROCESSO_DEV_ENV[8] = $array["descricao"];
+	$ARRAY_PROCESSO_DEV_ENV[9] = $array["observacao"];
+
+	if ($proc_tipo=='PI') $ptipo = "Processo Interno";
+	if ($proc_tipo=='PE') $ptipo = "Processo Externo";
+	if ($proc_tipo=='OT') $ptipo = "Outros";
+ 	
+ 	$ARRAY_PROCESSO_DEV_ENV[7] = $ptipo;
+	
+	return $ARRAY_PROCESSO_DEV_ENV;
+}
+
+function consultaDetalhes_Proc_Dev_Rec($link){
+	global $cod;
+
+	$sql2_query = mysqli_query($link,"SELECT p.cod , u.name AS usuario_rec , s.setor AS setor_dst , DATE_FORMAT(d.data_rec,'%d/%m/%Y') AS data_rec , d.horas_rec AS horas_rec FROM proc p, setor s, users u, devolucao d 
+WHERE d.user_rec = u.id AND d.cod_stdev = s.cod_setor AND d.cod_prdev = p.cod AND p.cod ='".$cod."'");
+
+	$ARRAY_PROCESSO_DEV_REC = [];
+	$array2 = mysqli_fetch_array($sql2_query);
+
+	$ARRAY_PROCESSO_DEV_REC[0] = $array2["usuario_rec"];
+	$ARRAY_PROCESSO_DEV_REC[1] = $array2["setor_dst"];
+	$ARRAY_PROCESSO_DEV_REC[2] = $array2["data_rec"];
+	$ARRAY_PROCESSO_DEV_REC[3] = $array2["horas_rec"];
+	return $ARRAY_PROCESSO_DEV_REC;
+}
+
 ?>

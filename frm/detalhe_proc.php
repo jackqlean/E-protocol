@@ -218,7 +218,7 @@ mysqli_close($link);
 </div>
 
 <div id="btn_imprimir_detalhes">
-  <a href='../rel/detalhe.php?cod=<?php echo $cod ?>' target='_blank'><span style="color: #2E2EFE;font-size: 32px;" class="glyphicon glyphicon-print" alt='Imprimir' data-toggle="tooltip_imprimir" title ='Imprimir detalhes do processo'></span></a>
+  <a href='../rel/detalhe_dev.php?cod=<?php echo $cod ?>' target='_blank'><span style="color: #2E2EFE;font-size: 32px;" class="glyphicon glyphicon-print" alt='Imprimir' data-toggle="tooltip_imprimir" title ='Imprimir detalhes do processo'></span></a>
 </div>
 
 <!-- Button (Double) -->
