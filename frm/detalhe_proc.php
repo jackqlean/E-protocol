@@ -36,6 +36,10 @@ $sql6_query = mysqli_query($link,"SELECT p.cod , u.name AS usuario_env , s.setor
 //Consulta horas de recebimento, data do 
 // recebimento e usuario de recebimento da tabela proc (processos).
 $sql7_query = mysqli_query($link,"SELECT p.cod , u.name AS usuario_rec , s.setor AS setor_dst , DATE_FORMAT(e.data_rec,'%d/%m/%Y') AS data_rec FROM proc p, setor s, users u, encaminhamento e WHERE e.user_rec = u.id AND e.cod_stdst = s.cod_setor AND e.cod_prenc = p.cod AND p.cod='".$cod."'");
+
+$sql8_query = mysqli_query($link,"SELECT p.cod , u.name AS usuario_env , s.setor AS setor_env, DATE_FORMAT(d.data_env,'%d/%m/%Y') AS data_env FROM proc p, setor s, users u, devolucao d WHERE  d.user_env = u.id AND d.cod_storg = s.cod_setor AND d.cod_prdev = p.cod AND p.cod ='".$cod."'");
+
+  $sql9_query = mysqli_query($link,"SELECT p.cod , u.name AS usuario_rec , s.setor AS setor_dst , DATE_FORMAT(d.data_rec,'%d/%m/%Y') AS data_rec FROM proc p, setor s, users u, devolucao d WHERE d.user_rec = u.id AND d.cod_stdev = s.cod_setor AND d.cod_prdev = p.cod AND p.cod='".$cod."'");
  
 // Fecha a conexão com o servidor para poupar recursos de processamento
 mysqli_close($link);
@@ -237,12 +241,12 @@ mysqli_close($link);
       '>Ação</th>
       </tr>
         <?php 
-        $m_array = mysqli_fetch_array($sql6_query);         
+        $m_array = mysqli_fetch_array($sql8_query);         
         $usuario_env = $m_array["usuario_env"];
         $setor_env = $m_array["setor_env"];
         $data_env = $m_array["data_env"];
 
-        $m_array2 = mysqli_fetch_array($sql7_query);         
+        $m_array2 = mysqli_fetch_array($sql9_query);         
         $usuario_rec = $m_array2["usuario_rec"];
         $setor_dst = $m_array2["setor_dst"];
         $data_rec = $m_array2["data_rec"];
