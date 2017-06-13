@@ -1,6 +1,6 @@
 <?php
 session_start();
-/*require_once "check.php";*/
+require_once "check.php";
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -27,23 +27,36 @@ error_reporting(E_ALL);
 // =====================================
 
 require_once "../config/init.php";
-/*require_once "../config/functions.php";*/
+//require_once "../config/functions.php";
 
-$cod = $_GET["cod"];
+// resgata variáveis do formulário
+$name = isset($_POST['txt_login']) ? $_POST['txt_login'] : '';
+$passwordA = isset($_POST['txtSenhaA']) ? $_POST['txtSenhaA'] : '';
 
-// VARIAVEIS PARA ARMAZENAR A HORA E DATA ATUAIS DO SISTEMA
-    $data = date('Y-m-d', time());
-    $horas = date('H:i:s', time());
+$passwordN = isset($_POST['txtSenhaN']) ? $_POST['txtSenhaN'] : '';
 
-$sql = "INSERT INTO proc (tipo, assunto, descricao ,setor, cod_req, user_id,data,horas) VALUES('".$_POST["txtTipo"]."','".$_POST["txtAssunto"]."','".$_POST["txtDescricao"]."','".$_POST["txtSetor"]."','".$cod."','".$_SESSION['user_id']."','".$data."','".$horas."')";
-		
-		if (mysqli_query($link, $sql)) {
+// cria o hash da senha
+$senhaA = make_hash($passwordA);
+$senhaN = make_hash($passwordN);
+
+// recupera o id do usuário
+$user_id = $_SESSION['user_id'];
+
+$sql = "SELECT u.password FROM users u WHERE u.id = '".$user_id."'";
+
+$r = mysqli_query($link,$sql) or die(mysql_error());
+$senha = mysqli_fetch_row($r);
+
+if($senha[0] == $senhaA){
+    $sql2 = "UPDATE users SET `password` = '".$senhaN."' WHERE id = '".$user_id."'";
     
-		echo"<script>
+    mysqli_query($link,$sql2);
+    
+    echo "<script>
         $(document).ready(function () {
         BootstrapDialog.show({
             title: 'Informação do sistema',
-            message: 'Processo cadastrado com sucesso. Pressione Enter para continuar...',
+            message: 'Usuario e/ou senha alterado com sucesso. Pressione Enter para continuar...',
             onshow: function(dialog) {
                 dialog.getButton('button-ok').enable();
             },
@@ -53,18 +66,15 @@ $sql = "INSERT INTO proc (tipo, assunto, descricao ,setor, cod_req, user_id,data
                 hotkey: 13,
                 cssClass: 'btn-primary',
                 action: function(){
-                     window.location.href='../frm/exibir_proc.php'
+                     window.location.href='../navegacao.php'
                 }
             }]
         });
        });
-</script>";	
-
-		/*echo "<script>location.href='../frm/exibir_proc.php'</script>";*/
-
-		} else {
-    	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
-	}
+</script>"; 
+} else {
+        echo "Erro: " . $sql . "<br>" . mysqli_error($link);
+}
 
 // Fecha a conexão com o servidor para poupar recursos de processamento
 mysqli_close($link);

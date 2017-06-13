@@ -73,6 +73,14 @@ require_once "check.php";
             <li><a href="frm/consulta_proc_rec.php">Somente recebidos</a>  </li>
           </ul>
         </li>
+
+        <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Config<span class="caret"></span>
+        </a>  
+          <ul class="dropdown-menu">
+            <li><a href="frm/alteracao_user_pass.php">Alterar - Usuario / Senha</a>  </li>
+          </ul>
+        </li>
         
         <li><a href="#">Sobre</a>  </li>
         <li><a href="op/logout.php">Sair</a>  </li>
