@@ -22,10 +22,10 @@ require "../config/functions.php";
   
 <?php
 // resgata variáveis do formulário
-$email = isset($_POST['txt_login']) ? $_POST['txt_login'] : '';
+$name = isset($_POST['txt_login']) ? $_POST['txt_login'] : '';
 $password = isset($_POST['txt_password']) ? $_POST['txt_password'] : '';
  
-if (empty($email) || empty($password))
+if (empty($name))
 {
     echo"<script>
         $(document).ready(function () {
@@ -55,10 +55,10 @@ $passwordHash = make_hash($password);
  
 $PDO = db_connect();
  
-$sql = "SELECT id, name, s.setor AS setor FROM users, setor s WHERE users.cod_setor = s.cod_setor AND email = :email AND password = :password";
+$sql = "SELECT id, name, s.setor AS setor FROM users, setor s WHERE users.cod_setor = s.cod_setor AND name = :name AND password = :password";
 $stmt = $PDO->prepare($sql);
  
-$stmt->bindParam(':email', $email);
+$stmt->bindParam(':name', $name);
 $stmt->bindParam(':password', $passwordHash);
  
 $stmt->execute();
