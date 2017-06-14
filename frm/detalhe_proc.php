@@ -40,6 +40,10 @@ $sql7_query = mysqli_query($link,"SELECT p.cod , u.name AS usuario_rec , s.setor
 $sql8_query = mysqli_query($link,"SELECT p.cod , u.name AS usuario_env , s.setor AS setor_env, DATE_FORMAT(d.data_env,'%d/%m/%Y') AS data_env FROM proc p, setor s, users u, devolucao d WHERE  d.user_env = u.id AND d.cod_storg = s.cod_setor AND d.cod_prdev = p.cod AND p.cod ='".$cod."'");
 
   $sql9_query = mysqli_query($link,"SELECT p.cod , u.name AS usuario_rec , s.setor AS setor_dst , DATE_FORMAT(d.data_rec,'%d/%m/%Y') AS data_rec FROM proc p, setor s, users u, devolucao d WHERE d.user_rec = u.id AND d.cod_stdev = s.cod_setor AND d.cod_prdev = p.cod AND p.cod='".$cod."'");
+
+$sql10_query = mysqli_query($link,"SELECT e.status AS status FROM encaminhamento e, proc p WHERE e.cod_prenc = p.cod AND p.cod ='".$cod."'");
+ 
+$sql11_query = mysqli_query($link,"SELECT d.status AS status FROM devolucao d, proc p WHERE d.cod_prdev = p.cod AND p.cod ='".$cod."'");
  
 // Fecha a conexão com o servidor para poupar recursos de processamento
 mysqli_close($link);
@@ -213,6 +217,17 @@ mysqli_close($link);
         $data_rec = $m_array2["data_rec"];
                 
         ?>
+        <?php
+       $r1 = mysqli_fetch_array($sql10_query);
+       $st1 = $r1["status"];
+       $permission='disabled = "disabled"';
+        
+        if ($st1 == "1")
+        { $permission = '';
+        }else{
+          $permission='disabled = "disabled"';
+        }
+      ?>
       <tr>
         <td><?php echo $setor_env ?></td>
         <td><?php echo $data_env ?></td>
@@ -220,7 +235,10 @@ mysqli_close($link);
         <td><?php echo $setor_dst ?></td>
         <td><?php echo $data_rec ?></td>
         <td><?php echo $usuario_rec ?></td>
-        <td><a href='../rel/detalhe.php?cod=<?php echo $cod ?>' target='_blank'><span style="color: #2E2EFE;font-size: 18px;" class="glyphicon glyphicon-print" alt='Imprimir' data-toggle="tooltip_imprimir" title ='Imprimir detalhes do processo'></span></a><td>
+        <td><button type="button" class="btn btn-default btn-sm"onclick="window.open('../rel/detalhe.php?cod=<?php echo $cod ?>', '_blank')" <?php echo $permission ?>/> 
+        
+        <span style="color: #2E2EFE;font-size: 14px;" class="glyphicon glyphicon-print" alt='Imprimir' data-toggle="tooltip_imprimir" title ='Imprimir detalhes do processo'></span>
+        </button><td>
       </tr>
       </table>    
   </div>
@@ -250,8 +268,18 @@ mysqli_close($link);
         $usuario_rec = $m_array2["usuario_rec"];
         $setor_dst = $m_array2["setor_dst"];
         $data_rec = $m_array2["data_rec"];
-                
-        ?>
+      ?>
+      <?php
+       $r2 = mysqli_fetch_array($sql11_query);
+       $st2 = $r2["status"];
+       $permission2='disabled = "disabled"';
+       
+        if ($st2 == "1")
+        { $permission2 = '';
+        }else{
+          $permission2='disabled = "disabled"';
+        }
+      ?>
       <tr>
         <td><?php echo $setor_env ?></td>
         <td><?php echo $data_env ?></td>
@@ -259,7 +287,12 @@ mysqli_close($link);
         <td><?php echo $setor_dst ?></td>
         <td><?php echo $data_rec ?></td>
         <td><?php echo $usuario_rec ?></td>
-        <td><a href='../rel/detalhe_dev.php?cod=<?php echo $cod ?>' target='_blank'><span style="color: #2E2EFE;font-size: 18px;" class="glyphicon glyphicon-print" alt='Imprimir' data-toggle="tooltip_imprimir" title ='Imprimir detalhes do processo'></span></a><td>
+        <td>
+        <button type="button" class="btn btn-default btn-sm"onclick="window.open('../rel/detalhe_dev.php?cod=<?php echo $cod ?>', '_blank')" 
+        <?php echo $permission2 ?>/>
+        <span style="color: #2E2EFE;font-size: 14px;" class="glyphicon glyphicon-print" alt='Imprimir' data-toggle="tooltip_imprimir" title ='Imprimir detalhes do processo'></span>
+        </button>
+        <td>
       </tr>
       </table>    
   </div>
@@ -271,7 +304,7 @@ mysqli_close($link);
   
   <!--<button type="submit" id="btnImprimir" name="btnImprimir" class="btn btn-info" onclick="load_Imprimir();">Imprimir capa do processo</button>-->
       
-    <input type="button" id="btnFechar" name="btnFechar" value="Fechar" class="btn btn-danger" onclick="javascript:location.href='../index.php'">
+  <input type="button" id="btnFechar" name="btnFechar" value="Fechar" class="btn btn-danger" onclick="javascript:location.href='../index.php'">
   </div>
 </div>
 
