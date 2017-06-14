@@ -45,10 +45,10 @@ $user_id = $_SESSION['user_id'];
 $sql = "SELECT u.password FROM users u WHERE u.id = '".$user_id."'";
 
 $r = mysqli_query($link,$sql) or die(mysql_error());
-$senha = mysqli_fetch_row($r);
+$row = mysqli_fetch_row($r);
 
-if($senha[0] == $senhaA){
-    $sql2 = "UPDATE users SET `password` = '".$senhaN."' WHERE id = '".$user_id."'";
+if($row[0] == $senhaA){
+    $sql2 = "UPDATE users SET `name` = '".$name."', `password` = '".$senhaN."' WHERE id = '".$user_id."'";
     
     mysqli_query($link,$sql2);
     
@@ -73,7 +73,27 @@ if($senha[0] == $senhaA){
        });
 </script>"; 
 } else {
-        echo "Erro: " . $sql . "<br>" . mysqli_error($link);
+       echo"<script>
+        $(document).ready(function () {
+        BootstrapDialog.show({
+            title: 'Informação do sistema',
+            message: 'Ocorreu um erro na alteração do registro. Verifique e tente novamente.',
+            onshow: function(dialog) {
+                dialog.getButton('button-ok').enable();
+            },
+            buttons: [{
+                id: 'button-ok',
+                label: 'Ok',
+                hotkey: 13,
+                cssClass: 'btn-primary',
+                action: function(){
+                     window.location.href='../frm/cadastro_req.php'
+                }
+            }]
+        });
+       });
+</script>"; 
+        //echo "Erro: " . $sql . "<br>" . mysqli_error($link);
 }
 
 // Fecha a conexão com o servidor para poupar recursos de processamento
@@ -84,6 +104,6 @@ mysqli_close($link);
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->  
+    <![endif]--> 
    </body>
 </html>
