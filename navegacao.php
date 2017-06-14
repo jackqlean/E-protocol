@@ -22,6 +22,11 @@ require_once "check.php";
     <![endif]-->
   </head>
   <body>
+    <header>
+    <div class="container">
+        <img id="logotipo" src="img/logo.png" alt="Logotipo">
+    </div>
+    </header><!-- /header -->
     <!-- Barra de navegação -->
     <div >
       <nav class="navbar navbar-inverse">
