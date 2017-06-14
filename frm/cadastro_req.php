@@ -51,7 +51,7 @@ include "_navegacao.php";
 <div class="form-group">
   <label class="col-md-4 control-label" for="txtCpf">CPF</label>  
   <div class="col-md-5">
-  <input id="txtCpf" name="txtCpf" type="text" class="form-control input-md" value="" onkeypress="return txtBoxFormat(this, '###.###.###-##', event);" required="" onchange="VerificaCPF ()">
+  <input id="txtCpf" name="txtCpf" type="text" class="form-control input-md" value="" onkeypress="return txtBoxFormat(this, '###.###.###-##', event);" required="" onchange="VerificaCPF ()"/>
     
   </div>
 </div>
@@ -60,7 +60,7 @@ include "_navegacao.php";
 <div class="form-group">
   <label class="col-md-4 control-label" for="txtTel">Telefone</label>
   <div class="col-md-5">
-    <input type="text" name="txtTel" id="txtTel" value="" class="form-control input-md" onkeypress="return txtBoxFormat(this, '(##)####-####', event);" required="">
+    <input type="text" name="txtTel" id="txtTel" value="" class="form-control input-md" onkeypress="return txtBoxFormat(this, '(##)####-####', event);"/>
   </div>
 </div>
 
@@ -68,7 +68,7 @@ include "_navegacao.php";
 <div class="form-group">
   <label class="col-md-4 control-label" for="txtCel">Celular</label>
   <div class="col-md-5">
-    <input type="text" name="txtCel" id="txtCel" value="" class="form-control input-md" onkeypress="return txtBoxFormat(this, '(##)#####-####', event);" required="">
+    <input type="text" name="txtCel" id="txtCel" value="" class="form-control input-md" onkeypress="return txtBoxFormat(this, '(##)#####-####', event);"/>
   </div>
 </div>
 
@@ -76,7 +76,7 @@ include "_navegacao.php";
 <div class="form-group">
   <label class="col-md-4 control-label" for="txtRec">Recados</label>
   <div class="col-md-5">
-    <input type="text" name="txtRec" id="txtRec" value="" class="form-control input-md" onkeypress="return txtBoxFormat(this, '(##)#####-####', event);" required="">
+    <input type="text" name="txtRec" id="txtRec" value="" class="form-control input-md" onkeypress="return txtBoxFormat(this, '(##)#####-####', event);" />
   </div>
 </div>
 
@@ -84,7 +84,7 @@ include "_navegacao.php";
 <div class="form-group">
   <label class="col-md-4 control-label" for="txtEmail">Email</label>
   <div class="col-md-5">
-    <input type="email" name="txtEmail" id="txtEmail" value="" class="form-control input-md"  placeholder="digite seu @email.com.br" required="">
+    <input type="email" name="txtEmail" id="txtEmail" value="" class="form-control input-md"  placeholder="digite seu @email.com.br" />
   </div>
 </div>
 

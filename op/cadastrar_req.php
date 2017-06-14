@@ -58,8 +58,28 @@ $sql = "INSERT INTO req (nome, tipo,cpf,sexo,tel,cel,rec,email) VALUES('".$_POST
     	/*echo "<script>location.href='../navegacao.php'</script>";*/
 
    		} else {
-    	echo "Erro: " . $sql . "<br>" . mysqli_error($link);
-	}
+    	echo"<script>
+        $(document).ready(function () {
+        BootstrapDialog.show({
+            title: 'Informação do sistema',
+            message: 'Ocorreu um erro no cadastro. Verifique e tente novamente.',
+            onshow: function(dialog) {
+                dialog.getButton('button-ok').enable();
+            },
+            buttons: [{
+                id: 'button-ok',
+                label: 'Ok',
+                hotkey: 13,
+                cssClass: 'btn-primary',
+                action: function(){
+                     window.location.href='../frm/cadastro_req.php'
+                }
+            }]
+        });
+       });
+</script>"; 
+      //echo "Erro: " . $sql . "<br>" . mysqli_error($link);
+}
 
 // Fecha a conexão com o servidor para poupar recursos de processamento
 mysqli_close($link);
