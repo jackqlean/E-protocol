@@ -12,10 +12,10 @@ require_once "check.php";
     <title></title>
 
 <script src="../lib/jquery/jquery-1.12.4.js"></script>
-<link href="../lib/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<script src="../lib/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<link href="../lib/bootstrap-dialog/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css" />
-<script src="../lib/bootstrap-dialog/js/bootstrap-dialog.min.js"></script>
+<link rel="stylesheet" href="../lib/animate/animate.min.css">
+<script src="../lib/sweetalert2/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="../lib/sweetalert2/dist/sweetalert2.min.css">
+<script src="../lib/core-js/core.js"></script>
 </head>
 <body>
 <?php 
@@ -67,27 +67,25 @@ $config['erros'][4] = 'Não foi feito o upload do arquivo';
  
 // Verifica se houve algum erro com o upload. Se sim, exibe a mensagem do erro
 if ($_FILES['arquivo']['error'] != 0) {
-echo"<script>
-        $(document).ready(function () {
-        BootstrapDialog.show({
-            title: 'Informação do sistema',
-            message: 'Não foi possível fazer o upload do arquivo. O tipo de arquivo é inválido ou ultrapassou o tamanho limite permitido. Pressione Enter para continuar...',
-            onshow: function(dialog) {
-                dialog.getButton('button-ok').enable();
-            },
-            buttons: [{
-                id: 'button-ok',
-                label: 'Ok',
-                hotkey: 13,
-                cssClass: 'btn-primary',
-                action: function(){
-                     window.location.href='../frm/exibir_proc.php'
-                }
-            }]
-        });
-       });
-</script>";	
 
+echo"<script>
+$(document).ready(function () {
+swal({
+  type: 'info',
+  title: 'Não foi possível fazer o upload do arquivo, tipo de arquivo inválido ou ultrapassou o tamanho limite permitido',
+  text: 'a janela irá fechar em 4 segundos.',
+  timer: 4000
+}).then(
+  function () {},
+  // handling the promise rejection
+  function (dismiss) {
+    if (dismiss === 'timer') {
+      window.location.href='../frm/exibir_proc.php'
+    }
+  }
+)
+});
+</script>";
 //echo ("Não foi possível fazer o upload, erro:<br />" . $config['erros'][$_FILES['arquivo']['error']]);
 //echo "<script>location.href='seleciona_arq.php?cod=$cod'</script>";
 exit; // Para a execução do script
@@ -100,26 +98,26 @@ exit; // Para a execução do script
 $extensao = strtolower(end(explode('.', $_FILES['arquivo']['name'])));
 
 if (array_search($extensao, $config['extensoes']) === false) {
+
 echo"<script>
-        $(document).ready(function () {
-        BootstrapDialog.show({
-            title: 'Informação do sistema',
-            message: 'Por favor, envie arquivos com as seguintes extensões: jpg, png , gif, pdf, doc ou docx. Pressione Enter para continuar...',
-            onshow: function(dialog) {
-                dialog.getButton('button-ok').enable();
-            },
-            buttons: [{
-                id: 'button-ok',
-                label: 'Ok',
-                hotkey: 13,
-                cssClass: 'btn-primary',
-                action: function(){
-                     window.location.href='../frm/exibir_proc.php'
-                }
-            }]
-        });
-       });
-</script>";	
+$(document).ready(function () {
+swal({
+  type: 'info',
+  title: 'Por favor, envie arquivos com as seguintes extensões: jpg, png , gif, pdf, doc ou docx',
+  text: 'a janela irá fechar em 4 segundos.',
+  timer: 4000
+}).then(
+  function () {},
+  // handling the promise rejection
+  function (dismiss) {
+    if (dismiss === 'timer') {
+      window.location.href='../frm/exibir_proc.php'
+    }
+  }
+)
+});
+</script>";
+
 //echo "Por favor, envie arquivos com as seguintes extensões: jpg, png , gif, pdf, doc ou docx";
 //echo "<script>location.href='seleciona_arq.php?cod=$cod'</script>";
 exit; // Para a execução do script
@@ -127,26 +125,25 @@ exit; // Para a execução do script
  
 // Faz a verificação do tamanho do arquivo
 else if ($config['tamanho'] < $_FILES['arquivo']['size']) {
+
 echo"<script>
-        $(document).ready(function () {
-        BootstrapDialog.show({
-            title: 'Informação do sistema',
-            message: 'O arquivo enviado é muito grande, envie arquivos de até 2Mb. Pressione Enter para continuar...',
-            onshow: function(dialog) {
-                dialog.getButton('button-ok').enable();
-            },
-            buttons: [{
-                id: 'button-ok',
-                label: 'Ok',
-                hotkey: 13,
-                cssClass: 'btn-primary',
-                action: function(){
-                     window.location.href='../frm/exibir_proc.php'
-                }
-            }]
-        });
-       });
-</script>";	
+$(document).ready(function () {
+swal({
+  type: 'info',
+  title: 'O arquivo enviado é muito grande, envie arquivos de até 2Mb',
+  text: 'a janela irá fechar em 4 segundos.',
+  timer: 4000
+}).then(
+  function () {},
+  // handling the promise rejection
+  function (dismiss) {
+    if (dismiss === 'timer') {
+      window.location.href='../frm/exibir_proc.php'
+    }
+  }
+)
+});
+</script>";
 
 //echo "O arquivo enviado é muito grande, envie arquivos de até 2Mb.";
 //echo "<script>location.href='seleciona_arq.php?cod=$cod'</script>";
@@ -175,26 +172,26 @@ if (move_uploaded_file($_FILES['arquivo']['tmp_name'], $file_dir)) {
 echo "";
 } else {
 // Não foi possível fazer o upload, provavelmente a pasta está incorreta
+
 echo"<script>
-        $(document).ready(function () {
-        BootstrapDialog.show({
-            title: 'Informação do sistema',
-            message: 'Não foi possível enviar o arquivo, tente novamente. Pressione Enter para continuar...',
-            onshow: function(dialog) {
-                dialog.getButton('button-ok').enable();
-            },
-            buttons: [{
-                id: 'button-ok',
-                label: 'Ok',
-                hotkey: 13,
-                cssClass: 'btn-primary',
-                action: function(){
-                     window.location.href='../frm/exibir_proc.php'
-                }
-            }]
-        });
-       });
-</script>";	
+$(document).ready(function () {
+swal({
+  type: 'info',
+  title: 'Não foi possível enviar o arquivo, tente novamente',
+  text: 'a janela irá fechar em 4 segundos.',
+  timer: 4000
+}).then(
+  function () {},
+  // handling the promise rejection
+  function (dismiss) {
+    if (dismiss === 'timer') {
+      window.location.href='../frm/exibir_proc.php'
+    }
+  }
+)
+});
+</script>";
+
 //echo "Não foi possível enviar o arquivo, tente novamente";
 //echo "<script>location.href='seleciona_arq.php?cod=$cod'</script>";
 exit; // Para a execução do script
@@ -214,32 +211,46 @@ $sql = "INSERT INTO itens_arq (cod_proc , arquivo) VALUES ('$cod', '$nome_final'
 
 		if (mysqli_query($link, $sql)) {
 
-		echo"<script>
-        $(document).ready(function () {
-        BootstrapDialog.show({
-            title: 'Informação do sistema',
-            message: 'Arquivo inserido com sucesso. Pressione Enter para continuar...',
-            onshow: function(dialog) {
-                dialog.getButton('button-ok').enable();
-            },
-            buttons: [{
-                id: 'button-ok',
-                label: 'Ok',
-                hotkey: 13,
-                cssClass: 'btn-primary',
-                action: function(){
-                     window.location.href='../frm/exibir_proc.php'
-                }
-            }]
-        });
-       });
-</script>";	
-
+echo"<script>
+$(document).ready(function () {
+swal({
+  type: 'success',
+  title: 'Arquivo inserido com sucesso',
+  text: 'a janela irá fechar em 4 segundos.',
+  timer: 4000
+}).then(
+  function () {},
+  // handling the promise rejection
+  function (dismiss) {
+    if (dismiss === 'timer') {
+      window.location.href='../frm/exibir_proc.php'
+    }
+  }
+)
+});
+</script>";
 		//echo "<script>location.href='../frm/exibir_proc.php'</script>";
 
 		} else {
-		    echo "Erro: " . $sql . "<br>" . mysqli_error($link);
-	}
+		    echo"<script>
+$(document).ready(function () {
+swal({
+  type: 'error',
+  title: 'Ops..ocorreu um erro. Verifique e tente novamente',
+  text: 'a janela irá fechar em 4 segundos.',
+  timer: 4000
+}).then(
+  function () {},
+  // handling the promise rejection
+  function (dismiss) {
+    if (dismiss === 'timer') {
+      window.location.href='../frm/exibir_proc.php'
+    }
+  }
+)
+});
+</script>";
+}
 
 // Fecha a conexão com o servidor para poupar recursos de processamento
 mysqli_close($link);

@@ -1,5 +1,5 @@
 -- --------------------------------------------------------
--- Servidor:                     127.0.0.1
+-- Servidor:                     localhost
 -- Versão do servidor:           10.1.21-MariaDB - mariadb.org binary distribution
 -- OS do Servidor:               Win32
 -- HeidiSQL Versão:              9.4.0.5125
@@ -34,10 +34,11 @@ CREATE TABLE IF NOT EXISTS `devolucao` (
   PRIMARY KEY (`cod`),
   KEY `cod_proc` (`cod_prdev`),
   KEY `cod_setor` (`cod_storg`),
-  KEY `cod_rqenc` (`cod_rqdev`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+  KEY `cod_rqenc` (`cod_rqdev`),
+  KEY `cod_stdev` (`cod_stdev`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela prot.devolucao: ~7 rows (aproximadamente)
+-- Copiando dados para a tabela prot.devolucao: ~8 rows (aproximadamente)
 /*!40000 ALTER TABLE `devolucao` DISABLE KEYS */;
 INSERT INTO `devolucao` (`cod`, `cod_prdev`, `cod_stdev`, `cod_storg`, `cod_rqdev`, `user_env`, `user_rec`, `data_env`, `horas_env`, `data_rec`, `horas_rec`, `obs`, `status`) VALUES
 	(2, 70, 9, 4, 23, 3, 2, '2017-06-05', '14:08:43', '2017-06-05', '15:16:12', 'Processo resolvido. Devolvendo para o setor de origem.', '1');
@@ -53,6 +54,10 @@ INSERT INTO `devolucao` (`cod`, `cod_prdev`, `cod_stdev`, `cod_storg`, `cod_rqde
 	(8, 78, 7, 2, 19, 4, 1, '2017-06-09', '13:55:44', '2017-06-09', '13:56:44', 'Processo resolvido. Devolvendo ao setor de origem.', '1');
 INSERT INTO `devolucao` (`cod`, `cod_prdev`, `cod_stdev`, `cod_storg`, `cod_rqdev`, `user_env`, `user_rec`, `data_env`, `horas_env`, `data_rec`, `horas_rec`, `obs`, `status`) VALUES
 	(9, 76, 7, 4, 26, 3, 1, '2017-06-09', '14:09:39', '2017-06-09', '14:10:10', 'Processo já foi resolvido e está sendo devolvido ao setor de origem.', '1');
+INSERT INTO `devolucao` (`cod`, `cod_prdev`, `cod_stdev`, `cod_storg`, `cod_rqdev`, `user_env`, `user_rec`, `data_env`, `horas_env`, `data_rec`, `horas_rec`, `obs`, `status`) VALUES
+	(10, 79, 7, 4, 19, 3, 1, '2017-06-14', '16:24:51', '2017-06-14', '16:25:40', 'Devolvendo ao setor de origem. Processo já resolvido.', '1');
+INSERT INTO `devolucao` (`cod`, `cod_prdev`, `cod_stdev`, `cod_storg`, `cod_rqdev`, `user_env`, `user_rec`, `data_env`, `horas_env`, `data_rec`, `horas_rec`, `obs`, `status`) VALUES
+	(11, 81, 7, 4, 31, 3, 1, '2017-06-21', '22:50:33', '2017-06-21', '22:51:19', 'Processo resolvido e sendo devolvido ao setor de origem.', '1');
 /*!40000 ALTER TABLE `devolucao` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela prot.encaminhamento
@@ -74,10 +79,11 @@ CREATE TABLE IF NOT EXISTS `encaminhamento` (
   PRIMARY KEY (`cod`),
   KEY `cod_proc` (`cod_prenc`),
   KEY `cod_setor` (`cod_stdst`),
-  KEY `cod_rqenc` (`cod_rqenc`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
+  KEY `cod_rqenc` (`cod_rqenc`),
+  KEY `cod_stenv` (`cod_stenv`)
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela prot.encaminhamento: ~7 rows (aproximadamente)
+-- Copiando dados para a tabela prot.encaminhamento: ~8 rows (aproximadamente)
 /*!40000 ALTER TABLE `encaminhamento` DISABLE KEYS */;
 INSERT INTO `encaminhamento` (`cod`, `cod_prenc`, `cod_stenv`, `cod_stdst`, `cod_rqenc`, `user_env`, `user_rec`, `data_env`, `horas_env`, `data_rec`, `horas_rec`, `obs`, `status`, `statusd`) VALUES
 	(45, 70, 9, 4, 23, 2, 3, '2017-06-02', '15:34:29', '2017-06-05', '15:12:33', 'verificar tempo de contribuição.', '1', '1');
@@ -93,6 +99,10 @@ INSERT INTO `encaminhamento` (`cod`, `cod_prenc`, `cod_stenv`, `cod_stdst`, `cod
 	(51, 76, 7, 4, 26, 1, 3, '2017-06-08', '10:04:37', '2017-06-08', '10:45:45', 'Encaminhado para o setor competente.', '1', '1');
 INSERT INTO `encaminhamento` (`cod`, `cod_prenc`, `cod_stenv`, `cod_stdst`, `cod_rqenc`, `user_env`, `user_rec`, `data_env`, `horas_env`, `data_rec`, `horas_rec`, `obs`, `status`, `statusd`) VALUES
 	(52, 78, 7, 2, 19, 1, 4, '2017-06-08', '16:31:26', '2017-06-08', '16:32:06', 'verificar o processo para dar prosseguimento a aposentadoria.', '1', '1');
+INSERT INTO `encaminhamento` (`cod`, `cod_prenc`, `cod_stenv`, `cod_stdst`, `cod_rqenc`, `user_env`, `user_rec`, `data_env`, `horas_env`, `data_rec`, `horas_rec`, `obs`, `status`, `statusd`) VALUES
+	(53, 79, 7, 4, 19, 1, 3, '2017-06-14', '16:22:41', '2017-06-14', '16:23:11', 'por tempo de serviço.', '1', '1');
+INSERT INTO `encaminhamento` (`cod`, `cod_prenc`, `cod_stenv`, `cod_stdst`, `cod_rqenc`, `user_env`, `user_rec`, `data_env`, `horas_env`, `data_rec`, `horas_rec`, `obs`, `status`, `statusd`) VALUES
+	(54, 81, 7, 4, 31, 1, 3, '2017-06-21', '22:40:42', '2017-06-21', '22:49:50', 'Sendo enviado para o setor competente.', '1', '1');
 /*!40000 ALTER TABLE `encaminhamento` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela prot.itens_arq
@@ -102,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `itens_arq` (
   `arquivo` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`cod`),
   KEY `cod_proc` (`cod_proc`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela prot.itens_arq: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `itens_arq` DISABLE KEYS */;
@@ -118,6 +128,8 @@ INSERT INTO `itens_arq` (`cod`, `cod_proc`, `arquivo`) VALUES
 	(29, 77, 'convite_leticia.pdf');
 INSERT INTO `itens_arq` (`cod`, `cod_proc`, `arquivo`) VALUES
 	(30, 77, 'trabalho_geografia_leticia.docx');
+INSERT INTO `itens_arq` (`cod`, `cod_proc`, `arquivo`) VALUES
+	(31, 79, 'TERMO DE RESPONSABILIDADE.docx');
 /*!40000 ALTER TABLE `itens_arq` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela prot.proc
@@ -132,10 +144,11 @@ CREATE TABLE IF NOT EXISTS `proc` (
   `data` date DEFAULT NULL,
   `horas` time DEFAULT NULL,
   PRIMARY KEY (`cod`),
-  KEY `cod_req` (`cod_req`)
-) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8;
+  KEY `cod_req` (`cod_req`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela prot.proc: ~8 rows (aproximadamente)
+-- Copiando dados para a tabela prot.proc: ~10 rows (aproximadamente)
 /*!40000 ALTER TABLE `proc` DISABLE KEYS */;
 INSERT INTO `proc` (`cod`, `cod_req`, `user_id`, `tipo`, `assunto`, `descricao`, `setor`, `data`, `horas`) VALUES
 	(70, 23, 2, 'PI', 'Aposentadoria', 'para encaminhamento ao orgão competente.', 9, '2017-06-02', '15:33:51');
@@ -153,6 +166,10 @@ INSERT INTO `proc` (`cod`, `cod_req`, `user_id`, `tipo`, `assunto`, `descricao`,
 	(77, 33, 1, 'PI', 'Aposentadoria', 'para o fim do mês.', 7, '2017-06-08', '13:58:14');
 INSERT INTO `proc` (`cod`, `cod_req`, `user_id`, `tipo`, `assunto`, `descricao`, `setor`, `data`, `horas`) VALUES
 	(78, 19, 1, 'PI', 'Aposentadoria de Marie', 'para o fim do ano.', 7, '2017-06-08', '16:30:28');
+INSERT INTO `proc` (`cod`, `cod_req`, `user_id`, `tipo`, `assunto`, `descricao`, `setor`, `data`, `horas`) VALUES
+	(79, 19, 1, 'PI', 'Aposentadoria de Marie', 'para o fim deste ano.', 7, '2017-06-14', '16:20:57');
+INSERT INTO `proc` (`cod`, `cod_req`, `user_id`, `tipo`, `assunto`, `descricao`, `setor`, `data`, `horas`) VALUES
+	(81, 31, 1, 'PI', 'Aposentadoria', 'para o fim do mês.', 7, '2017-06-21', '22:39:53');
 /*!40000 ALTER TABLE `proc` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela prot.req
@@ -168,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `req` (
   `email` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`cod`),
   UNIQUE KEY `cpf` (`cpf`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Copiando dados para a tabela prot.req: ~17 rows (aproximadamente)
 /*!40000 ALTER TABLE `req` DISABLE KEYS */;
@@ -208,6 +225,8 @@ INSERT INTO `req` (`cod`, `nome`, `tipo`, `cpf`, `sexo`, `tel`, `cel`, `rec`, `e
 	(41, 'Antônio Luiz Pereira', 'F', '250.763.720-00', 'M', '(13)3821-0116', '(13)98224-9402', '(13)98112-5055', 'antonioluizpereira@gmail.com');
 INSERT INTO `req` (`cod`, `nome`, `tipo`, `cpf`, `sexo`, `tel`, `cel`, `rec`, `email`) VALUES
 	(47, 'Luiz Otávio de Mendonça', 'S', '780.640.790-12', 'M', '(13)3821-5412', '(13)99112-5045', '(13)99236-5174', 'luizotaviomendonca@gmail.com');
+INSERT INTO `req` (`cod`, `nome`, `tipo`, `cpf`, `sexo`, `tel`, `cel`, `rec`, `email`) VALUES
+	(48, 'William Marcondes Leandro', 'F', '536.669.390-07', 'M', '(13)3821-6020', '(13)99122-7020', '(13)99120-7123', 'willian@gmail.com');
 /*!40000 ALTER TABLE `req` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela prot.setor

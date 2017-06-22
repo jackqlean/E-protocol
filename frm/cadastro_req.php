@@ -38,7 +38,7 @@ include "_navegacao.php";
 <div class="form-group">
   <label class="col-md-4 control-label" for="txtTipo">Informe o tipo</label>  
   <div class="col-md-5">
-  <select name="txtTipo" id="txtTipo" class="form-control input-md">
+  <select name="txtTipo" id="txtTipo" class="form-control input-md" />
         <option>Selecione...</option>
         <option value="F">PESSOA FÍSICA</option>
         <option value="J">PESSOA JURÍDICA</option>

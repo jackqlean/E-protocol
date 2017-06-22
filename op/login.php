@@ -13,10 +13,10 @@ require "../config/functions.php";
     <title></title>
 
 <script src="../lib/jquery/jquery-1.12.4.js"></script>
-<link href="../lib/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<script src="../lib/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<link href="../lib/bootstrap-dialog/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css" />
-<script src="../lib/bootstrap-dialog/js/bootstrap-dialog.min.js"></script>
+<link rel="stylesheet" href="../lib/animate/animate.min.css">
+<script src="../lib/sweetalert2/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="../lib/sweetalert2/dist/sweetalert2.min.css">
+<script src="../lib/core-js/core.js"></script>
 </head>
 <body>
   
@@ -27,25 +27,23 @@ $password = isset($_POST['txt_password']) ? $_POST['txt_password'] : '';
  
 if (empty($name))
 {
-    echo"<script>
-        $(document).ready(function () {
-        BootstrapDialog.show({
-            title: 'Informação do sistema',
-            message: 'Informe email e senha. Pressione Enter para continuar...',
-            onshow: function(dialog) {
-                dialog.getButton('button-ok').enable();
-            },
-            buttons: [{
-                id: 'button-ok',
-                label: 'Ok',
-                hotkey: 13,
-                cssClass: 'btn-primary',
-                action: function(){
-                     window.location.href='../index.php'
-                }
-            }]
-        });
-       });
+echo"<script>
+$(document).ready(function () {
+  swal({
+  type: 'info',
+  title: 'Informe o seu usuário e senha para continuar',
+  text: 'a janela irá fechar em 4 segundos.',
+  timer: 4000
+}).then(
+  function () {},
+  // handling the promise rejection
+  function (dismiss) {
+    if (dismiss === 'timer') {
+      window.location.href='../frm/form-login.php'
+    }
+  }
+)
+});
 </script>";
     exit;
 }
@@ -68,25 +66,23 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if (count($users) <= 0)
 
 {
-   echo"<script>
-        $(document).ready(function () {
-        BootstrapDialog.show({
-            title: 'Informação do sistema',
-            message: 'Usuário ou senha inválido. Pressione Enter para continuar...',
-            onshow: function(dialog) {
-                dialog.getButton('button-ok').enable();
-            },
-            buttons: [{
-                id: 'button-ok',
-                label: 'Ok',
-                hotkey: 13,
-                cssClass: 'btn-primary',
-                action: function(){
-                     window.location.href='../index.php'
-                }
-            }]
-        });
-       });
+echo"<script>
+$(document).ready(function () {
+swal({
+  type: 'info',
+  title: 'Usuário ou senha inválido',
+  text: 'a janela irá fechar em 4 segundos.',
+  timer: 4000
+}).then(
+  function () {},
+  // handling the promise rejection
+  function (dismiss) {
+    if (dismiss === 'timer') {
+      window.location.href='../frm/form-login.php'
+    }
+  }
+)
+});
 </script>";
     exit;
 }

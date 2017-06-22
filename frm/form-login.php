@@ -21,8 +21,8 @@ require"../config/functions.php";
     <div class="wrapper">
     <form class="form-signin" action="../op/login.php" method="post" >       
       <h2 class="form-signin-heading">Login do sistema</h2>
-      <input type="text" class="form-control" name="txt_login" placeholder="Email" required="" autofocus="" />
-      <input type="password" class="form-control" name="txt_password" placeholder="Password" required=""/>     
+      <input type="text" class="form-control" name="txt_login" placeholder="Usuario" required="" autofocus="" />
+      <input type="password" class="form-control" name="txt_password" placeholder="Senha" required=""/>     
       
       <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>   
     </form>
