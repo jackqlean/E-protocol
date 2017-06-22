@@ -10,7 +10,7 @@ require"../config/functions.php";
 <head>
   <meta charset="UTF-8">
   <title></title>
-  <link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
+  <link rel='stylesheet prefetch' href='../lib/bootstrap/3.0.2/bootstrap.min.css'>
 
   <link rel="stylesheet" href="../css/style.css">
 
