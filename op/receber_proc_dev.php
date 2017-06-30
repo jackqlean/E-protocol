@@ -44,7 +44,7 @@ $(document).ready(function () {
 swal({
   type: 'success',
   title: 'Processo recebido com sucesso',
-  text: 'a janela irá fechar em 4 segundos.',
+  text: '',
   timer: 4000
 }).then(
   function () {},
@@ -63,7 +63,7 @@ $(document).ready(function () {
 swal({
   type: 'error',
   title: 'Ops..ocorreu um erro. Verifique e tente novamente',
-  text: 'a janela irá fechar em 4 segundos.',
+  text: '',
   timer: 4000
 }).then(
   function () {},

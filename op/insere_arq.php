@@ -73,7 +73,7 @@ $(document).ready(function () {
 swal({
   type: 'info',
   title: 'Não foi possível fazer o upload do arquivo, tipo de arquivo inválido ou ultrapassou o tamanho limite permitido',
-  text: 'a janela irá fechar em 4 segundos.',
+  text: '',
   timer: 4000
 }).then(
   function () {},
@@ -104,7 +104,7 @@ $(document).ready(function () {
 swal({
   type: 'info',
   title: 'Por favor, envie arquivos com as seguintes extensões: jpg, png , gif, pdf, doc ou docx',
-  text: 'a janela irá fechar em 4 segundos.',
+  text: '',
   timer: 4000
 }).then(
   function () {},
@@ -131,7 +131,7 @@ $(document).ready(function () {
 swal({
   type: 'info',
   title: 'O arquivo enviado é muito grande, envie arquivos de até 2Mb',
-  text: 'a janela irá fechar em 4 segundos.',
+  text: '',
   timer: 4000
 }).then(
   function () {},
@@ -178,7 +178,7 @@ $(document).ready(function () {
 swal({
   type: 'info',
   title: 'Não foi possível enviar o arquivo, tente novamente',
-  text: 'a janela irá fechar em 4 segundos.',
+  text: '',
   timer: 4000
 }).then(
   function () {},
@@ -216,7 +216,7 @@ $(document).ready(function () {
 swal({
   type: 'success',
   title: 'Arquivo inserido com sucesso',
-  text: 'a janela irá fechar em 4 segundos.',
+  text: '',
   timer: 4000
 }).then(
   function () {},
@@ -237,7 +237,7 @@ $(document).ready(function () {
 swal({
   type: 'error',
   title: 'Ops..ocorreu um erro. Verifique e tente novamente',
-  text: 'a janela irá fechar em 4 segundos.',
+  text: '',
   timer: 4000
 }).then(
   function () {},

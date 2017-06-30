@@ -4,7 +4,6 @@ include "_navegacao.php";
 ?>
 <?php
 // O trecho de código faz com que force o apache a exibir os erros, que por padrão são ocultos
-header('Content-Type: text/html; charset=utf-8');
 ini_set('display_errors',0);
 ini_set('display_startup_erros',0);
 error_reporting(E_ALL);
@@ -143,7 +142,7 @@ $scod = $r["cod_setor"];
         <tr>
             <th align='center' bgColor='#666666'><font color='#FFF'>Nome</th>
             <th align='center' bgColor='#666666'><font color='#FFF'>Tipo</th>
-            <th align='center' bgColor='#666666'><font color='#FFF'>CPF</th>
+            <th align='center' bgColor='#666666'><font color='#FFF'>CPF/CNPJ</th>
             <th align='center' bgColor='#666666'><font color='#FFF'>Sexo</th>
             <th align='center' bgColor='#666666'><font color='#FFF'>Telefone</th>
             <th align='center' bgColor='#666666'><font color='#FFF'>Celular</th>

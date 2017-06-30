@@ -15,7 +15,10 @@ include "_navegacao.php";
     <link rel="icon" type="image/x-icon" href="favicon.ico"> 
     <!-- Bootstrap -->
     <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-          
+    <script src="../lib/jquery/jquery-1.12.4.js"></script>
+    <!-- Funções para validação de CPF e CNPJ -->
+    <script src="../lib/valida_cpf_cnpj.js"></script>
+    <script src="../lib/formatacnpjcpf.js"></script>
 </head>
 <body>
 
@@ -49,11 +52,10 @@ include "_navegacao.php";
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="txtCpf">CPF</label>  
+  <label class="col-md-4 control-label" for="txtCpf">CPF/CNPJ</label>  
   <div class="col-md-5">
-  <input id="txtCpf" name="txtCpf" type="text" class="form-control input-md" value="" onkeypress="return txtBoxFormat(this, '###.###.###-##', event);" required="" onchange="VerificaCPF ()"/>
-    
-  </div>
+  <input id="txtCpf" name="txtCpf" type="text" class="cpf_cnpj form-control input-md" value=""/>
+ </div>
 </div>
 
 <!-- Text input-->

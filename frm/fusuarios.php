@@ -3,15 +3,11 @@ session_start();
 require_once "check.php";
 ?>
 <?php
-	
 	require_once ("../config/init.php");
-
 	$registro = mysqli_query($link,"SELECT * FROM req");
 	
 	$tabela = "";
-	
 	while($row = mysqli_fetch_array($registro)){		
-
 		if ($row['tipo']=='F') $rtipo = "Pessoa física";
         if ($row['tipo']=='J') $rtipo = "Pessoa jurídica";
         if ($row['tipo']=='S') $rtipo = "Servidor público";
@@ -36,7 +32,6 @@ require_once "check.php";
 				},';		
 	}	
 
-	//eliminamos la coma que sobra
 	$tabela = substr($tabela,0, strlen($tabela) - 1);
 
 	echo '{"data":['.$tabela.']}';	

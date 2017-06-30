@@ -1,7 +1,16 @@
 #cabecalho{
 	width: 100%;
-	height: 101px;
+	height: 120px;
 	position: relative;
-	background: url("../img/logo.png") no-repeat;
-	background-position: 0px;
+	background-color: rgba(168,228,154, .8);
+}
+header #logotipo {
+	position: absolute;
+	top: 10px;
+	left:20px;
+}
+header #logotipo-principal {
+	position: absolute;
+	top: 50px;
+	left:180px;
 }

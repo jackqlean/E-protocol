@@ -177,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `req` (
   `cod` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `tipo` char(1) COLLATE utf8_unicode_ci NOT NULL,
-  `cpf` varchar(14) COLLATE utf8_unicode_ci NOT NULL,
+  `cpf` varchar(18) COLLATE utf8_unicode_ci NOT NULL,
   `sexo` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `tel` varchar(14) COLLATE utf8_unicode_ci DEFAULT NULL,
   `cel` varchar(14) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -185,9 +185,9 @@ CREATE TABLE IF NOT EXISTS `req` (
   `email` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`cod`),
   UNIQUE KEY `cpf` (`cpf`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Copiando dados para a tabela prot.req: ~17 rows (aproximadamente)
+-- Copiando dados para a tabela prot.req: ~19 rows (aproximadamente)
 /*!40000 ALTER TABLE `req` DISABLE KEYS */;
 INSERT INTO `req` (`cod`, `nome`, `tipo`, `cpf`, `sexo`, `tel`, `cel`, `rec`, `email`) VALUES
 	(19, 'Letícia de Oliveira Ferreira Leandro', 'F', '099.982.990-47', 'M', '(13)3821-6117', '(13)99612-9793', '(13)98180-5041', 'leleolive@hotmail.com');
@@ -227,6 +227,8 @@ INSERT INTO `req` (`cod`, `nome`, `tipo`, `cpf`, `sexo`, `tel`, `cel`, `rec`, `e
 	(47, 'Luiz Otávio de Mendonça', 'S', '780.640.790-12', 'M', '(13)3821-5412', '(13)99112-5045', '(13)99236-5174', 'luizotaviomendonca@gmail.com');
 INSERT INTO `req` (`cod`, `nome`, `tipo`, `cpf`, `sexo`, `tel`, `cel`, `rec`, `email`) VALUES
 	(48, 'William Marcondes Leandro', 'F', '536.669.390-07', 'M', '(13)3821-6020', '(13)99122-7020', '(13)99120-7123', 'willian@gmail.com');
+INSERT INTO `req` (`cod`, `nome`, `tipo`, `cpf`, `sexo`, `tel`, `cel`, `rec`, `email`) VALUES
+	(51, 'Prefeitura Municipal de Registro', 'J', '45.685.872/0001-79', 'M', '(13)3828-1000', '', '', 'pmr@registro.sp.gov.br');
 /*!40000 ALTER TABLE `req` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela prot.setor

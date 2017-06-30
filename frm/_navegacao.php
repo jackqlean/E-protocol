@@ -8,7 +8,9 @@ require_once "check.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>::. E-Protocol v1.0 .::</title>
+    <title>E-Protocol v1.0</title>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <!--<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon.png">-->
     <link href="../css/principal.css" rel="stylesheet">
     <!-- Bootstrap -->
     <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -26,6 +28,12 @@ require_once "check.php";
   <body>
     <header>
     <div id="cabecalho">
+    </div>
+    <div class="container">
+        <img id="logotipo" src="../img/logo-left.png" alt="Logotipo">
+    </div>
+    <div class="container">
+        <img id="logotipo-principal" src="../img/logo-principal.png">
     </div>
     </header><!-- /header -->
     <!-- Barra de navegação -->

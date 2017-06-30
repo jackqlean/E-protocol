@@ -39,7 +39,7 @@ $(document).ready(function () {
 swal({
   type: 'success',
   title: 'Requerente cadastrado com sucesso',
-  text: 'a janela irá fechar em 4 segundos.',
+  text: '',
   timer: 4000
 }).then(
   function () {},
@@ -60,7 +60,7 @@ $(document).ready(function () {
 swal({
   type: 'error',
   title: 'Ocorreu um erro no cadastro. Verifique e tente novamente',
-  text: 'a janela irá fechar em 4 segundos.',
+  text: '',
   timer: 4000
 }).then(
   function () {},
