@@ -54,7 +54,7 @@ include "_navegacao.php";
 <div class="form-group">
   <label class="col-md-4 control-label" for="txtCpf">CPF/CNPJ</label>  
   <div class="col-md-5">
-  <input id="txtCpf" name="txtCpf" type="text" class="cpf_cnpj form-control input-md" value=""/>
+  <input id="txtCpf" name="txtCpf" type="text" class="cpf_cnpj form-control input-md" value="" size="18" maxlength="18"/>
  </div>
 </div>
 
