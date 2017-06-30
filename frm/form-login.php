@@ -20,12 +20,10 @@ require"../config/functions.php";
 <body>
     <div class="wrapper">
     <form name="form-signin" class="form-signin" id="form-signin" action="" method="post" >       
-    <div class="container">
-    <div id="errolog" class="alert alert-danger" role="alert"><span style="font-family: Arial; font-size:20px; color:#FF0000;"> 
+    <div id="errolog" class="alert alert-danger text-center" role="alert"><span style="font-family: Arial; font-size:20px; color:#FF0000;"> 
     Usuário ou senha errados!</span>
     </div>
-    </div>
-      <h2 style="text-align: center;" class="form-signin-heading">Login do sistema</h2>
+    <h2 style="text-align: center;" class="form-signin-heading">Login do sistema</h2>
       <input type="text" class="form-control" name="txt_login" id="txt_login" placeholder="Usuario" required="" autofocus="" />
       <input type="password" class="form-control" name="txt_password" id="txt_password" placeholder="Senha" required=""/>     
       
