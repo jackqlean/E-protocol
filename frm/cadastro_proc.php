@@ -66,7 +66,6 @@ $( function() {
 	</script>
 </head>
 <body>
-
 <div class="page-header">
         <h1>Cadastro de Processos</h1>
 </div>
@@ -87,7 +86,7 @@ $( function() {
 <div class="form-group">
   <label class="col-md-4 control-label" for="txtTipo">Tipo</label>
   <div class="col-md-5">
-     <select name="txtTipo" id="txtTipo" class="form-control">
+     <select name="txtTipo" id="txtTipo" class="inputUnico form-control">
         <option>Selecione...</option>
         <option value="PI">Processo Interno</option>
         <option value="PE">Processo Externo</option>
@@ -106,7 +105,7 @@ $scod = $r["cod_setor"];
 <div class="form-group">
   <label class="col-md-4 control-label" for="txtAssunto">Assunto</label>  
   <div class="col-md-5">
-  <input type="text" name="txtAssunto" id="txtAssunto" value="" placeholder="Digite o assunto" class="form-control input-md" required="">
+  <input type="text" name="txtAssunto" id="txtAssunto" value="" placeholder="Digite o assunto" class="inputUnico form-control input-md" required="">
   </div>
 </div>
 
@@ -114,7 +113,7 @@ $scod = $r["cod_setor"];
 <div class="form-group">
   <label class="col-md-4 control-label" for="txtDescricao">Descrição</label>  
   <div class="col-md-5">
-  <textarea name="txtDescricao" id="txtDescricao" placeholder="Preencha com a descrição aqui" class="form-control input-md" required=""></textarea>
+  <textarea name="txtDescricao" id="txtDescricao" placeholder="Preencha com a descrição aqui" class="inputUnico form-control input-md" required=""></textarea>
   </div>
 </div>
 <!-- Button (Double) -->
@@ -168,6 +167,6 @@ $scod = $r["cod_setor"];
         </tfoot>
     </table>    	
 </div>
-
+<script src="../lib/tab.js"></script>
 </body>
 </html>

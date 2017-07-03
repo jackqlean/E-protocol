@@ -12,10 +12,10 @@ require_once "check.php";
     <title></title>
 
 <script src="../lib/jquery/jquery-1.12.4.js"></script>
-<link href="../lib/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<script src="../lib/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<link href="../lib/bootstrap-dialog/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css" />
-<script src="../lib/bootstrap-dialog/js/bootstrap-dialog.min.js"></script>
+<link rel="stylesheet" href="../lib/animate/animate.min.css">
+<script src="../lib/sweetalert2/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="../lib/sweetalert2/dist/sweetalert2.min.css">
+<script src="../lib/core-js/core.js"></script>
 </head>
 <body>
 
@@ -52,47 +52,44 @@ if($row[0] == $senhaA){
     
     mysqli_query($link,$sql2);
     
-    echo "<script>
-        $(document).ready(function () {
-        BootstrapDialog.show({
-            title: 'Informação do sistema',
-            message: 'Usuario e/ou senha alterado com sucesso. Pressione Enter para continuar...',
-            onshow: function(dialog) {
-                dialog.getButton('button-ok').enable();
-            },
-            buttons: [{
-                id: 'button-ok',
-                label: 'Ok',
-                hotkey: 13,
-                cssClass: 'btn-primary',
-                action: function(){
-                     window.location.href='../navegacao.php'
-                }
-            }]
-        });
-       });
-</script>"; 
+    echo"<script>
+$(document).ready(function () {
+swal({
+  type: 'success',
+  title: 'Usuario e/ou senha alterado com sucesso.',
+  text: '',
+  timer: 4000
+}).then(
+  function () {},
+  // handling the promise rejection
+  function (dismiss) {
+    if (dismiss === 'timer') {
+      window.location.href='../navegacao.php'
+    }
+  }
+)
+});
+</script>";
 } else {
-       echo"<script>
-        $(document).ready(function () {
-        BootstrapDialog.show({
-            title: 'Informação do sistema',
-            message: 'Ocorreu um erro na alteração do registro. Verifique e tente novamente.',
-            onshow: function(dialog) {
-                dialog.getButton('button-ok').enable();
-            },
-            buttons: [{
-                id: 'button-ok',
-                label: 'Ok',
-                hotkey: 13,
-                cssClass: 'btn-primary',
-                action: function(){
-                     window.location.href='../frm/cadastro_req.php'
-                }
-            }]
-        });
-       });
-</script>"; 
+       
+        echo"<script>
+$(document).ready(function () {
+swal({
+  type: 'error',
+  title: 'Ocorreu um erro na alteração do registro.,
+  text: '',
+  timer: 4000
+}).then(
+  function () {},
+  // handling the promise rejection
+  function (dismiss) {
+    if (dismiss === 'timer') {
+      window.location.href='../frm/alteracao_user_pass.php'
+    }
+  }
+)
+});
+</script>";
         //echo "Erro: " . $sql . "<br>" . mysqli_error($link);
 }
 

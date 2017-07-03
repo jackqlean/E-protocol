@@ -26,7 +26,6 @@ require"../config/functions.php";
     <h2 style="text-align: center;" class="form-signin-heading">Login do sistema</h2>
       <input type="text" class="form-control" name="txt_login" id="txt_login" placeholder="Usuario" required="" autofocus="" />
       <input type="password" class="form-control" name="txt_password" id="txt_password" placeholder="Senha" required=""/>     
-      
       <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>   
     </form>
   </div>

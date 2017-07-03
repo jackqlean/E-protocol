@@ -4,7 +4,6 @@ include "_navegacao.php";
 ?>
 <?php
 // O trecho de código faz com que force o apache a exibir os erros, que por padrão são ocultos
-header('Content-Type: text/html; charset=utf-8');
 ini_set('display_errors',0);
 ini_set('display_startup_erros',0);
 error_reporting(E_ALL);
@@ -35,7 +34,6 @@ mysqli_close($link);
     <link rel="icon" type="image/x-icon" href="favicon.ico"> 
     <!-- Bootstrap -->
     <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    
 </head>
 <body>
 
