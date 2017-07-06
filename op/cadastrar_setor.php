@@ -41,7 +41,8 @@ swal({
   type: 'success',
   title: 'Setor cadastrado com sucesso',
   text: '',
-  timer: 4000
+  showConfirmButton: false, 
+  timer: 2000
 }).then(
   function () {},
   // handling the promise rejection
@@ -63,7 +64,8 @@ swal({
   type: 'error',
   title: 'Ocorreu um erro no cadastro. Verifique e tente novamente',
   text: '',
-  timer: 4000
+  showConfirmButton: false,
+  timer: 2000
 }).then(
   function () {},
   // handling the promise rejection

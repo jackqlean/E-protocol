@@ -191,9 +191,9 @@ CREATE TABLE IF NOT EXISTS `req` (
   `email` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`cod`),
   UNIQUE KEY `cpf` (`cpf`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Copiando dados para a tabela prot.req: ~19 rows (aproximadamente)
+-- Copiando dados para a tabela prot.req: ~20 rows (aproximadamente)
 /*!40000 ALTER TABLE `req` DISABLE KEYS */;
 INSERT INTO `req` (`cod`, `nome`, `tipo`, `cpf`, `sexo`, `tel`, `cel`, `rec`, `email`) VALUES
 	(19, 'Letícia de Oliveira Ferreira Leandro', 'F', '099.982.990-47', 'M', '(13)3821-6117', '(13)99612-9793', '(13)98180-5041', 'leleolive@hotmail.com');
@@ -235,32 +235,33 @@ INSERT INTO `req` (`cod`, `nome`, `tipo`, `cpf`, `sexo`, `tel`, `cel`, `rec`, `e
 	(48, 'William Marcondes Leandro', 'F', '536.669.390-07', 'M', '(13)3821-6020', '(13)99122-7020', '(13)99120-7123', 'willian@gmail.com');
 INSERT INTO `req` (`cod`, `nome`, `tipo`, `cpf`, `sexo`, `tel`, `cel`, `rec`, `email`) VALUES
 	(53, 'Prefeitura Municipal de Registro', 'J', '45.685.872/0001-79', 'M', '(13)3828-1000', '(13)97913-3996', '(13)98112-5045', 'pmr@registro.sp.gov.br');
+INSERT INTO `req` (`cod`, `nome`, `tipo`, `cpf`, `sexo`, `tel`, `cel`, `rec`, `email`) VALUES
+	(60, 'Lucas de Oliveira', 'F', '742.200.598-06', 'M', '(13)3821-8542', '(13)98224-9408', '(13)99120-7123', 'lucas.oliveira@gmail.com');
 /*!40000 ALTER TABLE `req` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela prot.setor
 CREATE TABLE IF NOT EXISTS `setor` (
   `cod_setor` int(11) NOT NULL AUTO_INCREMENT,
   `setor` varchar(50) NOT NULL DEFAULT '0',
-  `responsavel` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`cod_setor`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela prot.setor: ~8 rows (aproximadamente)
 /*!40000 ALTER TABLE `setor` DISABLE KEYS */;
-INSERT INTO `setor` (`cod_setor`, `setor`, `responsavel`) VALUES
-	(1, 'Administração', 'Toninho Cabral');
-INSERT INTO `setor` (`cod_setor`, `setor`, `responsavel`) VALUES
-	(2, 'Tesouraria', 'Aurealice Firmino');
-INSERT INTO `setor` (`cod_setor`, `setor`, `responsavel`) VALUES
-	(3, 'Jurídico', 'Dr. Fernando');
-INSERT INTO `setor` (`cod_setor`, `setor`, `responsavel`) VALUES
-	(4, 'Previdenciário', 'Juliana Borges');
-INSERT INTO `setor` (`cod_setor`, `setor`, `responsavel`) VALUES
-	(6, 'Contabilidade', 'Aurealice Firmino');
-INSERT INTO `setor` (`cod_setor`, `setor`, `responsavel`) VALUES
-	(7, 'TI', 'Jaquison');
-INSERT INTO `setor` (`cod_setor`, `setor`, `responsavel`) VALUES
-	(9, 'Teste', 'Usuario Interno');
+INSERT INTO `setor` (`cod_setor`, `setor`) VALUES
+	(1, 'Administração');
+INSERT INTO `setor` (`cod_setor`, `setor`) VALUES
+	(2, 'Tesouraria');
+INSERT INTO `setor` (`cod_setor`, `setor`) VALUES
+	(3, 'Jurídico');
+INSERT INTO `setor` (`cod_setor`, `setor`) VALUES
+	(4, 'Previdenciário');
+INSERT INTO `setor` (`cod_setor`, `setor`) VALUES
+	(6, 'Contabilidade');
+INSERT INTO `setor` (`cod_setor`, `setor`) VALUES
+	(7, 'TI');
+INSERT INTO `setor` (`cod_setor`, `setor`) VALUES
+	(9, 'Teste');
 /*!40000 ALTER TABLE `setor` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela prot.users

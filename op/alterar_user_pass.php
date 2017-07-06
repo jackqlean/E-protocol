@@ -58,7 +58,8 @@ swal({
   type: 'success',
   title: 'Usuario e/ou senha alterado com sucesso.',
   text: '',
-  timer: 4000
+  showConfirmButton: false,
+  timer: 2000
 }).then(
   function () {},
   // handling the promise rejection
@@ -78,7 +79,8 @@ swal({
   type: 'error',
   title: 'Ocorreu um erro na alteração do registro.,
   text: '',
-  timer: 4000
+  showConfirmButton: false,
+  timer: 2000
 }).then(
   function () {},
   // handling the promise rejection

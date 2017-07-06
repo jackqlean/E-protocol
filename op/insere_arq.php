@@ -74,7 +74,8 @@ swal({
   type: 'info',
   title: 'Não foi possível fazer o upload do arquivo, tipo de arquivo inválido ou ultrapassou o tamanho limite permitido',
   text: '',
-  timer: 4000
+  showConfirmButton: false,
+  timer: 2000
 }).then(
   function () {},
   // handling the promise rejection
@@ -105,7 +106,8 @@ swal({
   type: 'info',
   title: 'Por favor, envie arquivos com as seguintes extensões: jpg, png , gif, pdf, doc ou docx',
   text: '',
-  timer: 4000
+  showConfirmButton: false,
+  timer: 2000
 }).then(
   function () {},
   // handling the promise rejection
@@ -132,7 +134,8 @@ swal({
   type: 'info',
   title: 'O arquivo enviado é muito grande, envie arquivos de até 2Mb',
   text: '',
-  timer: 4000
+  showConfirmButton: false,
+  timer: 2000
 }).then(
   function () {},
   // handling the promise rejection
@@ -179,7 +182,8 @@ swal({
   type: 'info',
   title: 'Não foi possível enviar o arquivo, tente novamente',
   text: '',
-  timer: 4000
+  showConfirmButton: false,
+  timer: 2000
 }).then(
   function () {},
   // handling the promise rejection
@@ -217,7 +221,8 @@ swal({
   type: 'success',
   title: 'Arquivo inserido com sucesso',
   text: '',
-  timer: 4000
+  showConfirmButton: false,
+  timer: 2000
 }).then(
   function () {},
   // handling the promise rejection
@@ -238,7 +243,8 @@ swal({
   type: 'error',
   title: 'Ops..ocorreu um erro. Verifique e tente novamente',
   text: '',
-  timer: 4000
+  showConfirmButton: false,
+  timer: 2000
 }).then(
   function () {},
   // handling the promise rejection

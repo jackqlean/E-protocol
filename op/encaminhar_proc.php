@@ -45,7 +45,8 @@ swal({
   type: 'success',
   title: 'Processo encaminhado com sucesso',
   text: '',
-  timer: 4000
+  showConfirmButton: false,
+  timer: 2000
 }).then(
   function () {},
   // handling the promise rejection
@@ -66,7 +67,8 @@ swal({
   type: 'error',
   title: 'Ops..ocorreu um erro. Verifique e tente novamente',
   text: '',
-  timer: 4000
+  showConfirmButton: false,
+  timer: 2000
 }).then(
   function () {},
   // handling the promise rejection
