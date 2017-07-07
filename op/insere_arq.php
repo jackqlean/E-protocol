@@ -46,7 +46,7 @@ $config = array();
 $config['tamanho'] = 1024 * 1024 * 2; // 2Mb
 
 // Array com as extensões permitidas
-$config['extensoes'] = array('jpg', 'png', 'gif','pdf','docx','doc');
+$config['extensoes'] = array('jpg', 'png', 'gif','pdf','docx','doc','xls','xlsx');
 
 // Largura Máxima, em pixels
 //$config["largura"] = 800;
