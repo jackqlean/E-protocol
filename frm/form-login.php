@@ -11,7 +11,6 @@ require"../config/functions.php";
   <meta charset="UTF-8">
   <title></title>
   <link rel='stylesheet prefetch' href='../lib/bootstrap/3.0.2/bootstrap.min.css'>
-
   <link rel="stylesheet" href="../css/style.css">
   <script type="text/javascript" src="../lib/jquery/jquery-1.12.4.js"></script>
     
@@ -23,7 +22,9 @@ require"../config/functions.php";
     <div id="errolog" class="alert alert-danger text-center" role="alert"><span style="font-family: Arial; font-size:20px; color:#FF0000;"> 
     Usuário ou senha errados!</span>
     </div>
+    <div><img src="../img/login.png" style="width: 32px; height: 33px; position:relative; top:152px; left:-33px;"/></div>
     <h2 style="text-align: center;" class="form-signin-heading">Login do sistema</h2>
+      <h3 style="font-family: Arial; font-size:20px; color:#04B404; text-align: right;">E-protocol 1.0 </h3>
       <input type="text" class="form-control" name="txt_login" id="txt_login" placeholder="Usuario" required="" autofocus="" />
       <input type="password" class="form-control" name="txt_password" id="txt_password" placeholder="Senha" required=""/>     
       <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>   
