@@ -52,7 +52,7 @@ mysqli_close($link);
 $pdf= new FPDF("P","pt","A4");
 $pdf->AddPage();
 $pdf->SetFont('arial','B',12);
-$pdf->Image('../img/brasao.png', 17, 32, 95, 108);
+$pdf->Image('../img/brasao.png', 37, 32, 57, 58);
 //definindo o título do relatório
 $pdf->Rect(10,10,575,140);
 $pdf->SetFont('Arial', 'B', 18);
