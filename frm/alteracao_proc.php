@@ -58,8 +58,8 @@ mysqli_close($link);
   <div class="col-md-5">
      <select name="txtTipo" id="txtTipo" class="form-control">
         <option>Selecione...</option>
-        <option value="PI" <?php if ($linha["tipo"]=='PI') echo 'selected="selected"'?>>Processo Interno</option>
-        <option value="PE" <?php if ($linha["tipo"]=='PE') echo 'selected="selected"'?>>Processo Externo</option>
+        <option value="PI" <?php if ($linha["tipo"]=='PI') echo 'selected="selected"'?>>Protocolo Interno</option>
+        <option value="PE" <?php if ($linha["tipo"]=='PE') echo 'selected="selected"'?>>Protocolo Externo</option>
         <option value="OT" <?php if ($linha["tipo"]=='OT') echo 'selected="selected"'?>>Outros</option>
         </select>
      </select>

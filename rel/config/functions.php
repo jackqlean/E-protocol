@@ -15,8 +15,8 @@ function consultaProcRelat($link){
 	$ARRAY_PROCESSO[3] = $array["data"];
 	$ARRAY_PROCESSO[4] = $array["horas"];
 
-	if ($proc_tipo=='PI') $ptipo = "Processo Interno";
-	if ($proc_tipo=='PE') $ptipo = "Processo Externo";
+	if ($proc_tipo=='PI') $ptipo = "Protocolo Interno";
+	if ($proc_tipo=='PE') $ptipo = "Protocolo Externo";
 	if ($proc_tipo=='OT') $ptipo = "Outros";
 
 	$ARRAY_PROCESSO[1] = $ptipo;
@@ -71,8 +71,8 @@ function consultaDetalhes_Proc_Env($link){
 	$ARRAY_PROCESSO_ENV[8] = $array["descricao"];
 	$ARRAY_PROCESSO_ENV[9] = $array["observacao"];
 
-	if ($proc_tipo=='PI') $ptipo = "Processo Interno";
-	if ($proc_tipo=='PE') $ptipo = "Processo Externo";
+	if ($proc_tipo=='PI') $ptipo = "Protocolo Interno";
+	if ($proc_tipo=='PE') $ptipo = "Protocolo Externo";
 	if ($proc_tipo=='OT') $ptipo = "Outros";
  	
  	$ARRAY_PROCESSO_ENV[7] = $ptipo;
@@ -117,8 +117,8 @@ function consultaDetalhes_Proc_Dev_Env($link){
 	$ARRAY_PROCESSO_DEV_ENV[8] = $array["descricao"];
 	$ARRAY_PROCESSO_DEV_ENV[9] = $array["observacao"];
 
-	if ($proc_tipo=='PI') $ptipo = "Processo Interno";
-	if ($proc_tipo=='PE') $ptipo = "Processo Externo";
+	if ($proc_tipo=='PI') $ptipo = "Protocolo Interno";
+	if ($proc_tipo=='PE') $ptipo = "Protocolo Externo";
 	if ($proc_tipo=='OT') $ptipo = "Outros";
  	
  	$ARRAY_PROCESSO_DEV_ENV[7] = $ptipo;

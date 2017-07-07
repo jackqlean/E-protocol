@@ -54,8 +54,8 @@ function consultaProcesso($link){
 	$ARRAY_PROCESSO[2] = $array["assunto"];
 	$ARRAY_PROCESSO[3] = $array["descricao"];
 	
-	if ($proc_tipo=='PI') $ptipo = "Processo Interno";
-	if ($proc_tipo=='PE') $ptipo = "Processo Externo";
+	if ($proc_tipo=='PI') $ptipo = "Protocolo Interno";
+	if ($proc_tipo=='PE') $ptipo = "Protocolo Externo";
 	if ($proc_tipo=='OT') $ptipo = "Outros";
 
 	$ARRAY_PROCESSO[1] = $ptipo;

@@ -88,8 +88,8 @@ $( function() {
   <div class="col-md-5">
      <select name="txtTipo" id="txtTipo" class="inputUnico form-control">
         <option>Selecione...</option>
-        <option value="PI">Processo Interno</option>
-        <option value="PE">Processo Externo</option>
+        <option value="PI">Protocolo Interno</option>
+        <option value="PE">Protocolo Externo</option>
         <option value="OT">Outros</option>
      </select>
   </div>
