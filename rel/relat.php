@@ -58,7 +58,7 @@ $pdf->SetFont('Arial', 'B', 12);
 $pdf->Line(20,145,575,145);
 $pdf->Line(20,146,575,146);
 $pdf->Ln(2);
-$pdf->Cell(80,35,'Processo nº:',0,0,'L');
+$pdf->Cell(80,35,'Protocolo nº:',0,0,'L');
 $pdf->Cell(0,35,$proc_cod,0,1,'L');
 $pdf->Cell(35,10,'Tipo:',0,0,'L');
 $pdf->Cell(0,10,$ptipo,0,1,'L');
