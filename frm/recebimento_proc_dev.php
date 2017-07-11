@@ -59,7 +59,7 @@ mysqli_close($link);
 </head>
 <body>
 <div class="page-header">
-  <h1>Recebimento de Processos Devolvidos</h1>
+  <h1>Recebimento de Protocolos Devolvidos</h1>
 </div>
 <div class="form-group">
 

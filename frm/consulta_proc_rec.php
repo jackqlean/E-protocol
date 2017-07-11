@@ -59,7 +59,7 @@ mysqli_close($link);
 </head>
 <body>
 <div class="page-header">
-  <h1>Consulta de Processos Recebidos</h1>
+  <h1>Consulta de Protocolos Recebidos</h1>
 </div>
 <div class="form-group">
 

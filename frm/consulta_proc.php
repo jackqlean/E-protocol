@@ -84,7 +84,7 @@ include "_navegacao.php";
 </head>
 <body>
 <div class="page-header">
- <h1>Consulta de Processos</h1>
+ <h1>Consulta de Protocolos</h1>
 </div>
 	<center>
 		<form name="form_pesquisa" id="form_pesquisa" method="post" action="">

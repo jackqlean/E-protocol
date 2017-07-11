@@ -55,7 +55,7 @@ function consultaDetalhes_Proc_Env($link){
 	global $ptipo;
 
 	$sql_query = mysqli_query($link,"SELECT p.cod , r.nome, p.tipo, p.assunto ,p.descricao AS descricao, u.name AS usuario_env , s.setor AS setor_env, DATE_FORMAT(e.data_env,'%d/%m/%Y') AS data_env, e.horas_env AS horas_env , e.obs AS observacao FROM proc p, req r, setor s, users u, encaminhamento e 
-	WHERE  r.cod = p.cod_req AND e.user_env = u.id AND e.cod_stenv = s.cod_setor AND e.cod_prenc = p.cod AND p.cod ='".$cod."'");
+	WHERE  r.cod = p.cod_req AND e.user_env = u.id AND e.cod_stenv = s.cod_setor AND e.cod_prenc = p.cod AND e.cod ='".$cod."'");
 
 	$ARRAY_PROCESSO_ENV = [];
 	$array = mysqli_fetch_array($sql_query);
@@ -84,7 +84,7 @@ function consultaDetalhes_Proc_Rec($link){
 	global $cod;
 
 	$sql2_query = mysqli_query($link,"SELECT p.cod , u.name AS usuario_rec , s.setor AS setor_dst , DATE_FORMAT(e.data_rec,'%d/%m/%Y') AS data_rec , e.horas_rec AS horas_rec FROM proc p, setor s, users u, encaminhamento e 
-	WHERE e.user_rec = u.id AND e.cod_stdst = s.cod_setor AND e.cod_prenc = p.cod AND p.cod ='".$cod."'");
+	WHERE e.user_rec = u.id AND e.cod_stdst = s.cod_setor AND e.cod_prenc = p.cod AND e.cod ='".$cod."'");
 
 	$ARRAY_PROCESSO_REC = [];
 	$array2 = mysqli_fetch_array($sql2_query);
@@ -101,7 +101,7 @@ function consultaDetalhes_Proc_Dev_Env($link){
 	global $ptipo;
 
 	$sql_query = mysqli_query($link,"SELECT p.cod , r.nome, p.tipo, p.assunto ,p.descricao AS descricao, u.name AS usuario_env , s.setor AS setor_env, DATE_FORMAT(d.data_env,'%d/%m/%Y') AS data_env, d.horas_env AS horas_env , d.obs AS observacao FROM proc p, req r, setor s, users u, devolucao d 
-	WHERE  r.cod = p.cod_req AND d.user_env = u.id AND d.cod_storg = s.cod_setor AND d.cod_prdev = p.cod AND p.cod ='".$cod."'");
+	WHERE  r.cod = p.cod_req AND d.user_env = u.id AND d.cod_storg = s.cod_setor AND d.cod_prdev = p.cod AND d.cod ='".$cod."'");
 
 	$ARRAY_PROCESSO_DEV_ENV = [];
 	$array = mysqli_fetch_array($sql_query);
@@ -130,7 +130,7 @@ function consultaDetalhes_Proc_Dev_Rec($link){
 	global $cod;
 
 	$sql2_query = mysqli_query($link,"SELECT p.cod , u.name AS usuario_rec , s.setor AS setor_dst , DATE_FORMAT(d.data_rec,'%d/%m/%Y') AS data_rec , d.horas_rec AS horas_rec FROM proc p, setor s, users u, devolucao d 
-WHERE d.user_rec = u.id AND d.cod_stdev = s.cod_setor AND d.cod_prdev = p.cod AND p.cod ='".$cod."'");
+WHERE d.user_rec = u.id AND d.cod_stdev = s.cod_setor AND d.cod_prdev = p.cod AND d.cod ='".$cod."'");
 
 	$ARRAY_PROCESSO_DEV_REC = [];
 	$array2 = mysqli_fetch_array($sql2_query);
