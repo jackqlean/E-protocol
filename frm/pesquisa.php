@@ -27,17 +27,32 @@
 	<body>
 		
 <?php
-	//recebemos nosso parâmetro vindo do form
+	session_start();
+    require_once "check.php";
+    //recebemos nosso parâmetro vindo do form
 	$parametro = isset($_POST['pesquisaCliente']) ? $_POST['pesquisaCliente'] : null;
 	
 	$cod = (int) $parametro;
-	  
+	$user_id = $_SESSION['user_id'];  
+
 // Realiza a conexão com o servidor
 // Coloca as informações da conexão na variável $link
 require_once "../config/init.php";
 
+$sql0_query = mysqli_query($link,"SELECT u.permission AS permissao FROM users u WHERE u.id ='".$user_id."'");
+
+$r0 = mysqli_fetch_array($sql0_query);
+       $p0 = $r0["permissao"];
+
+if ($p0 == "0"){
+$sql_query = mysqli_query($link,"SELECT p.cod, r.nome, p.tipo, DATE_FORMAT(p.data,'%d/%m/%Y') AS data, p.horas,s.setor AS setor FROM proc p, req r, setor s WHERE p.cod_req = r.cod
+AND s.cod_setor = p.setor AND p.user_id = '".$user_id."' ORDER BY cod ASC");
+}
+else
+{
 $sql_query = mysqli_query($link,"SELECT p.cod, r.nome, p.tipo, DATE_FORMAT(p.data,'%d/%m/%Y') AS data, p.horas,s.setor AS setor FROM proc p, req r, setor s WHERE p.cod_req = r.cod
 AND s.cod_setor = p.setor ORDER BY cod ASC");
+}
 
 if ($parametro <> "") $sql_query = mysqli_query($link,"SELECT p.cod, r.nome, p.tipo, DATE_FORMAT(p.data,'%d/%m/%Y') AS data, p.horas,s.setor AS setor FROM proc p, req r, setor s WHERE p.cod_req = r.cod
 AND s.cod_setor = p.setor AND p.cod = '".$cod."' ORDER BY cod ASC");

@@ -147,7 +147,7 @@ mysqli_close($link);
 <div class="form-group">
   <label class="col-md-4 control-label" for="txtFile">Anexo(s)...</label>
   <div class="col-md-5">
-<table cellpadding="0" cellspacing="0" border="0" class="table">
+  <table cellpadding="0" cellspacing="0" border="0" class="table">
       <tr>
       <th align='center' bgColor='#666666'><font color='#FFF'>Arquivo</th>
       <th align='center' bgColor='#666666'><font color='#FFF'>Ação</th>
@@ -168,7 +168,7 @@ mysqli_close($link);
 <div class="form-group">
   <label class="col-md-4 control-label" >Histórico do protocolo</label>
   <div class="col-md-5">
-<table cellpadding="0" cellspacing="0" border="0" class="table">
+ <table cellpadding="0" cellspacing="0" border="0" class="table">
       <tr>
       <th align='center' bgColor='#666666'><font color='#FFF'>Data do cadastro</th>
       <th align='center' bgColor='#666666'><font color='#FFF'>Horas do cadastro</th>
@@ -190,11 +190,11 @@ mysqli_close($link);
   </div>
 </div>
 
-<div class="form-group">
-<label class="col-md-4 control-label" >Movimentação do protocolo</label>
-<div class="col-md-5">
+<div class="row">
+<div class="form-group col-md-4">
+<label style="padding-left: 15px;" class="control-label">Movimentação do protocolo</label>
 <span style="position: absolute; top:40px; left:-30px; color: #088A08;font-size: 26px;" class="glyphicon glyphicon-arrow-right" alt='Enviado' data-toggle="tooltip_detalhe_env" title ='Enviado'></span>
-<table cellpadding="0" cellspacing="0" border="0" class="table">
+<table style="position: relative; left:31px; top:-5px;" cellpadding="0" cellspacing="0" border="0" class="table">
       <tr>
       <th align='center' bgColor='#666666'><font color='#FFF'>Setor de Envio</th>
       <th align='center' bgColor='#666666'><font color='#FFF'>Data do envio</th>
@@ -207,13 +207,16 @@ mysqli_close($link);
         $data_env = $m_array["data_env"];
         ?>
      <tr>
-     <td><?php echo $setor_env ?></td>
-     <td><?php echo $data_env ?></td>
-     <td><?php echo $usuario_env ?></td>
+     <td width="200" height="39"><?php echo $setor_env ?></td>
+     <td width="110"><?php echo $data_env ?></td>
+     <td width="100"><?php echo $usuario_env ?></td>
      </tr>
 <?php } ?>
 </table>    
+</div>
 
+<div class="form-group col-md-5">
+<label class="control-label"></label>
 <table cellpadding="0" cellspacing="0" border="0" class="table">
       <th align='center' bgColor='#666666'><font color='#FFF'>Setor de Destino</th>
       <th align='center' bgColor='#666666'><font color='#FFF'>Data do recebimento</th>
@@ -240,24 +243,23 @@ mysqli_close($link);
       
        ?>
         <tr>    
-        <td><?php echo $setor_dst ?></td>
+        <td width="200"><?php echo $setor_dst ?></td>
         <td><?php echo $data_rec ?></td>
         <td><?php echo $usuario_rec ?></td>
-        <td><button type="button" class="btn btn-default btn-sm"onclick="window.open('../rel/detalhe.php?cod=<?php echo $enc_cod ?>', '_blank')" <?php echo $permission ?>/> 
+        <td><button type="button" class="btn btn-default btn-xs" onclick="window.open('../rel/detalhe.php?cod=<?php echo $enc_cod ?>', '_blank')" <?php echo $permission ?>/> 
         
-        <span style="color: #2E2EFE;font-size: 14px;" class="glyphicon glyphicon-print" alt='Imprimir' data-toggle="tooltip_imprimir" title ='Imprimir detalhes do processo'></span>
+        <span style="color: #2E2EFE;font-size: 10px;" class="glyphicon glyphicon-print" alt='Imprimir' data-toggle="tooltip_imprimir" title ='Imprimir detalhes do processo'></span>
         </button></td>
       </tr>
       <?php } ?>
       </table>    
-  </div>
+    </div>
 </div>
 
-<div class="form-group">
-<label class="col-md-4 control-label" ></label>
-<div class="col-md-5">
+<div class="row">
+<div class="form-group col-md-4">
 <span style="position: absolute; top:40px; left:-30px; color: #088A08;font-size: 26px;" class="glyphicon glyphicon-arrow-left" alt='Recebido' data-toggle="tooltip_detalhe_rec" title ='Recebido'></span>
-<table cellpadding="0" cellspacing="0" border="0" class="table">
+<table style="position: relative; left:31px; top:0px;" cellpadding="0" cellspacing="0" border="0" class="table">
       <tr>
       <th align='center' bgColor='#666666'><font color='#FFF'>Setor de Envio</th>
       <th align='center' bgColor='#666666'><font color='#FFF'>Data do envio</th>
@@ -270,13 +272,15 @@ mysqli_close($link);
         $data_env = $m_array["data_env"];
         ?>
      <tr>
-     <td><?php echo $setor_env ?></td>
-     <td><?php echo $data_env ?></td>
-     <td><?php echo $usuario_env ?></td>
+     <td width="200" height="39"><?php echo $setor_env ?></td>
+     <td width="110"><?php echo $data_env ?></td>
+     <td width="100"><?php echo $usuario_env ?></td>
      </tr>
 <?php } ?>
 </table>    
+</div>
 
+<div class="form-group col-md-5">
 <table cellpadding="0" cellspacing="0" border="0" class="table">
       <th align='center' bgColor='#666666'><font color='#FFF'>Setor de Destino</th>
       <th align='center' bgColor='#666666'><font color='#FFF'>Data do recebimento</th>
@@ -295,7 +299,6 @@ mysqli_close($link);
           $permission2='disabled = "disabled"';
         }
       ?>
-        
         <?php while($m_array2 = mysqli_fetch_array($sql9_query)){  
         $dev_cod = $m_array2["dev_cod"];
         $usuario_rec = $m_array2["usuario_rec"];
@@ -304,12 +307,12 @@ mysqli_close($link);
       
        ?>
         <tr>    
-        <td><?php echo $setor_dst ?></td>
+        <td width="200"><?php echo $setor_dst ?></td>
         <td><?php echo $data_rec ?></td>
         <td><?php echo $usuario_rec ?></td>
-        <td><button type="button" class="btn btn-default btn-sm"onclick="window.open('../rel/detalhe_dev.php?cod=<?php echo $dev_cod ?>', '_blank')" 
+        <td><button type="button" class="btn btn-default btn-xs"onclick="window.open('../rel/detalhe_dev.php?cod=<?php echo $dev_cod ?>', '_blank')" 
         <?php echo $permission2 ?>/>
-        <span style="color: #2E2EFE;font-size: 14px;" class="glyphicon glyphicon-print" alt='Imprimir' data-toggle="tooltip_imprimir" title ='Imprimir detalhes do processo'></span>
+        <span style="color: #2E2EFE;font-size: 10px;" class="glyphicon glyphicon-print" alt='Imprimir' data-toggle="tooltip_imprimir" title ='Imprimir detalhes do processo'></span>
         </button><td>
       </tr>
       <?php } ?>

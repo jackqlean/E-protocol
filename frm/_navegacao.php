@@ -72,9 +72,11 @@ require_once "check.php";
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Atendimento<span class="caret"></span>
         </a>  
           <ul class="dropdown-menu">
-             <li><a href="recebimento_proc.php">Receber protocolo enviado</a>  </li>
+             <li><a href="recebimento_proc.php">Receber protocolo</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="recebimento_proc_dev.php">Receber protocolo devolvido</a>  </li>
+            <li role="separator" class="divider"></li>
+            <li><a href="consulta_proc_rec.php">Exibir protocolos recebidos</a>  </li>
            </ul>
         </li> 
         
@@ -82,9 +84,7 @@ require_once "check.php";
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consultar<span class="caret"></span>
         </a>  
           <ul class="dropdown-menu">
-            <li><a href="consulta_proc.php">Todos os protocolos</a>  </li>
-            <li role="separator" class="divider"></li>
-            <li><a href="consulta_proc_rec.php">Somente recebidos</a>  </li>
+            <li><a href="consulta_proc.php">Meus protocolos</a>  </li>
           </ul>
         </li>
         
