@@ -36,9 +36,9 @@ CREATE TABLE IF NOT EXISTS `devolucao` (
   KEY `cod_setor` (`cod_storg`),
   KEY `cod_rqenc` (`cod_rqdev`),
   KEY `cod_stdev` (`cod_stdev`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela prot.devolucao: ~8 rows (aproximadamente)
+-- Copiando dados para a tabela prot.devolucao: ~12 rows (aproximadamente)
 /*!40000 ALTER TABLE `devolucao` DISABLE KEYS */;
 INSERT INTO `devolucao` (`cod`, `cod_prdev`, `cod_stdev`, `cod_storg`, `cod_rqdev`, `user_env`, `user_rec`, `data_env`, `horas_env`, `data_rec`, `horas_rec`, `obs`, `status`) VALUES
 	(2, 70, 9, 4, 23, 3, 2, '2017-06-05', '14:08:43', '2017-06-05', '15:16:12', 'Processo resolvido. Devolvendo para o setor de origem.', '1');
@@ -60,6 +60,10 @@ INSERT INTO `devolucao` (`cod`, `cod_prdev`, `cod_stdev`, `cod_storg`, `cod_rqde
 	(11, 81, 7, 4, 31, 3, 1, '2017-06-21', '22:50:33', '2017-06-21', '22:51:19', 'Processo resolvido e sendo devolvido ao setor de origem.', '1');
 INSERT INTO `devolucao` (`cod`, `cod_prdev`, `cod_stdev`, `cod_storg`, `cod_rqdev`, `user_env`, `user_rec`, `data_env`, `horas_env`, `data_rec`, `horas_rec`, `obs`, `status`) VALUES
 	(12, 82, 7, 4, 53, 3, 1, '2017-06-27', '19:25:42', '2017-06-27', '19:26:09', 'Processo resolvido e está sendo devolvido ao setor de origem.', '1');
+INSERT INTO `devolucao` (`cod`, `cod_prdev`, `cod_stdev`, `cod_storg`, `cod_rqdev`, `user_env`, `user_rec`, `data_env`, `horas_env`, `data_rec`, `horas_rec`, `obs`, `status`) VALUES
+	(13, 83, 1, 4, 30, 3, 5, '2017-07-07', '23:09:01', '2017-07-07', '23:09:30', 'Processo resolvido. encaminhado para a Administração', '1');
+INSERT INTO `devolucao` (`cod`, `cod_prdev`, `cod_stdev`, `cod_storg`, `cod_rqdev`, `user_env`, `user_rec`, `data_env`, `horas_env`, `data_rec`, `horas_rec`, `obs`, `status`) VALUES
+	(14, 83, 7, 2, 30, 4, 1, '2017-07-11', '10:20:55', '2017-07-11', '10:20:58', 'Encaminhado para devolução ao setor de origem.', '1');
 /*!40000 ALTER TABLE `devolucao` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela prot.encaminhamento
@@ -83,14 +87,10 @@ CREATE TABLE IF NOT EXISTS `encaminhamento` (
   KEY `cod_setor` (`cod_stdst`),
   KEY `cod_rqenc` (`cod_rqenc`),
   KEY `cod_stenv` (`cod_stenv`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela prot.encaminhamento: ~8 rows (aproximadamente)
+-- Copiando dados para a tabela prot.encaminhamento: ~12 rows (aproximadamente)
 /*!40000 ALTER TABLE `encaminhamento` DISABLE KEYS */;
-INSERT INTO `encaminhamento` (`cod`, `cod_prenc`, `cod_stenv`, `cod_stdst`, `cod_rqenc`, `user_env`, `user_rec`, `data_env`, `horas_env`, `data_rec`, `horas_rec`, `obs`, `status`, `statusd`) VALUES
-	(45, 70, 9, 4, 23, 2, 3, '2017-06-02', '15:34:29', '2017-06-05', '15:12:33', 'verificar tempo de contribuição.', '1', '1');
-INSERT INTO `encaminhamento` (`cod`, `cod_prenc`, `cod_stenv`, `cod_stdst`, `cod_rqenc`, `user_env`, `user_rec`, `data_env`, `horas_env`, `data_rec`, `horas_rec`, `obs`, `status`, `statusd`) VALUES
-	(47, 72, 9, 4, 19, 2, 3, '2017-06-05', '09:13:04', '2017-06-05', '16:15:24', 'enviando para o setor responsável.', '1', '1');
 INSERT INTO `encaminhamento` (`cod`, `cod_prenc`, `cod_stenv`, `cod_stdst`, `cod_rqenc`, `user_env`, `user_rec`, `data_env`, `horas_env`, `data_rec`, `horas_rec`, `obs`, `status`, `statusd`) VALUES
 	(48, 73, 7, 4, 31, 1, 3, '2017-06-05', '09:39:25', '2017-06-05', '16:15:31', 'para envio ao setor competente.', '1', '1');
 INSERT INTO `encaminhamento` (`cod`, `cod_prenc`, `cod_stenv`, `cod_stdst`, `cod_rqenc`, `user_env`, `user_rec`, `data_env`, `horas_env`, `data_rec`, `horas_rec`, `obs`, `status`, `statusd`) VALUES
@@ -107,6 +107,10 @@ INSERT INTO `encaminhamento` (`cod`, `cod_prenc`, `cod_stenv`, `cod_stdst`, `cod
 	(54, 81, 7, 4, 31, 1, 3, '2017-06-21', '22:40:42', '2017-06-21', '22:49:50', 'Sendo enviado para o setor competente.', '1', '1');
 INSERT INTO `encaminhamento` (`cod`, `cod_prenc`, `cod_stenv`, `cod_stdst`, `cod_rqenc`, `user_env`, `user_rec`, `data_env`, `horas_env`, `data_rec`, `horas_rec`, `obs`, `status`, `statusd`) VALUES
 	(55, 82, 7, 4, 53, 1, 3, '2017-06-27', '19:24:18', '2017-06-27', '19:24:56', 'está sendo enviado para verificação ao setor competente.', '1', '1');
+INSERT INTO `encaminhamento` (`cod`, `cod_prenc`, `cod_stenv`, `cod_stdst`, `cod_rqenc`, `user_env`, `user_rec`, `data_env`, `horas_env`, `data_rec`, `horas_rec`, `obs`, `status`, `statusd`) VALUES
+	(56, 83, 7, 4, 30, 1, 3, '2017-07-07', '23:07:53', '2017-07-07', '23:08:23', 'encaminhado para o setor competente.', '1', '1');
+INSERT INTO `encaminhamento` (`cod`, `cod_prenc`, `cod_stenv`, `cod_stdst`, `cod_rqenc`, `user_env`, `user_rec`, `data_env`, `horas_env`, `data_rec`, `horas_rec`, `obs`, `status`, `statusd`) VALUES
+	(57, 83, 1, 2, 30, 5, 4, '2017-07-10', '10:05:03', '2017-07-10', '10:37:49', 'processo sendo verificado por pendências de documentos', '1', '1');
 /*!40000 ALTER TABLE `encaminhamento` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela prot.itens_arq
@@ -116,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `itens_arq` (
   `arquivo` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`cod`),
   KEY `cod_proc` (`cod_proc`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela prot.itens_arq: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `itens_arq` DISABLE KEYS */;
@@ -134,6 +138,8 @@ INSERT INTO `itens_arq` (`cod`, `cod_proc`, `arquivo`) VALUES
 	(30, 77, 'trabalho_geografia_leticia.docx');
 INSERT INTO `itens_arq` (`cod`, `cod_proc`, `arquivo`) VALUES
 	(31, 79, 'TERMO DE RESPONSABILIDADE.docx');
+INSERT INTO `itens_arq` (`cod`, `cod_proc`, `arquivo`) VALUES
+	(32, 83, 'Estimativa_equip_info_2017.xlsx');
 /*!40000 ALTER TABLE `itens_arq` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela prot.proc
@@ -150,14 +156,10 @@ CREATE TABLE IF NOT EXISTS `proc` (
   PRIMARY KEY (`cod`),
   KEY `cod_req` (`cod_req`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela prot.proc: ~10 rows (aproximadamente)
 /*!40000 ALTER TABLE `proc` DISABLE KEYS */;
-INSERT INTO `proc` (`cod`, `cod_req`, `user_id`, `tipo`, `assunto`, `descricao`, `setor`, `data`, `horas`) VALUES
-	(70, 23, 2, 'PI', 'Aposentadoria', 'para encaminhamento ao orgão competente.', 9, '2017-06-02', '15:33:51');
-INSERT INTO `proc` (`cod`, `cod_req`, `user_id`, `tipo`, `assunto`, `descricao`, `setor`, `data`, `horas`) VALUES
-	(72, 19, 2, 'PI', 'Aposentadoria de Marie', 'para o fim do ano.', 9, '2017-06-05', '09:12:01');
 INSERT INTO `proc` (`cod`, `cod_req`, `user_id`, `tipo`, `assunto`, `descricao`, `setor`, `data`, `horas`) VALUES
 	(73, 31, 1, 'PI', 'Aposentadoria', 'para o fim do ano.', 7, '2017-06-05', '09:38:24');
 INSERT INTO `proc` (`cod`, `cod_req`, `user_id`, `tipo`, `assunto`, `descricao`, `setor`, `data`, `horas`) VALUES
@@ -176,6 +178,8 @@ INSERT INTO `proc` (`cod`, `cod_req`, `user_id`, `tipo`, `assunto`, `descricao`,
 	(81, 31, 1, 'PI', 'Aposentadoria', 'para o fim do mês.', 7, '2017-06-21', '22:39:53');
 INSERT INTO `proc` (`cod`, `cod_req`, `user_id`, `tipo`, `assunto`, `descricao`, `setor`, `data`, `horas`) VALUES
 	(82, 53, 1, 'PI', 'pedido de aposentadoria', 'enviar para o setor responsável.\r\n\r\n', 7, '2017-06-27', '19:23:29');
+INSERT INTO `proc` (`cod`, `cod_req`, `user_id`, `tipo`, `assunto`, `descricao`, `setor`, `data`, `horas`) VALUES
+	(83, 30, 1, 'PI', 'Aposentadoria', 'para o fim do ano.\r\n', 7, '2017-07-07', '23:05:05');
 /*!40000 ALTER TABLE `proc` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela prot.req
@@ -244,24 +248,22 @@ CREATE TABLE IF NOT EXISTS `setor` (
   `cod_setor` int(11) NOT NULL AUTO_INCREMENT,
   `setor` varchar(50) NOT NULL DEFAULT '0',
   PRIMARY KEY (`cod_setor`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela prot.setor: ~8 rows (aproximadamente)
+-- Copiando dados para a tabela prot.setor: ~7 rows (aproximadamente)
 /*!40000 ALTER TABLE `setor` DISABLE KEYS */;
 INSERT INTO `setor` (`cod_setor`, `setor`) VALUES
-	(1, 'Administração');
+	(1, 'Dir. de Adm. e Finanças');
 INSERT INTO `setor` (`cod_setor`, `setor`) VALUES
-	(2, 'Tesouraria');
+	(2, 'Divisão de Contabilidade');
 INSERT INTO `setor` (`cod_setor`, `setor`) VALUES
 	(3, 'Jurídico');
 INSERT INTO `setor` (`cod_setor`, `setor`) VALUES
-	(4, 'Previdenciário');
+	(4, 'Divisão de Previdência');
 INSERT INTO `setor` (`cod_setor`, `setor`) VALUES
-	(6, 'Contabilidade');
+	(6, 'Divisão de Compras');
 INSERT INTO `setor` (`cod_setor`, `setor`) VALUES
 	(7, 'TI');
-INSERT INTO `setor` (`cod_setor`, `setor`) VALUES
-	(9, 'Teste');
 /*!40000 ALTER TABLE `setor` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela prot.users
@@ -271,24 +273,25 @@ CREATE TABLE IF NOT EXISTS `users` (
   `name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `permission` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `cod_setor` (`cod_setor`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Copiando dados para a tabela prot.users: ~6 rows (aproximadamente)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`id`, `cod_setor`, `name`, `email`, `password`) VALUES
-	(1, 7, 'Jack', 'jackqlean@gmail.com', '60f64f5a83e0dbd972bd6a50a70a6d5c7f4856dd');
-INSERT INTO `users` (`id`, `cod_setor`, `name`, `email`, `password`) VALUES
-	(2, 9, 'Usuario', 'usuario@usuario', '2d29b962490320f821db80cddf6ed4b6e4ac7498');
-INSERT INTO `users` (`id`, `cod_setor`, `name`, `email`, `password`) VALUES
-	(3, 4, 'Juliana', 'previdencia@omss.sp.gov.br', '2d29b962490320f821db80cddf6ed4b6e4ac7498');
-INSERT INTO `users` (`id`, `cod_setor`, `name`, `email`, `password`) VALUES
-	(4, 2, 'Aurealice', 'tesouraria@omss.sp.gov.br', '2d29b962490320f821db80cddf6ed4b6e4ac7498');
-INSERT INTO `users` (`id`, `cod_setor`, `name`, `email`, `password`) VALUES
-	(5, 1, 'Toninho', 'toninho@omss.sp.gov.br', '2d29b962490320f821db80cddf6ed4b6e4ac7498');
-INSERT INTO `users` (`id`, `cod_setor`, `name`, `email`, `password`) VALUES
-	(7, 3, 'Fernando', 'juridico@omss.sp.gov.br', '2d29b962490320f821db80cddf6ed4b6e4ac7498');
+INSERT INTO `users` (`id`, `cod_setor`, `name`, `email`, `password`, `permission`) VALUES
+	(1, 7, 'Jack', 'jackqlean@gmail.com', '60f64f5a83e0dbd972bd6a50a70a6d5c7f4856dd', 0);
+INSERT INTO `users` (`id`, `cod_setor`, `name`, `email`, `password`, `permission`) VALUES
+	(2, 9, 'Usuario', 'usuario@usuario', '2d29b962490320f821db80cddf6ed4b6e4ac7498', 0);
+INSERT INTO `users` (`id`, `cod_setor`, `name`, `email`, `password`, `permission`) VALUES
+	(3, 4, 'Juliana', 'previdencia@omss.sp.gov.br', '2d29b962490320f821db80cddf6ed4b6e4ac7498', 0);
+INSERT INTO `users` (`id`, `cod_setor`, `name`, `email`, `password`, `permission`) VALUES
+	(4, 2, 'Aurealice', 'tesouraria@omss.sp.gov.br', '2d29b962490320f821db80cddf6ed4b6e4ac7498', 0);
+INSERT INTO `users` (`id`, `cod_setor`, `name`, `email`, `password`, `permission`) VALUES
+	(5, 1, 'Toninho', 'toninho@omss.sp.gov.br', '2d29b962490320f821db80cddf6ed4b6e4ac7498', 1);
+INSERT INTO `users` (`id`, `cod_setor`, `name`, `email`, `password`, `permission`) VALUES
+	(7, 3, 'Fernando', 'juridico@omss.sp.gov.br', '2d29b962490320f821db80cddf6ed4b6e4ac7498', 0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

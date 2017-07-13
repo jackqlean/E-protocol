@@ -2,6 +2,20 @@
 session_start();
 /*require 'config/init.php';*/
 require_once "check.php";
+$user_id = $_SESSION['user_id'];
+require_once "config/init.php";
+
+$sql_query = mysqli_query($link,"SELECT u.permission AS permissao FROM users u WHERE u.id ='".$user_id."'");
+
+$r = mysqli_fetch_array($sql_query);
+       $p = $r["permissao"];
+
+if ($p == "0"){
+  $menu_cons = "Meus protocolos";
+}else{
+  $menu_cons = "Todos os protocolos";
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -83,7 +97,7 @@ require_once "check.php";
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consultar<span class="caret"></span>
         </a>  
           <ul class="dropdown-menu">
-            <li><a href="frm/consulta_proc.php">Meus protocolos</a>  </li>
+            <li><a href="frm/consulta_proc.php"><?php echo $menu_cons ?></a>  </li>
           <li role="separator" class="divider"></li>
             <li><a href="frm/consulta_proc_rec.php">Protocolos recebidos</a>  </li>
           </ul>
