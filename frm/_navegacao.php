@@ -76,7 +76,7 @@ require_once "check.php";
             <li role="separator" class="divider"></li>
             <li><a href="recebimento_proc_dev.php">Receber protocolo devolvido</a>  </li>
             <li role="separator" class="divider"></li>
-            <li><a href="consulta_proc_rec.php">Exibir protocolos recebidos</a>  </li>
+            <li><a href="prot_rec.php">Exibir protocolos recebidos</a>  </li>
            </ul>
         </li> 
         
@@ -85,6 +85,8 @@ require_once "check.php";
         </a>  
           <ul class="dropdown-menu">
             <li><a href="consulta_proc.php">Meus protocolos</a>  </li>
+          <li role="separator" class="divider"></li>
+            <li><a href="consulta_proc_rec.php">Protocolos recebidos</a>  </li>
           </ul>
         </li>
         
