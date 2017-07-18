@@ -6,13 +6,21 @@ ini_set('display_startup_erros',0);
 error_reporting(E_ALL);
 
 session_start();
-require_once "check.php";
 include "_navegacao.php";
 
 // =====================================
 // Realiza a conexão com o servidor
 // Coloca as informações da conexão na variável $link
 require_once "../config/init.php";
+
+$observacao = $_POST["txtObservacao"];
+
+$setor = $_SESSION['user_setor'];
+// Executa a instrução SQL para selectionar todos os registros
+$sql_query = mysqli_query($link,"SELECT s.cod_setor AS cod_setor FROM setor s WHERE s.setor = '".$setor."'");
+
+$r = mysqli_fetch_array($sql_query);
+$scod = $r["cod_setor"];
 
 //Seleciona o processo cadastrado pelo  
 //código no banco de dados.
@@ -41,7 +49,7 @@ mysqli_close($link);
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
-    <title>Devolução de Processo</title>
+    <title>Devolução de Protocolo</title>
 
     <meta name="description" content="">
     <meta name="author" content="Jaquison Quintao Leandro">
@@ -52,13 +60,11 @@ mysqli_close($link);
     
 </head>
 <body>
-
-
 <div class="page-header">
-  <h1>Devolução de Processo</h1>
+  <h1>Devolução de Protocolo</h1>
 </div>
 
-<form name="cadastro" id="cadastro" method="POST" action="../op/devolver_proc.php">
+<form name="cadastro" id="cadastro" method="POST" action="../op/devolver2_proc.php?cod=<?php echo $cod ?>">
 <?php $linha = mysqli_fetch_array($sql2_query)?>
 <fieldset>
 
@@ -81,8 +87,8 @@ mysqli_close($link);
   <label class="col-md-4 control-label" for="txtTipo">Tipo</label>
   <div class="col-md-5">
      <?php 
-     if ($linha["tipo"]=='PI') $ptipo = "Processo Interno";
-     if ($linha["tipo"]=='PE') $ptipo = "Processo Externo";
+     if ($linha["tipo"]=='PI') $ptipo = "Protocolo Interno";
+     if ($linha["tipo"]=='PE') $ptipo = "Protocolo Externo";
      if ($linha["tipo"]=='OT') $ptipo = "Outros";
      ?>
      <input type="text" name="txtTipo" id="txtTipo" value="<?php echo $ptipo ?>" class="form-control input-md" required="" disabled="">
@@ -113,25 +119,23 @@ mysqli_close($link);
 <div class="form-group">
   <label class="col-md-4 control-label" for="txtDescricao">Observação</label>  
   <div class="col-md-5">
-  <textarea name="txtObservacao" id="txtObservacao" placeholder="Preencha a observação aqui" class="form-control input-md" required=""></textarea>
+  <textarea name="txtObservacao" id="txtObservacao" placeholder="Preencha a observação aqui" class="form-control input-md" required="" disabled=""><?php echo $observacao ?></textarea>
   </div>
 </div>
-
 <div class="form-group" >
   <label class="col-md-4 control-label" for="txtDescricao">Selecione o setor de destino</label>  
   <div class="col-md-5">
     <select name="txtStdst" id="txtStdst" class="form-control">
       <option value="">Selecione...</option>
         <?php while ($array = mysqli_fetch_array($sql4_query)) { 
-        $scod = $array["cod_setor"];
+        $dcod_setor = $array["cod_setor"];
         $setor = $array["setor"];
         ?>
-      <option value="<?php echo $scod ?>"><?php echo $setor ?></option>      
+      <option value="<?php echo $dcod ?>"><?php echo $setor ?></option>      
       <?php } ?>
       </select>
       </div>
 </div>
-
 <!-- Button (Double) -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="btnEnviar"></label>
@@ -142,15 +146,13 @@ mysqli_close($link);
   
     <input type="hidden" name="cod_dProc" value="<?php echo $linha["cod"] ?>">
     <input type="hidden" name="cod_dReq" value="<?php echo $rlinha["cod"] ?>">
-    <input type="hidden" name="cod_dSetor" value="<?php echo $cod_setor ?>">
-    
+    <input type="hidden" name="cod_dSetor" value="<?php echo $dcod_setor ?>">
+    <input type="hidden" id="" name="cod_oSetor" value="<?php echo $scod ?>" />
     </div>
 </div>
 
 </fieldset>
 </form>
-
 <script src="../lib/main.js"></script>
-
 </body>
 </html>

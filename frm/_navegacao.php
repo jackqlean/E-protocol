@@ -1,5 +1,8 @@
 <?php
+ini_set('display_errors', false);
+error_reporting(E_ALL);
 session_start();
+// habilita todas as exibições de erros
 require_once "check.php";
 $user_id = $_SESSION['user_id'];
 require_once "../config/init.php";

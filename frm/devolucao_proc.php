@@ -47,7 +47,7 @@ mysqli_close($link);
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
-    <title>Devolução de Processo</title>
+    <title>Devolução de Protocolo</title>
 
     <meta name="description" content="">
     <meta name="author" content="Jaquison Quintao Leandro">
@@ -61,10 +61,10 @@ mysqli_close($link);
 
 
 <div class="page-header">
-  <h1>Devolução de Processo</h1>
+  <h1>Devolução de Protocolo</h1>
 </div>
 
-<form name="cadastro" id="cadastro" method="POST" action="../op/devolver_proc.php?cod=<?php echo $cod ?>">
+<form name="cadastro" id="cadastro" method="POST" action="../op/selecionar.php?cod=<?php echo $cod ?>">
 <?php $linha = mysqli_fetch_array($sql2_query)?>
 <fieldset>
 
@@ -87,8 +87,8 @@ mysqli_close($link);
   <label class="col-md-4 control-label" for="txtTipo">Tipo</label>
   <div class="col-md-5">
      <?php 
-     if ($linha["tipo"]=='PI') $ptipo = "Processo Interno";
-     if ($linha["tipo"]=='PE') $ptipo = "Processo Externo";
+     if ($linha["tipo"]=='PI') $ptipo = "Protocolo Interno";
+     if ($linha["tipo"]=='PE') $ptipo = "Protocolo Externo";
      if ($linha["tipo"]=='OT') $ptipo = "Outros";
      ?>
      <input type="text" name="txtTipo" id="txtTipo" value="<?php echo $ptipo ?>" class="form-control input-md" required="" disabled="">
@@ -122,7 +122,6 @@ mysqli_close($link);
   <textarea name="txtObservacao" id="txtObservacao" placeholder="Preencha a observação aqui" class="form-control input-md" required=""></textarea>
   </div>
 </div>
-
 <!-- Button (Double) -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="btnEnviar"></label>
@@ -135,6 +134,7 @@ mysqli_close($link);
     <input type="hidden" name="cod_dReq" value="<?php echo $rlinha["cod"] ?>">
     <input type="hidden" name="cod_dSetor" value="<?php echo $cod_setor ?>">
     <input type="hidden" id="" name="cod_oSetor" value="<?php echo $scod ?>" />
+    
     </div>
 </div>
 

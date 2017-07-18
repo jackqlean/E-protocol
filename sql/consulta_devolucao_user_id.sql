@@ -1,0 +1,2 @@
+SELECT p.cod, r.nome, p.tipo, DATE_FORMAT(p.data,'%d/%m/%Y') AS data, p.horas,s.setor AS setor FROM proc p, req r, setor s , devolucao d WHERE p.cod_req = r.cod
+AND d.cod_stdev = s.cod_setor AND p.cod = d.cod_prdev AND d.user_rec= '5' AND d.`status` = '1' ORDER BY cod ASC;

@@ -87,7 +87,7 @@ swal({
 </script>";
 }
 
-$sql2 = "UPDATE `encaminhamento` SET  `statusd` = '1' WHERE `cod_prenc` = '".$cod."'";
+$sql2 = $sql = "UPDATE `encaminhamento` SET  `statusd` = '1' WHERE `cod_prenc` = '".$cod."'";
 
 mysqli_query($link, $sql2);
 
