@@ -105,6 +105,8 @@ if ($p == "0"){
             <li><a href="consulta_proc.php"><?php echo $menu_cons ?></a>  </li>
           <li role="separator" class="divider"></li>
             <li><a href="consulta_proc_rec.php">Protocolos recebidos</a>  </li>
+          <li role="separator" class="divider"></li>
+          <li><a href="consulta_proc_dev.php">Protocolos devolvidos</a>  </li>
           </ul>
         </li>
         
