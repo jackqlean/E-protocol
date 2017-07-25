@@ -81,8 +81,8 @@ mysqli_close($link);
   <label class="col-md-4 control-label" for="txtTipo">Tipo</label>
   <div class="col-md-5">
      <?php 
-     if ($linha["tipo"]=='PI') $ptipo = "Processo Interno";
-     if ($linha["tipo"]=='PE') $ptipo = "Processo Externo";
+     if ($linha["tipo"]=='PI') $ptipo = "Protocolo Interno";
+     if ($linha["tipo"]=='PE') $ptipo = "Protocolo Externo";
      if ($linha["tipo"]=='OT') $ptipo = "Outros";
      ?>
      <input type="text" name="txtTipo" id="txtTipo" value="<?php echo $ptipo ?>" class="form-control input-md" required="" disabled="">

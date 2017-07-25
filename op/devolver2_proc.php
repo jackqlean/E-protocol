@@ -36,11 +36,10 @@ require_once "../config/functions.php";*/
     $cod = $_POST["cod_dProc"];
     $user_id = $_SESSION['user_id'];
     $cod_dReq = $_POST["cod_dReq"];
-    $cod_dSetor = $_POST["cod_dSetor"];
     $cod_oSetor = $_POST["cod_oSetor"];
-    $observacao = $_POST["txtObservacao"];
+    $obs = $_POST["observacao"];
 
-$sql = "INSERT INTO devolucao (cod_prdev, cod_rqdev, cod_stdev, cod_storg, user_env, data_env, horas_env, obs,status) VALUES('".$cod."','".$cod_dReq."','".$cod_dSetor."','".$cod_oSetor."','".$user_id."','".$data."','".$horas."','".$observacao."','0')";
+$sql = "INSERT INTO devolucao (cod_prdev, cod_rqdev, cod_stdev, cod_storg, user_env, data_env, horas_env, obs,status) VALUES('".$cod."','".$cod_dReq."','".$_POST["txtStdst"]."','".$cod_oSetor."','".$user_id."','".$data."','".$horas."','".$obs."','0')";
 
 		if (mysqli_query($link, $sql)) {
     

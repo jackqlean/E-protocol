@@ -59,7 +59,7 @@ swal({
 </form>
 
 <form id="form_dev2" name="" method="POST" action="../frm/devolucao2_proc.php?cod=<?php echo $cod ?>">
-    <input type="hidden" id="" name="txtObservacao" value="<?php echo $observacao ?>" />
+    <input type="hidden" id="" name="txtObs" value="<?php echo $observacao ?>" />
 </form>
 </body>
 </html>

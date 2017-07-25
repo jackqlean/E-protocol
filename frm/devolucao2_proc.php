@@ -13,7 +13,7 @@ include "_navegacao.php";
 // Coloca as informações da conexão na variável $link
 require_once "../config/init.php";
 
-$observacao = $_POST["txtObservacao"];
+$observacao = $_POST["txtObs"];
 
 $setor = $_SESSION['user_setor'];
 // Executa a instrução SQL para selectionar todos os registros
@@ -131,7 +131,7 @@ mysqli_close($link);
         $dcod_setor = $array["cod_setor"];
         $setor = $array["setor"];
         ?>
-      <option value="<?php echo $dcod ?>"><?php echo $setor ?></option>      
+      <option value="<?php echo $dcod_setor ?>"><?php echo $setor ?></option>      
       <?php } ?>
       </select>
       </div>
@@ -146,8 +146,8 @@ mysqli_close($link);
   
     <input type="hidden" name="cod_dProc" value="<?php echo $linha["cod"] ?>">
     <input type="hidden" name="cod_dReq" value="<?php echo $rlinha["cod"] ?>">
-    <input type="hidden" name="cod_dSetor" value="<?php echo $dcod_setor ?>">
     <input type="hidden" id="" name="cod_oSetor" value="<?php echo $scod ?>" />
+    <input type="hidden" id="" name="observacao" value="<?php echo $observacao ?>" />
     </div>
 </div>
 

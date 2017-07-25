@@ -1,0 +1,1 @@
+SELECT s.setor AS setor_dst FROM proc p, setor s, devolucao d WHERE d.cod_stdev = s.cod_setor AND d.cod_prdev = p.cod AND p.cod= 82;

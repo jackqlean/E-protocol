@@ -37,20 +37,26 @@ $sql6_query = mysqli_query($link,"SELECT p.cod , u.name AS usuario_env , s.setor
 // recebimento e usuario de recebimento da tabela proc (processos).
 $sql7_query = mysqli_query($link,"SELECT e.cod AS enc_cod, p.cod , u.name AS usuario_rec , s.setor AS setor_dst , DATE_FORMAT(e.data_rec,'%d/%m/%Y') AS data_rec FROM proc p, setor s, users u, encaminhamento e WHERE e.user_rec = u.id AND e.cod_stdst = s.cod_setor AND e.cod_prenc = p.cod AND p.cod='".$cod."'");
 
-$sql8_query = mysqli_query($link,"SELECT p.cod , u.name AS usuario_env , s.setor AS setor_env, DATE_FORMAT(d.data_env,'%d/%m/%Y') AS data_env FROM proc p, setor s, users u, devolucao d WHERE  d.user_env = u.id AND d.cod_storg = s.cod_setor AND d.cod_prdev = p.cod AND p.cod ='".$cod."'");
+$sql7_query1 = mysqli_query($link,"SELECT s.setor AS setor_dst FROM proc p, setor s, encaminhamento e WHERE e.cod_stdst = s.cod_setor AND e.cod_prenc = p.cod AND p.cod= '".$cod."'");
 
-  $sql9_query = mysqli_query($link,"SELECT d.cod AS dev_cod, p.cod , u.name AS usuario_rec , s.setor AS setor_dst , DATE_FORMAT(d.data_rec,'%d/%m/%Y') AS data_rec FROM proc p, setor s, users u, devolucao d WHERE d.user_rec = u.id AND d.cod_stdev = s.cod_setor AND d.cod_prdev = p.cod AND p.cod='".$cod."'");
+$sql7_query2 = mysqli_query($link,"SELECT e.cod AS enc_cod, p.cod , u.name AS usuario_rec , DATE_FORMAT(e.data_rec,'%d/%m/%Y') AS data_rec FROM proc p, users u, encaminhamento e WHERE e.user_rec = u.id  AND e.cod_prenc = p.cod AND p.cod='".$cod."'");
 
-$sql10_query = mysqli_query($link,"SELECT e.status AS status FROM encaminhamento e, proc p WHERE e.cod_prenc = p.cod AND p.cod ='".$cod."'");
+  $sql8_query = mysqli_query($link,"SELECT p.cod , u.name AS usuario_env , s.setor AS setor_env, DATE_FORMAT(d.data_env,'%d/%m/%Y') AS data_env FROM proc p, setor s, users u, devolucao d WHERE  d.user_env = u.id AND d.cod_storg = s.cod_setor AND d.cod_prdev = p.cod AND p.cod ='".$cod."'");
+
+  $sql9_query1 = mysqli_query($link,"SELECT s.setor AS setor_dst FROM proc p, setor s, devolucao d WHERE d.cod_stdev = s.cod_setor AND d.cod_prdev = p.cod AND p.cod= '".$cod."'");
+  
+  $sql9_query2 = mysqli_query($link,"SELECT d.cod AS dev_cod, p.cod , u.name AS usuario_rec , DATE_FORMAT(d.data_rec,'%d/%m/%Y') AS data_rec FROM proc p, users u, devolucao d WHERE d.user_rec = u.id  AND d.cod_prdev = p.cod AND p.cod='".$cod."'");
+
+  $sql10_query = mysqli_query($link,"SELECT e.status AS status FROM encaminhamento e, proc p WHERE e.cod_prenc = p.cod AND p.cod ='".$cod."'");
  
-$sql11_query = mysqli_query($link,"SELECT d.status AS status FROM devolucao d, proc p WHERE d.cod_prdev = p.cod AND p.cod ='".$cod."'");
+  $sql11_query = mysqli_query($link,"SELECT d.status AS status FROM devolucao d, proc p WHERE d.cod_prdev = p.cod AND p.cod ='".$cod."'");
  
 // Fecha a conexão com o servidor para poupar recursos de processamento
 mysqli_close($link);
 ?>
 
 <!DOCTYPE HTML>
- <html lang="pt-br">
+<html lang="pt-br">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -84,22 +90,28 @@ mysqli_close($link);
 
 <?php $rlinha = mysqli_fetch_array($sql3_query)?>
 
+<div class="row">
 <div class="form-group">
-<label class="col-md-4 control-label" for="txtCod">Protocolo nº</label>
-  <label class="col-md-5 control-label" /><span style="font-family: Arial; font-size: 28px; font-style:italic; color:#000000;"><?php echo $plinha["cod"] ?></span></label>
+<label style="margin-left: 15px" class="col-md-2 control-label" for="txtCod">Protocolo nº</label>
+  <label class="col-md-2 control-label" /><span style="font-family: Arial; font-size: 24px; font-style:italic; color:#000000;"><?php echo $plinha["cod"] ?></span></label>
   </div>
 </div>
+</div>
 
+<div class="row">
 <div class="form-group">
-<label class="col-md-4 control-label" for="txtRequerente">Nome do requerente</label>
-  <div class="col-md-5">
+<label style="margin-left: 15px" class="col-md-2 control-label" for="txtRequerente">Nome do requerente</label>
+  <div class="col-md-4">
      <input type="text" name="txtRequerente" id="txtRequerente" value="<?php echo $rlinha["nome"] ?>" class="form-control input-md" required="" disabled="">
     </div>
 </div>
+</div>
+
 <!-- Text Basic -->
+<div class="row">
 <div class="form-group">
-  <label class="col-md-4 control-label" for="txtTipo">Tipo</label>
-  <div class="col-md-5">
+<label style="margin-left: 15px" class="col-md-2 control-label" for="txtTipo">Tipo</label>
+  <div class="col-md-4">
      <?php 
      if ($plinha["tipo"]=='PI') $ptipo = "Protocolo Interno";
      if ($plinha["tipo"]=='PE') $ptipo = "Protocolo Externo";
@@ -108,45 +120,56 @@ mysqli_close($link);
      <input type="text" name="txtTipo" id="txtTipo" value="<?php echo $ptipo ?>" class="form-control input-md" required="" disabled="">
   </div>
 </div>
+</div>
+
 <!-- Select Basic -->
+<div class="row">
 <div class="form-group">
 <?php 
   $array = mysqli_fetch_array($sql_query);
   $desc_setor = $array["desc_setor"];
 ?>
- <label class="col-md-4 control-label" for="txtSetor">Setor de origem</label>
-  <div class="col-md-5">
+ <label style="margin-left: 15px" class="col-md-2 control-label" for="txtSetor">Setor de origem</label>
+  <div class="col-md-4">
      <input type="text" name="txtSetor" id="txtSetor" value="<?php echo $desc_setor ?>" class="form-control input-md" required="" disabled="">
     </div>
 </div>
+</div>
 
 <!-- Text input-->
+<div class="row">
 <div class="form-group">
-  <label class="col-md-4 control-label" for="txtDtCad">Data do cadastro</label>  
-  <div class="col-md-5">
+  <label style="margin-left: 15px" class="col-md-2 control-label" for="txtDtCad">Data do cadastro</label>  
+  <div class="col-md-4">
   <input type="text" name="txtDtCad" id="txtDtCad" value="<?php echo $plinha["data"] ?>" class="form-control input-md" required="" disabled="">
   </div>
 </div>
+</div>
 
 <!-- Text input-->
+<div class="row">
 <div class="form-group">
-  <label class="col-md-4 control-label" for="txtAssunto">Assunto</label>  
-  <div class="col-md-5">
+  <label style="margin-left: 15px" class="col-md-2 control-label" for="txtAssunto">Assunto</label>  
+  <div class="col-md-4">
   <input type="text" name="txtAssunto" id="txtAssunto" value="<?php echo $plinha["assunto"] ?>" placeholder="Digite o assunto" class="form-control input-md" required="" disabled="">
   </div>
 </div>
+</div>
 
 <!-- Text input-->
+<div class="row">
 <div class="form-group">
-  <label class="col-md-4 control-label" for="txtDescricao">Descrição</label>  
-  <div class="col-md-5">
+  <label style="margin-left: 15px" class="col-md-2 control-label" for="txtDescricao">Descrição</label>  
+  <div class="col-md-4">
   <textarea name="txtDescricao" id="txtDescricao" placeholder="Preencha com a descrição aqui" class="form-control input-md" required="" disabled=""><?php echo $plinha["descricao"]?></textarea>
   </div>
 </div>
+</div>
 
+<div class="row">
 <div class="form-group">
-  <label class="col-md-4 control-label" for="txtFile">Anexo(s)...</label>
-  <div class="col-md-5">
+  <label style="margin-left: 15px" class="col-md-2 control-label" for="txtFile">Anexo(s)...</label>
+  <div class="col-md-4">
   <table cellpadding="0" cellspacing="0" border="0" class="table">
       <tr>
       <th align='center' bgColor='#666666'><font color='#FFF'>Arquivo</th>
@@ -164,10 +187,12 @@ mysqli_close($link);
     </table>    
   </div>
 </div>
+</div>
 
+<div class="row">
 <div class="form-group">
-  <label class="col-md-4 control-label" >Histórico do protocolo</label>
-  <div class="col-md-5">
+  <label style="margin-left: 15px" class="col-md-2 control-label" >Histórico do protocolo</label>
+  <div class="col-md-4">
  <table cellpadding="0" cellspacing="0" border="0" class="table">
       <tr>
       <th align='center' bgColor='#666666'><font color='#FFF'>Data do cadastro</th>
@@ -189,14 +214,21 @@ mysqli_close($link);
     </table>    
   </div>
 </div>
+</div>
 
 <div class="row">
-<div class="form-group col-md-4">
-<label style="padding-left: 15px;" class="control-label">Movimentação do protocolo</label>
-<span style="position: absolute; top:40px; left:-30px; color: #088A08;font-size: 26px;" class="glyphicon glyphicon-arrow-right" alt='Enviado' data-toggle="tooltip_detalhe_env" title ='Enviado'></span>
-<table style="position: relative; left:31px; top:-5px;" cellpadding="0" cellspacing="0" border="0" class="table">
+<div class="form-group">
+  <label style="margin-left: 15px" class="col-md-2 control-label" >Movimentação do protocolo</label>
+</div>
+</div>  
+
+<!--início da delimitação da tabela de exibição de envio do protocolo-->
+<div class="row">
+      <div class="form-group col-md-3">
+        <span style="position: absolute; top:35px; left:17px; color: #088A08;font-size: 26px;" class="glyphicon glyphicon-arrow-right" alt='Enviado' data-toggle="tooltip_detalhe_env" title ='Enviado'></span>
+        <table style="position: relative; left:0px; top:0px; margin-left:35px;" name="tbenc_rec" id="tbenc_rec" cellpadding="0" cellspacing="0" border="0" width="340px">
       <tr>
-      <th align='center' bgColor='#666666'><font color='#FFF'>Setor de Envio</th>
+      <th height="40" align='center' bgColor='#666666'><font color='#FFF'>Setor de Envio</th>
       <th align='center' bgColor='#666666'><font color='#FFF'>Data do envio</th>
       <th align='center' bgColor='#666666'><font color='#FFF'>Usuário do envio</th>
      </tr>
@@ -207,19 +239,29 @@ mysqli_close($link);
         $data_env = $m_array["data_env"];
         ?>
      <tr>
-     <td width="200" height="39"><?php echo $setor_env ?></td>
-     <td width="110"><?php echo $data_env ?></td>
-     <td width="100"><?php echo $usuario_env ?></td>
+     <td><?php echo $setor_env ?></td>
+     <td><?php echo $data_env ?></td>
+     <td><?php echo $usuario_env ?></td>
      </tr>
 <?php } ?>
-</table>    
-</div>
-
-<div class="form-group col-md-5">
-<label class="control-label"></label>
-<table cellpadding="0" cellspacing="0" border="0" class="table">
-      <th align='center' bgColor='#666666'><font color='#FFF'>Setor de Destino</th>
-      <th align='center' bgColor='#666666'><font color='#FFF'>Data do recebimento</th>
+</table>  
+    </div>
+    <div class="form-group col-md-2">
+      <table style="position: relative; left:0px; top:0px; margin-left:25px;" name="tbdev_rec1" id="tbdev_rec1" cellpadding="0" cellspacing="0" border="0" width="240">
+      <tbody><tr>
+      <th height="40" align="center" bgcolor="#666666"><font color="#FFF">Setor de destino</font></th>
+      </tr>
+       <?php while($m_array1 = mysqli_fetch_array($sql7_query1)){  
+        $setor_dst = $m_array1["setor_dst"];
+        ?>
+      <tr>    
+        <td><?php echo $setor_dst ?></td>
+        </tr>
+        </tbody><?php } ?></table>  
+      </div>
+    <div class="form-group col-md-3">
+        <table name="tbenc_rec2" id="tbenc_rec2" cellpadding="0" cellspacing="0" border="0" width="380px">
+      <th height ="40" align='center' bgColor='#666666'><font color='#FFF'>Data do recebimento</th>
       <th align='center' bgColor='#666666'><font color='#FFF'>Usuário do recebimento</th>
       <th align='center' bgColor='#666666'><font color='#FFF
       '>Ação</th>
@@ -235,15 +277,13 @@ mysqli_close($link);
           $permission='disabled = "disabled"';
         }
       ?>
-      <?php while($m_array2 = mysqli_fetch_array($sql7_query)){  
+      <?php while($m_array2 = mysqli_fetch_array($sql7_query2)){  
         $enc_cod = $m_array2["enc_cod"];
         $usuario_rec = $m_array2["usuario_rec"];
-        $setor_dst = $m_array2["setor_dst"];
         $data_rec = $m_array2["data_rec"];
       
        ?>
         <tr>    
-        <td width="200"><?php echo $setor_dst ?></td>
         <td><?php echo $data_rec ?></td>
         <td><?php echo $usuario_rec ?></td>
         <td><button type="button" class="btn btn-default btn-xs" onclick="window.open('../rel/detalhe.php?cod=<?php echo $enc_cod ?>', '_blank')" <?php echo $permission ?>/> 
@@ -252,16 +292,20 @@ mysqli_close($link);
         </button></td>
       </tr>
       <?php } ?>
-      </table>    
+      </table>  
+      </div>
     </div>
-</div>
+  </form>
+ </div>
+<!-- fim da delimitação da tabela de exibição de envio do protocolo-->
 
+<!--início da delimitação da tabela de exibição do retorno do protocolo-->
 <div class="row">
-<div class="form-group col-md-4">
-<span style="position: absolute; top:40px; left:-30px; color: #088A08;font-size: 26px;" class="glyphicon glyphicon-arrow-left" alt='Recebido' data-toggle="tooltip_detalhe_rec" title ='Recebido'></span>
-<table style="position: relative; left:31px; top:0px;" cellpadding="0" cellspacing="0" border="0" class="table">
+      <div class="form-group col-md-3">
+        <span style="position: absolute; top:35px; left:17px; color: #088A08;font-size: 26px;" class="glyphicon glyphicon-arrow-left" alt='Recebido' data-toggle="tooltip_detalhe_rec" title ='Recebido'></span>
+        <table style="position: relative; left:0px; top:0px; margin-left:35px;" name="tbdev_rec" id="tbdev_rec" cellpadding="0" cellspacing="0" border="0" width="340px">
       <tr>
-      <th align='center' bgColor='#666666'><font color='#FFF'>Setor de Envio</th>
+      <th height="40" align='center' bgColor='#666666'><font color='#FFF'>Setor de Envio</th>
       <th align='center' bgColor='#666666'><font color='#FFF'>Data do envio</th>
       <th align='center' bgColor='#666666'><font color='#FFF'>Usuário do envio</th>
      </tr>
@@ -272,18 +316,29 @@ mysqli_close($link);
         $data_env = $m_array["data_env"];
         ?>
      <tr>
-     <td width="200" height="39"><?php echo $setor_env ?></td>
-     <td width="110"><?php echo $data_env ?></td>
-     <td width="100"><?php echo $usuario_env ?></td>
+     <td><?php echo $setor_env ?></td>
+     <td><?php echo $data_env ?></td>
+     <td><?php echo $usuario_env ?></td>
      </tr>
 <?php } ?>
-</table>    
-</div>
-
-<div class="form-group col-md-5">
-<table cellpadding="0" cellspacing="0" border="0" class="table">
-      <th align='center' bgColor='#666666'><font color='#FFF'>Setor de Destino</th>
-      <th align='center' bgColor='#666666'><font color='#FFF'>Data do recebimento</th>
+</table>  
+    </div>
+    <div class="form-group col-md-2">
+      <table style="position: relative; left:0px; top:0px; margin-left:25px;" name="tbdev_rec1" id="tbdev_rec1" cellpadding="0" cellspacing="0" border="0" width="240">
+      <tbody><tr>
+      <th height="40" align="center" bgcolor="#666666"><font color="#FFF">Setor de destino</font></th>
+      </tr>
+       <?php while($m_array1 = mysqli_fetch_array($sql9_query1)){  
+        $setor_dst = $m_array1["setor_dst"];
+        ?>
+      <tr>    
+        <td><?php echo $setor_dst ?></td>
+        </tr>
+        </tbody><?php } ?></table>  
+      </div>
+    <div class="form-group col-md-3">
+        <table name="tbenc_rec2" id="tbdev_rec2" cellpadding="0" cellspacing="0" border="0" width="380px">
+      <th height ="40" align='center' bgColor='#666666'><font color='#FFF'>Data do recebimento</th>
       <th align='center' bgColor='#666666'><font color='#FFF'>Usuário do recebimento</th>
       <th align='center' bgColor='#666666'><font color='#FFF
       '>Ação</th>
@@ -299,26 +354,29 @@ mysqli_close($link);
           $permission2='disabled = "disabled"';
         }
       ?>
-        <?php while($m_array2 = mysqli_fetch_array($sql9_query)){  
+      <?php while($m_array2 = mysqli_fetch_array($sql9_query2)){  
         $dev_cod = $m_array2["dev_cod"];
         $usuario_rec = $m_array2["usuario_rec"];
-        $setor_dst = $m_array2["setor_dst"];
         $data_rec = $m_array2["data_rec"];
       
        ?>
         <tr>    
-        <td width="200"><?php echo $setor_dst ?></td>
         <td><?php echo $data_rec ?></td>
         <td><?php echo $usuario_rec ?></td>
-        <td><button type="button" class="btn btn-default btn-xs"onclick="window.open('../rel/detalhe_dev.php?cod=<?php echo $dev_cod ?>', '_blank')" 
-        <?php echo $permission2 ?>/>
+        <td><button type="button" class="btn btn-default btn-xs" onclick="window.open('../rel/detalhe_dev.php?cod=<?php echo $dev_cod ?>', '_blank')" 
+        <?php echo $permission2 ?>/> 
+        
         <span style="color: #2E2EFE;font-size: 10px;" class="glyphicon glyphicon-print" alt='Imprimir' data-toggle="tooltip_imprimir" title ='Imprimir detalhes do processo'></span>
-        </button><td>
+        </button></td>
       </tr>
       <?php } ?>
-      </table>    
-  </div>
-</div>
+      </table>  
+      </div>
+    </div>
+  </form>
+ </div>
+<!-- fim da delimitação da tabela de exibição de retorno do protocolo-->
+
 <!-- Button (Double) -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="btnDevolver_proc"></label>

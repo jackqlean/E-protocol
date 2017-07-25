@@ -77,8 +77,8 @@ mysqli_close($link);
       </tr>
         <?php while ($array = mysqli_fetch_array($sql_query)) { 
         
-      if ($array["tipo"]=='PI') $ptipo = "Processo Interno";
-      if ($array["tipo"]=='PE') $ptipo = "Processo Externo";
+      if ($array["tipo"]=='PI') $ptipo = "Protocolo Interno";
+      if ($array["tipo"]=='PE') $ptipo = "Protocolo Externo";
       if ($array["tipo"]=='OT') $ptipo = "Outros";
 
         $cod = $array["cod"];
