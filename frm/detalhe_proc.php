@@ -67,7 +67,6 @@ mysqli_close($link);
     <meta name="author" content="Jaquison Quintao Leandro">
     <link rel="icon" type="image/x-icon" href="favicon.ico"> 
     <!-- Bootstrap -->
-        
     <script type="text/javascript">
       $(function () {
         $('[data-toggle="tooltip_imprimir"]').tooltip()

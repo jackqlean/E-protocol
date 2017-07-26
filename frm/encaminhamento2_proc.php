@@ -58,7 +58,7 @@ mysqli_close($link);
   <h1>Encaminhamento de Protocolo</h1>
 </div>
 
-<form name="cadastro" id="cadastro" method="POST" action="../op/encaminhar_proc.php">
+<form name="cadastro" id="cadastro" method="POST" action="../op/encaminhar2_proc.php">
 <?php $linha = mysqli_fetch_array($sql2_query)?>
 <fieldset>
 

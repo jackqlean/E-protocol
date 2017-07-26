@@ -95,6 +95,8 @@ if ($p == "0"){
             <li><a href="recebimento_proc_dev.php">Receber protocolo devolvido</a>  </li>
             <li role="separator" class="divider"></li>
             <li><a href="prot_rec.php">Exibir protocolos recebidos</a>  </li>
+            <li role="separator" class="divider"></li>
+            <li><a href="prot_dev.php">Exibir protocolos devolvidos</a>  </li>
            </ul>
         </li> 
         

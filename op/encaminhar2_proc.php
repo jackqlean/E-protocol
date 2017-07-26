@@ -25,25 +25,25 @@ ini_set('display_startup_erros',1);
 error_reporting(E_ALL);
 // =====================================
 
-$cod = $_GET["cod"];
+//$cod = $_GET["cod"];
 
 /*require_once "../config/init.php";
 require_once "../config/functions.php";*/
 
 // VARIAVEIS PARA ARMAZENAR A HORA E DATA ATUAIS DO SISTEMA
-	
     $data = date('Y-m-d', time());
     $horas = date('H:i:s', time());
-
-    $sql = "UPDATE `devolucao` SET `data_rec` = '".$data."', `horas_rec` = '".$horas."',`user_rec` = '".$_SESSION['user_id']."', `status` = '1',`statusd` = '0' WHERE `cod_prdev` = '".$cod."'";
-
-	if (mysqli_query($link, $sql)) {
-
+    $cod = $_POST["cod_eProc"];
+    
+$sql = "INSERT INTO encaminhamento (cod_prenc, cod_rqenc, cod_stenv, cod_stdst, user_env, data_env, horas_env, obs,status) VALUES('".$_POST["cod_eProc"]."','".$_POST["cod_eReq"]."','".$_POST["cod_eSetor"]."','".$_POST["txtStdst"]."','".$_SESSION['user_id']."','".$data."','".$horas."','".$_POST["txtObservacao"]."','0')";
+		
+		if (mysqli_query($link, $sql)) {
+    
 echo"<script>
 $(document).ready(function () {
 swal({
   type: 'success',
-  title: 'Processo recebido com sucesso',
+  title: 'Processo encaminhado com sucesso',
   text: '',
   showConfirmButton: false,
   timer: 2000
@@ -58,8 +58,10 @@ swal({
 )
 });
 </script>";
-		} else {
-    	echo"<script>
+		
+	} else {
+
+echo"<script>
 $(document).ready(function () {
 swal({
   type: 'error',
@@ -72,7 +74,7 @@ swal({
   // handling the promise rejection
   function (dismiss) {
     if (dismiss === 'timer') {
-      window.location.href='../frm/recebimento_proc_dev.php'
+      window.location.href='../frm/encaminhamento2_proc.php'
     }
   }
 )
@@ -80,6 +82,9 @@ swal({
 </script>";
 }
 
+$sql2 = "UPDATE `devolucao` SET  `statusd` = '1' WHERE `cod_prdev` = '".$cod."'";
+
+mysqli_query($link, $sql2);
 // Fecha a conexão com o servidor para poupar recursos de processamento
 mysqli_close($link);
 ?>

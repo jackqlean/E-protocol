@@ -22,8 +22,8 @@ $r = mysqli_fetch_array($sql2_query);
 $scod = $r["cod_setor"];
 
 
-$sql_query = mysqli_query($link,"SELECT p.cod AS cod, p.tipo, r.nome AS nome, s.setor, DATE_FORMAT(d.data_env,'%d/%m/%Y') AS data, d.horas_env AS horas FROM  proc p, req r, setor s, devolucao d 
-WHERE p.cod = d.cod_prdev AND r.cod = d.cod_rqdev AND s.cod_setor = d.cod_stdev AND d.`status`!='1'AND s.cod_setor = '".$scod."'");
+$sql_query = mysqli_query($link,"SELECT p.cod AS cod, p.tipo, r.nome AS nome, d.`status`, s.setor, DATE_FORMAT(d.data_env,'%d/%m/%Y') AS data, d.horas_env AS horas FROM  proc p, req r, setor s, devolucao d 
+WHERE p.cod = d.cod_prdev AND r.cod = d.cod_rqdev AND s.cod_setor = d.cod_stdev AND d.`status` ='1' AND d.`statusd` = '0' AND s.cod_setor = '".$scod."'");
 
 // Fecha a conexão com o servidor para poupar recursos de processamento
 mysqli_close($link);
@@ -59,7 +59,7 @@ mysqli_close($link);
 </head>
 <body>
 <div class="page-header">
-  <h1>Recebimento de Protocolos Devolvidos</h1>
+  <h1>Protocolo Devolvido</h1>
 </div>
 <div class="form-group">
 
@@ -77,8 +77,8 @@ mysqli_close($link);
       </tr>
         <?php while ($array = mysqli_fetch_array($sql_query)) { 
         
-      if ($array["tipo"]=='PI') $ptipo = "Processo Interno";
-      if ($array["tipo"]=='PE') $ptipo = "Processo Externo";
+      if ($array["tipo"]=='PI') $ptipo = "Protocolo Interno";
+      if ($array["tipo"]=='PE') $ptipo = "Protocolo Externo";
       if ($array["tipo"]=='OT') $ptipo = "Outros";
 
         $cod = $array["cod"];
@@ -95,7 +95,7 @@ mysqli_close($link);
         <td><?php echo $data ?></td>
         <td><?php echo $horas ?></td>
         <td><?php echo $setor ?></td>
-        <td><a href='/prot/op/receber_proc_dev.php?cod=<?php echo $cod ?>'><span style="color: #088A08;font-size: 28px;" class="glyphicon glyphicon-ok" alt='Receber' title='Receber devolução de protocolo'></span></a></td>
+        <td><a href='/prot/op/selecionar2.php?cod=<?php echo $cod ?>'><span style="color: #088A08;font-size: 28px;" class="glyphicon glyphicon-ok" alt='Encaminhar' title='Reencaminhar este processo'></span></a></td>
       </tr>
       <?php } ?>
     </table>
