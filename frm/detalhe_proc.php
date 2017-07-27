@@ -301,7 +301,7 @@ mysqli_close($link);
 <!--início da delimitação da tabela de exibição do retorno do protocolo-->
 <div class="row">
       <div class="form-group col-md-3">
-        <span style="position: absolute; top:35px; left:17px; color: #088A08;font-size: 26px;" class="glyphicon glyphicon-arrow-left" alt='Recebido' data-toggle="tooltip_detalhe_rec" title ='Recebido'></span>
+        <span style="position: absolute; top:35px; left:17px; color: #088A08;font-size: 26px;" class="glyphicon glyphicon-arrow-left" alt='Recebido' data-toggle="tooltip_detalhe_rec" title ='Devolvido'></span>
         <table style="position: relative; left:0px; top:0px; margin-left:35px;" name="tbdev_rec" id="tbdev_rec" cellpadding="0" cellspacing="0" border="0" width="340px">
       <tr>
       <th height="40" align='center' bgColor='#666666'><font color='#FFF'>Setor de Envio</th>
