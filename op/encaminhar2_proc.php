@@ -43,7 +43,7 @@ echo"<script>
 $(document).ready(function () {
 swal({
   type: 'success',
-  title: 'Protocolo encerrado com sucesso',
+  title: 'Protocolo encaminhado com sucesso',
   text: '',
   showConfirmButton: false,
   timer: 2000
