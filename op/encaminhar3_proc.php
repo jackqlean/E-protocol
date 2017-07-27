@@ -25,17 +25,12 @@ ini_set('display_startup_erros',1);
 error_reporting(E_ALL);
 // =====================================
 
-//$cod = $_GET["cod"];
+$cod = $_GET["cod"];
 
 /*require_once "../config/init.php";
 require_once "../config/functions.php";*/
 
-// VARIAVEIS PARA ARMAZENAR A HORA E DATA ATUAIS DO SISTEMA
-    $data = date('Y-m-d', time());
-    $horas = date('H:i:s', time());
-    $cod = $_POST["cod_eProc"];
-    
-$sql = "INSERT INTO encaminhamento (cod_prenc, cod_rqenc, cod_stenv, cod_stdst, user_env, data_env, horas_env, obs,status) VALUES('".$_POST["cod_eProc"]."','".$_POST["cod_eReq"]."','".$_POST["cod_eSetor"]."','".$_POST["txtStdst"]."','".$_SESSION['user_id']."','".$data."','".$horas."','".$_POST["txtObservacao"]."','0')";
+$sql = "UPDATE `devolucao` SET  `statusd` = '1' WHERE `cod_prdev` = '".$cod."'";
 		
 		if (mysqli_query($link, $sql)) {
     
@@ -82,9 +77,6 @@ swal({
 </script>";
 }
 
-$sql2 = "UPDATE `devolucao` SET  `statusd` = '1' WHERE `cod_prdev` = '".$cod."'";
-
-mysqli_query($link, $sql2);
 // Fecha a conexão com o servidor para poupar recursos de processamento
 mysqli_close($link);
 ?>

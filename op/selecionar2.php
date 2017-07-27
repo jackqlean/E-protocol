@@ -48,7 +48,7 @@ swal({
 <form id="form_dev1" name="" method="POST" action="../frm/encaminhamento2_proc.php?cod=<?php echo $cod ?>">
 </form>
 
-<form id="form_dev2" name="" method="POST" action="../frm/teste2.php?cod=<?php echo $cod ?>">
+<form id="form_dev2" name="" method="POST" action="../op/encaminhar3_proc.php?cod=<?php echo $cod ?>">
     <input type="hidden" id="" name="txtObs" value="<?php echo $observacao ?>" />
 </form>
 </body>
